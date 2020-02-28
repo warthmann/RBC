@@ -330,9 +330,8 @@ class RcombinationMapping(object):
         v   = 1.0/self.pool_size_res * (1-podd) * podd + eps**2
 
       elif pool=='sus':
-        mu = 1.0/3 * (1+podd) #+ eps
-        v   = 1.0/3 *  1.0/self.pool_size_sus * (1-podd) * podd + eps**2
-
+        mu = 1.0/100 * (1+podd) #+ eps
+        v   = 1.0/100 *  1.0/self.pool_size_sus * (1-podd) * podd + eps**2
       mu2 = mu**2
       alpha = - mu/v * (v+ mu2 - mu)
       beta  = (v + mu2 - mu)*(mu-1) / v
@@ -352,8 +351,8 @@ class RcombinationMapping(object):
           alpha = (1-(podd+eps))*2*self.pool_size_res
           beta  = (podd+eps) * 2 * self.pool_size_res
       elif pool=='sus':
-          alpha = 1.0/3 * ( 1+ (podd+eps))*2*self.pool_size_res
-          beta  = 1.0/3 * (2-(podd+eps))*2*self.pool_size_sus
+          alpha = 1.0/100 * ( 1+ (podd+eps))*2*self.pool_size_res
+          beta  = 1.0/100 * (2-(podd+eps))*2*self.pool_size_sus
       #return alpha/beta
       return [alpha,beta]  
 

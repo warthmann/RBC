@@ -1,0 +1,83 @@
+../MFEprimer.py -i primers.fa -d ./database.seq -T F -e 10000 -W 4 -a 2 --ppc_cutoff=0.2 --seq=primer.mfe.fa -o primer.mfe
+
+MFEprimer 1.7 [Jan-28-2010]
+Wubin Qu, Zhiyong Shen, Dongsheng Zhao, Yi Yang, Chenggang Zhang. (2009)
+MFEprimer: Multiple factor evaluation of the specificity of PCR primers, 
+Bioinformatics 25(2), 276-278.
+
+
+BLASTN 2.2.20 [Feb-08-2009]
+Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer,  Jinghui
+Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997),  "Gapped
+BLAST and PSI-BLAST: a new generation of protein database search
+programs",  Nucleic Acids Res. 25:3389-3402.
+
+
+Query = Forward_primer; Reverse_primer; 
+        (2 primer sequences; 36 letters)
+
+Database: ./database.seq
+           1 sequences; 1153 total letters
+
+Searching..................................................done
+
+
+Distribution of 1 MFEprimer hits on the query primers
+
+[Sort by primer pair coverage (PPC)]
+                                                                                       FP    RP      FP    RP
+                                                                     Size      PPC    3'ΔG  3'ΔG     Tm    Tm
+Sequences producing potential PCR products:                          (bp)      (%)    (kcal/mol)    (°C)  (°C)
+
+1: ref|NM_203378.1| Homo sapiens myoglobin (...                      136      100.0   -3.0   -4.3   56.6  57.0
+
+
+[Sort by amplicon size]
+                                                                                       FP    RP      FP    RP
+                                                                     Size      PPC    3'ΔG  3'ΔG     Tm    Tm
+Sequences producing potential PCR products:                          (bp)      (%)    (kcal/mol)    (°C)  (°C)
+
+1: ref|NM_203378.1| Homo sapiens myoglobin (...                      136      100.0   -3.0   -4.3   56.6  57.0
+
+
+Details for the primers binding to the DNA template
+[Sort by primer pair coverage (PPC)]
+
+1: Forward_primer + Reverse_primer ==> ref|NM_203378.1| Homo sapiens myoglobin (MB), transcript variant 3, mRNA
+
+  PPC = 100.0%, Size = 136 bp, GC content = 55.9%
+  FP: 3'ΔG = -3.0(kcal/mol), Tm = 56.6 (°C)
+  RP: 3'ΔG = -4.3(kcal/mol), Tm = 57.0 (°C)
+  Binding sites: 320(18/18) ... 455(18/18)
+
+>>>Forward_primer
+   1                18
+5' GATGAAGGCGTCTGAGGA 3'
+   ||||||||||||||||||                                                      455
+5' GATGAAGGCGTCTGAGGActtaaagaagcatggtg...ccctggcacagtcgcatGCCACCAAGCACAAGATC 3'
+   320                                                    ||||||||||||||||||
+                                                       3' GCCACCAAGCACAAGATC 5'
+                                                          18               1
+                                                               Reverse_primer<<<
+
+>1_Forward_primer_Reverse_primer_ref|NM_203378.1| Homo sapiens myoglobin (MB)...
+GATGAAGGCGTCTGAGGActtaaagaagcatggtgccaccgtgctcaccgccctgggtggcatccttaagaagaag
+gggcatcatgaggcagagattaagcccctggcacagtcgcatGCCACCAAGCACAAGATC
+
+
+
+
+#####################################
+#   Arguments used in MFEprimer   #
+#####################################
+    
+Amplicons size range from: 0 bp to: 5000 bp
+PPC cutoff value: 20.0%
+
+Expectation value: 10000
+Word size: 4
+
+Concentration of monovalent cations (usually KCl): 50.0 mM
+Concentration of divalent cations (usually MgCl2): 1.5 mM
+Annealing oligo concentration: 50.0 nM
+Concentration of dNTPs: 0.25 mM

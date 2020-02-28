@@ -1,0 +1,54 @@
+MFEprimer 1.7 [Jan-27-2010]
+
+1. Replace the Python module textwrap with a function written by myself
+    Which increasing the speed a lot expecially when the size of the amplicons
+    is very large, such as 200,000 bp.
+
+MFEprimer 1.6 [Nov-4-2009]
+
+1. Fix a parsing bug for LightBio.LightBlastParser when Blast report file 
+   contains "Expect(2)" or "Expect(3)".
+
+MFEprimer 1.5 [Jun-22-2009]
+
+1. Add --ppc_cutoff parameter, it act as -s.
+2. Add --seq and --fasta parameters, both of them let user output the
+    amplicons sequence in Fasta format.
+3. Changing the temporary Blast file name from a constant name to a
+    name with 20 letters generatered randomly. This changes would fix
+    the problem happened when two or more MFEprimer running at the same
+    time in the same directory.
+
+
+
+MFEprimer 1.4 [Jun-17-2009]
+
+1. A serious bug has been fixed. Thanks Prof. Zhang very much. 
+    I forget this important code:
+        rtail = LS.seq(rtail).rev_com # Thanks Prof. Zhang for finding this bug
+
+
+
+MFEprimer 1.3 [May-20-2009]
+
+1. More arguments used in MFEprimer would be printed in the output file.
+
+
+MFEprimer 1.2 [Dec-4-2008]
+
+1. Some little bugs fixed. One of them is that changing the temporary Blast
+    file path from /tmp to the current directory which MFEprimer running.
+
+
+MFEprimer 1.1 [Nov-23-2008]
+
+1. Fixed a very serious bug which makes the wrong calculation of Tm and DeltaG .
+    Thanks the reviewer of the manuscript who found this bug.
+
+
+MFEprimer 1.0 [Aug-17-2008]
+
+1. First version of MFEprimer is abailable.  At the same time, web version 
+    of MFEprimer is also available. 
+2. In this version, MFEprimer has the 
+    ability to evaluate the specificity of PCR primers as the paper described.

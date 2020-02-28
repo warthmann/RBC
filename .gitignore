@@ -1,3 +1,14 @@
 test1.rbci
 test1.rbci.pickle
 .DS_Store
+
+mapper_test
+mapper_test/*
+
+*.vcf
+*.vcf.*
+
+*.rbci
+*.rbci.*
+
+rbc_mapper/__pycache__/*
