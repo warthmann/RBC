@@ -16,7 +16,7 @@ filter_flags: ExactAN,NoSBtag
 min_qual: 100
 resolution: 100000
 phenoNoise: 1E-10
-min_segr_pv: 0
+min_segr_pv: null
 chrom_size: null
 window_size: 5000000.0
 opt_eps: False

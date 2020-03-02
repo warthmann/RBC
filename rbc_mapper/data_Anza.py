@@ -397,7 +397,7 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     
     #segragation p-value?
     # Not Working for now Hard Coded
-    if min_segr_pv is not 0:
+    if min_segr_pv is not None:
         print('min_segr_pv working')
         pv = calc_p_value_fair(D)
         Iok = pv>min_segr_pv

@@ -1,9 +1,10 @@
 {'data_file': 'mapper_test.rbci'
  'out_dir': '../test3'
  'verbose': False
- 'chrom': None
- 'start': 0
- 'stop': 0
+ 'chrom': '9311chr07
+9311chr07'
+ 'start': None
+ 'stop': None
  'n_res': 178
  'n_sus': 280
  'with_parents': False
@@ -16,7 +17,7 @@ NoSBtag'
  'hs_max': None
  'resolution': 100000
  'min_segr_pv': None
- 'chrom_size': 0
+ 'chrom_size': None
  'window_size': 5000000.0
  'phenoNoise': 1e-10
  'EMAR_SP': 3.0
