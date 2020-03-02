@@ -1,0 +1,26 @@
+%YAML 1.0
+---
+data_file: mapper_test.rbci
+out_dir: ../mapper_test
+n_res: 178
+n_sus: 280
+chrom: 9311chr07,9311chr07 
+hs_max: 0.0
+start: 0
+stop: 0
+with_parents: False
+plots: True
+dp_max_ratio: 1.5
+trust_gatk: False
+filter_flags: ExactAN,NoSBtag@ExactAN,NoSBtag 
+min_qual: 100
+resolution: 100000
+phenoNoise: 1E-10
+min_segr_pv: 0.0
+chrom_size: 0
+window_size: 5000000.0
+opt_eps: False
+opt_recombination: False
+EMAR_SP: 3
+EX_CO_Chrom: 2
+

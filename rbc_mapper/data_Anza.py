@@ -9,7 +9,7 @@ import pdb
 import string
 import sys
 import numpy as np
-from models import calc_p_value_fair
+from models_Anza import calc_p_value_fair
 
 
 
@@ -240,8 +240,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     Iok = SP.ones(D['alleles_res'].shape[0],dtype='bool') 
     print ("Note: Total Number %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     Iok_test=Iok
-    difference= None
-# The below if statement filters on the position where the chromosome is true
+    difference= None        
+        
     if chrom is not None:
         Iok = Iok & (D['chrom']==chrom)
         difference=set(D['pos'][Iok_test]) - set(D['pos'][Iok])
@@ -252,11 +252,11 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
         
         #difference= None
     # changed the value to 0 from None by Anza
-    if start is not None:
+    if start is not 0:
         Iok = Iok & (D['pos']>=start)
         print(start)
     # changed the value to 0 from None by Anza
-    if stop is not None:
+    if stop is not 0:
         Iok = Iok & (D['pos']<=stop)
         print(stop)
 
@@ -340,9 +340,11 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     #filter filter flag
     #1. get list of legal flags
     if filter_flags:
-        #lf = str.split(string.upper(filter_flags),',')
-        lf = str.split(filter_flags.upper(),',')
+        lf = str.split(str.upper(filter_flags),',')
+        #lf = str.split(filter_flags.upper(),',')
+        print('lf:%s'%type(lf) )
         ifilter = SP.array([SP.array([e in lf for e in _filter]).all() for _filter in D['filter']])
+        
         Iok = Iok & ifilter
 
         difference=set(D['pos'][Iok_test]) - set(D['pos'][Iok])
