@@ -18,9 +18,9 @@ from data_Anza import *
 #import old.models as OM
 
 
-def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_size,opt_eps=False,opt_recombination=False,phenoNoise=0,out_base=None):
+def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_size,opt_eps=False,opt_recombination=False,phenoNoise=0,out_base=None,EMAR_SusPool=0):
     rm = RcombinationMapping()
-    rm.setCountData(data['counts_res'],data['counts_sus'],data['pos'])
+    rm.setCountData(data['counts_res'],data['counts_sus'],data['pos'],EMAR_SusPool)
     rm.setPoolSizes(samples_res,samples_sus)
     rm.setRecombination(recombination_rate)
     rm.setPhenotypingNoise(phenoNoise)
@@ -39,10 +39,12 @@ def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_
         PL.subplot(212)
         PL.plot(P,score)
     if 1:
+        
         PL.figure(1,figsize=[10,5])
         PL.clf()
         PL.plot(P,score,'k.',alpha=0.5)
         PL.grid()
+        PL.title("Chromosome : %s" %np.unique(data['chrom']))
         PL.show()
     if 0:
         PL.figure(1,figsize=[10,5])
@@ -76,7 +78,7 @@ def main(options):
     
     #2. hard coded preprocessing parameters
     preprocess_params = {'min_qual':options["min_qual"],'trust_gatk':options["trust_gatk"],'dp_max_ratio':options["dp_max_ratio"],'hs_max':options["hs_max"],'filter_flags':options["filter_flags"],'chrom':options["chrom"],'start':options["start"],'stop':options["stop"],'min_segr_pv':options["min_segr_pv"]}
-    analyse_params = {'step_size':options["resolution"],'window_size': options["window_size"],'opt_eps':options["opt_eps"],'opt_recombination':options["opt_recombination"],'phenoNoise':options["phenoNoise"]}
+    analyse_params = {'step_size':options["resolution"],'window_size': options["window_size"],'opt_eps':options["opt_eps"],'opt_recombination':options["opt_recombination"],'phenoNoise':options["phenoNoise"],'EMAR_SusPool': options["EMAR_SP"]}
 
     samples_res = options["n_res"]
     samples_sus = options["n_sus"]
@@ -97,104 +99,122 @@ def main(options):
    
     recalc = 'recalc' in sys.argv # "recalc" in commandline triggers replacement of existing pickle file 
     #1. load raw data
-    fileName, fileExtension = os.path.splitext(data_file)
-    if not os.path.exists(data_file_cached) or recalc:
-        data = load_data_irbc(data_file,with_parents=options["with_parents"])
-        pickle.dump(data,open(data_file_cached,'wb'),-1)
-    else:
-        data = pickle.load(open(data_file_cached,'rb'))
-
-
     
-    preprocess_data(data,**preprocess_params)    
-    
-    #get library size correction
-    [LSres,LSsus] = lib_size_factors(data)
-    
+    chromosome_names = str.split(preprocess_params['chrom'],',')
 
-    ## Anza Testing
-    ##[LSres,LSsus] = lib_size_factors(data)
+    #filter_flags_split= str.split(preprocess_params['filter_flags'],'@')
+    for i in range(0,len(chromosome_names)):
+        print('Chromosome: %s' %chromosome_names[i])
+        print('Filter Flags: %s' %preprocess_params['filter_flags'])
 
-
-
-    data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
-#    data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
-    #print(LSres*data['counts_res']) #printed for better understanding (Norman, Anza Jan 2020)
-    #print(LSsus*data['counts_sus'])
-    #print(data['counts_both'])
-    
-    #filter on allele counts 
-    if 1:
-        #filter by ratio (a normal SNP should have 50% over both pools, but this is true only, if the numbers of individuals in th epools reflect the inheritance (I.e. 3:1, in a recessive one-gene trait, the phenotype(-) pools has to have 3 times the size of the phenotype(+) pool)
-        # this filter needs to take pools size into account. Do not hard code ratios.
-        ratio =data['counts_both'][:,0]/data['counts_both'].sum(axis=1)
-        print("RATIO=%s" %ratio)
-        #Iok = (0.45<ratio) & (ratio<0.65)
-        Iok = (0.30<ratio) & (ratio<0.70)
-        filter_data(data,Iok)
-
-    pos = data['pos']
-    chrom = data['chrom']
-
-    #loop over chromosomes and carry out analysis
-    uchrom = np.unique(chrom)
-
-    for c in uchrom:
-        print ("Note: processing Chromosome %s" % (c))
-        _data = copy.deepcopy(data)
-        Ic = (data['chrom']==c)
-        filter_data(_data,Ic)
-        
-        # changed none to 0 in the below expression by Anza
-        if options["chrom_size"] is None:
-            recombination_rate = 2.0/(data['pos'].max()-data['pos'].min())
-            
+    #1. load raw data
+        fileName, fileExtension = os.path.splitext(data_file)
+        if not os.path.exists(data_file_cached) or recalc:
+            data = load_data_irbc(data_file,with_parents=options["with_parents"])
+            pickle.dump(data,open(data_file_cached,'wb'),-1)
         else:
+            data = pickle.load(open(data_file_cached,'rb'))
+        chrom=chromosome_names[i]
+        preprocess_params['chrom']=chromosome_names[i]
+        #preprocess_params['filter_flags']=filter_flags_split[i]
+        preprocess_data(data,**preprocess_params)    
+        
+        #get library size correction
+        [LSres,LSsus] = lib_size_factors(data)
+        
+
+        ## Anza Testing
+        ##[LSres,LSsus] = lib_size_factors(data)
+
+
+
+        data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
+    #    data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
+        #print(LSres*data['counts_res']) #printed for better understanding (Norman, Anza Jan 2020)
+        #print(LSsus*data['counts_sus'])
+        #print(data['counts_both'])
+        
+        #filter on allele counts 
+        if 1:
+            #filter by ratio (a normal SNP should have 50% over both pools, but this is true only, if the numbers of individuals in th epools reflect the inheritance (I.e. 3:1, in a recessive one-gene trait, the phenotype(-) pools has to have 3 times the size of the phenotype(+) pool)
+            # this filter needs to take pools size into account. Do not hard code ratios.
+            ratio =data['counts_both'][:,0]/data['counts_both'].sum(axis=1)
+            #Iok = (0.45<ratio) & (ratio<0.65)
+            Iok = (0.30<ratio) & (ratio<0.70)
+            filter_data(data,Iok)
+
+        pos = data['pos']
+        chrom = data['chrom']
+
+        #loop over chromosomes and carry out analysis
+        uchrom = np.unique(chrom)
+
+        for c in uchrom:
+            print ("Note: processing Chromosome %s" % (c))
+            _data = copy.deepcopy(data)
+            Ic = (data['chrom']==c)
+            filter_data(_data,Ic)
             
-            recombination_rate = 2.0/options["chrom_size"]
+            # changed none to 0 in the below expression by Anza
+            if options["chrom_size"] is None:
+                recombination_rate = options["EX_CO_Chrom"]/(data['pos'].max()-data['pos'].min())
+                
+            else:
+                
+                recombination_rate = options["EX_CO_Chrom"]/options["chrom_size"]
 
-# The below if statement is not working 
-        if 0:
-            print ("recombination rate factor on")
-            recombination_rate *= 2
-# This is where the plot is being developed
-        analyse_rm(_data,samples_res,samples_sus,recombination_rate,out_base = os.path.join(out_dir,'chrom_%s' % (c)),**analyse_params)
+    # The below if statement is not working 
+            if 0:
+                print ("recombination rate factor on")
+                recombination_rate *= 2
+    # This is where the plot is being developed
+            analyse_rm(_data,samples_res,samples_sus,recombination_rate,out_base = os.path.join(out_dir,'chrom_%s' % (c)),**analyse_params)
 
 
-    if 1:
-        #PL.figure()
-        PL.subplot(411)
-        PL.title("counts_both")
-        PL.plot(data['pos'],data['counts_both'][:,0]/data['counts_both'].sum(axis=1),'b.',alpha=0.2)
-        PL.ylim(-0.1, 1.1)
-        PL.grid()
-        PL.subplot(412)
-        PL.title("counts determined major allele in res pool")
-        PL.plot(data['pos'],np.array(data['counts_res'][:,0],dtype='float')/data['counts_res'].sum(axis=1),'b.',alpha=0.2)
-        PL.ylim(-0.1, 1.1)
-        PL.grid()
-        PL.subplot(413)
-        PL.title("counts this same allele in sus pool")
-        PL.plot(data['pos'],np.array(data['counts_sus'][:,0],dtype='float')/data['counts_sus'].sum(axis=1),'b.',alpha=0.2)
-        PL.ylim(-0.1, 1.1)
-        PL.grid()
-        PL.subplot(414)
-        PL.title("counts determined minor allele in res pool")
-        PL.plot(data['pos'],np.array(data['counts_res'][:,1],dtype='float')/data['counts_res'].sum(axis=1),'b.',alpha=0.2)
-        PL.ylim(-0.1, 1.1)
-        PL.grid()
-        PL.show()
+        if 1:
+            #PL.figure()
+            PL.subplot(411)
+            PL.title("counts_both")
+            PL.plot(data['pos'],data['counts_both'][:,0]/data['counts_both'].sum(axis=1),'b.',alpha=0.2)
+            PL.ylim(-0.1, 1.1)
+            PL.grid()
+            PL.subplot(412)
+            PL.title("counts determined major allele in res pool")
+            PL.plot(data['pos'],np.array(data['counts_res'][:,0],dtype='float')/data['counts_res'].sum(axis=1),'b.',alpha=0.2)
+            PL.ylim(-0.1, 1.1)
+            PL.grid()
+            PL.subplot(413)
+            PL.title("counts this same allele in sus pool")
+            PL.plot(data['pos'],np.array(data['counts_sus'][:,0],dtype='float')/data['counts_sus'].sum(axis=1),'b.',alpha=0.2)
+            PL.ylim(-0.1, 1.1)
+            PL.grid()
+            PL.subplot(414)
+            PL.title("counts determined minor allele in res pool")
+            PL.plot(data['pos'],np.array(data['counts_res'][:,1],dtype='float')/data['counts_res'].sum(axis=1),'b.',alpha=0.2)
+            PL.ylim(-0.1, 1.1)
+            PL.grid()
+            PL.show()
 
 
 if __name__ == '__main__':
     #parse command line
-    options_parsed   = parse_options(sys.argv)
-    options = vars(options_parsed)
+    if len(sys.argv) > 2:
+        options_parsed   = parse_options(sys.argv)
+        options = vars(options_parsed)
+        print(options)
+        Command_line_argv_file = 'argv.txt'
+        f= open(Command_line_argv_file,'w')
+        f.write(str(options).replace(',','\n'))
+    else:
+        with open('config_1.yaml') as file:
+            options = yaml.load(file)
+            print(options)
+        
     #print (type(options))
     #print (options['min_qual'])
-    #with open('config_1.yaml') as file:
-     #   options = yaml.load(file)
-      #  print(options)
+    '''with open('config_1.yaml') as file:
+        options = yaml.load(file)
+        print(options)'''
 
     #print ("Note: using options: %s" % (str(options)))
     #print(type(options['window_size']))

@@ -75,10 +75,11 @@ class RcombinationMapping(object):
       self.eps = 0.01
       # changing the value of eps from 1e-2 to 0.01 as it was being treated as str instead of float
       self.pos = None
+      self.EMAR_SP= None
       
       pass
 
-  def setCountData(self,counts_res,counts_sus,pos):
+  def setCountData(self,counts_res,counts_sus,pos,EMAR_SusPool):
       """set count data
       counts_res: [N x 2] 
       counts_sus: [N x 2]
@@ -86,6 +87,7 @@ class RcombinationMapping(object):
       First column needs to be resistance allele and data is required
       to be phased.
       """
+      self.EMAR_SusPool= EMAR_SusPool
       #number of res. alleles
       self.res = SP.zeros(counts_res.shape,dtype='float')
       self.sus = SP.zeros(counts_sus.shape,dtype='float')
@@ -331,16 +333,16 @@ class RcombinationMapping(object):
           
       if pool=='res':
         # conversion of eps to float by Anza
-        eps= eps
+        eps= float(eps)
         #print(type(eps))
         #print(eps)
         mu = 1.0-podd
         v   = 1.0/self.pool_size_res * (1-podd) * podd + eps**2
       elif pool=='sus':
         # conversion of eps to float by Anza
-        eps=eps
-        mu = 1.0/3 * (1+podd) #+ eps
-        v   = 1.0/3 *  1.0/self.pool_size_sus * (1-podd) * podd + eps**2
+        eps=float(eps)
+        mu = 1/self.EMAR_SusPool * (1+podd) #+ eps
+        v   = 1/self.EMAR_SusPool *  1.0/self.pool_size_sus * (1-podd) * podd + eps**2
 
       mu2 = mu**2
       alpha = - mu/v * (v+ mu2 - mu)
@@ -464,7 +466,7 @@ def parse_options(argv):
     required.add_option('-f', '--file', dest='data_file', metavar='FILE', help='data file with input counts', default='-')
     required.add_option('-o', '--outdir', dest='out_dir', metavar='FILE', help='output directory', default='-')
     optional.add_option('-v', '--verbose', dest='verbose', action='store_true', help='verbosity', default=False)
-    required.add_option('--chromosome', dest='chrom', metavar='STR', help='chromosome number', default=None)
+    required.add_option('--chromosome', dest='chrom', metavar='STR',type='str', help='chromosome number', default=None)
     required.add_option('--start', dest='start', type='int', help='start bp', default=None)
     required.add_option('--stop', dest='stop', type='int', help='stop bp', default=None)
     required.add_option('--n_res', dest='n_res', type='int', help='number of samples in res pool',default=None)
@@ -483,9 +485,9 @@ def parse_options(argv):
     optional.add_option('--window_size',dest='window_size',type='float',help='Analysis window', default=5000E3)
     optional.add_option('--phenoNoise',dest='phenoNoise',type='float',help='Phenotyping noise', default=1E-4)
     
-    # Addition of LSres and LSsus in the command line arguments
-    #optional.add_option('--pres',dest='pres',type='float',help='anza_testing', default=1E-4)
-    #optional.add_option('--psus',dest='psus',type='float',help='anza_testing_1', default=1E-4)
+    # Addition EMAR SusPool and Expected Chromosome
+    optional.add_option('--EMAR_SusPool',dest='EMAR_SP',type='float',help='expected allel ratioin sus pool', default= 3)
+    optional.add_option('--Expected_CrossOvers',dest='EX_CO_Chrom',type='int',help='Expected Number of Crossover per Chromosome', default=2)
     
     #optimization flags
     
