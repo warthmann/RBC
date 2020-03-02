@@ -10,7 +10,7 @@ import copy
 from models import *
 from data import *
 
-
+#allele frequency filter, line 118
 
 #from old.models import *
 #import old.models as OM
@@ -115,7 +115,7 @@ def main(options):
         ratio =data['counts_both'][:,0]/data['counts_both'].sum(axis=1)
         print(ratio)
         #Iok = (0.45<ratio) & (ratio<0.65)
-        Iok = (0.45<ratio) & (ratio<0.73)
+        Iok = (0.05<ratio) & (ratio<0.75)
         filter_data(data,Iok)
 
     pos = data['pos']

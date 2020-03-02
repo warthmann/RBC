@@ -63,6 +63,8 @@ my $p3_conf = "";
 
 my $mfeprimer_args_intern = "-T F -W 4 -a 2 --ppc_cutoff=0.255";
 my $mfeprimer_args = "";
+
+my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
  
 ###############################################################################
 # END OF CONFIGURATION
@@ -763,7 +765,7 @@ sub run_mfeprimer {
 	print $tmp $fasta;
 	warn "Created tmp fasta file for MFEPrimer: $fname" if(DEBUG_MFEP);
 	
-	my $cmd = qq($mfeprimer_bin -i $fname -d $loc_seq_db $mfeprimer_args);
+	my $cmd = qq($PYTHON2 $mfeprimer_bin -i $fname -d $loc_seq_db $mfeprimer_args);
 	warn "cmd=$cmd" if(DEBUG_MFEP);
 	
 	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";

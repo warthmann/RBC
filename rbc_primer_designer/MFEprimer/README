@@ -1,0 +1,44 @@
+MFEprimer
+
+MFEprimer is a stand-alone version of the web service MFEprimer (http://biocompute.bmi.ac.cn/MFEprimer/). See the web site for details.
+It runs on Linux/Unix with Python (>=2.5) and NCBI BLAST (>=2.2.18).
+The program is under the GNU GPL license. You will find a copy of GPL license in the MFEprimer tar file.
+
+
+Requirements:
+
+    Python >= 2.5 
+    NCBI BLAST >= 2.2.18 
+    
+Install
+
+Step 1:
+    Make sure the version of Python in your machine is >= 2.5. If not, please go to Python office web site (http://www.python.org/) for help.
+    Download NCBI BLAST v2.2.18 (ftp://ftp.ncbi.nih.gov/blast/executables/release/2.2.18/blast-2.2.18-ia32-linux.tar.gz).
+    Download MFEprimer from http://biocompute.bmi.ac.cn/MFEprimer/download/MFEprimer.tar.bz2.
+
+Step 2:
+    untar MFEprimer.tar.bz2 to '$HOME/bin' directory or other directory. For example, on my machine, $HOME is "quwb",
+    
+    cd /home/quwb/bin/
+    tar -jxvf /file/path/MFEprimer.tar.bz2
+    
+    It will create a directory named "MFEprimer".
+    
+Step 3:
+    untar BLAST program.
+    
+    tar xvf blast-2.2.18-ia32-linux.tar.gz
+    mv blast-2.2.18/bin MFEprimer/
+    mv blast-2.2.18/data MFEprimer/
+    
+    Make sure the MFEprimer directory contains NCBI BLAST "bin" and "data" direcotries.
+
+Step 4:
+    You can create a soft link to MFEprimer.py.
+    
+    sudo ln -s MFEprimer/MFEprimer.py /usr/bin/MFEprimer
+    
+Step 5:
+    Done.
+    Please contact us [zhangcg@bmi.ac.cn OR quwubin@gmail.com] if any questions.
