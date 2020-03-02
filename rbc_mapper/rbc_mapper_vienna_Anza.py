@@ -39,10 +39,12 @@ def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_
         PL.subplot(212)
         PL.plot(P,score)
     if 1:
+        
         PL.figure(1,figsize=[10,5])
         PL.clf()
         PL.plot(P,score,'k.',alpha=0.5)
         PL.grid()
+        PL.title("Chromosome : %s" %np.unique(data['chrom']))
         PL.show()
     if 0:
         PL.figure(1,figsize=[10,5])
@@ -97,18 +99,15 @@ def main(options):
    
     recalc = 'recalc' in sys.argv # "recalc" in commandline triggers replacement of existing pickle file 
     #1. load raw data
-    fileName, fileExtension = os.path.splitext(data_file)
-    if not os.path.exists(data_file_cached) or recalc:
-        data = load_data_irbc(data_file,with_parents=options["with_parents"])
-        pickle.dump(data,open(data_file_cached,'wb'),-1)
-    else:
-        data = pickle.load(open(data_file_cached,'rb'))
-
+    
     chromosome_names = str.split(preprocess_params['chrom'],',')
-    filter_flags_split= str.split(preprocess_params['filter_flags'],'@')
+
+    #filter_flags_split= str.split(preprocess_params['filter_flags'],'@')
     for i in range(0,len(chromosome_names)):
-        print('chromosomes: %s' %chromosome_names[i])
-        print('Filter Flags: %s' %filter_flags_split[i])
+        print('Chromosome: %s' %chromosome_names[i])
+        print('Filter Flags: %s' %preprocess_params['filter_flags'])
+
+    #1. load raw data
         fileName, fileExtension = os.path.splitext(data_file)
         if not os.path.exists(data_file_cached) or recalc:
             data = load_data_irbc(data_file,with_parents=options["with_parents"])
@@ -117,7 +116,7 @@ def main(options):
             data = pickle.load(open(data_file_cached,'rb'))
         chrom=chromosome_names[i]
         preprocess_params['chrom']=chromosome_names[i]
-        preprocess_params['filter_flags']=filter_flags_split[i]
+        #preprocess_params['filter_flags']=filter_flags_split[i]
         preprocess_data(data,**preprocess_params)    
         
         #get library size correction
@@ -140,7 +139,6 @@ def main(options):
             #filter by ratio (a normal SNP should have 50% over both pools, but this is true only, if the numbers of individuals in th epools reflect the inheritance (I.e. 3:1, in a recessive one-gene trait, the phenotype(-) pools has to have 3 times the size of the phenotype(+) pool)
             # this filter needs to take pools size into account. Do not hard code ratios.
             ratio =data['counts_both'][:,0]/data['counts_both'].sum(axis=1)
-            print("RATIO=%s" %ratio)
             #Iok = (0.45<ratio) & (ratio<0.65)
             Iok = (0.30<ratio) & (ratio<0.70)
             filter_data(data,Iok)
@@ -158,12 +156,12 @@ def main(options):
             filter_data(_data,Ic)
             
             # changed none to 0 in the below expression by Anza
-            if options["chrom_size"] is 0:
+            if options["chrom_size"] is None:
                 recombination_rate = options["EX_CO_Chrom"]/(data['pos'].max()-data['pos'].min())
                 
             else:
                 
-                recombination_rate = 2.0/options["chrom_size"]
+                recombination_rate = options["EX_CO_Chrom"]/options["chrom_size"]
 
     # The below if statement is not working 
             if 0:
@@ -200,7 +198,7 @@ def main(options):
 
 if __name__ == '__main__':
     #parse command line
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         options_parsed   = parse_options(sys.argv)
         options = vars(options_parsed)
         print(options)

@@ -485,9 +485,9 @@ def parse_options(argv):
     optional.add_option('--window_size',dest='window_size',type='float',help='Analysis window', default=5000E3)
     optional.add_option('--phenoNoise',dest='phenoNoise',type='float',help='Phenotyping noise', default=1E-4)
     
-    # Addition of LSres and LSsus in the command line arguments
+    # Addition EMAR SusPool and Expected Chromosome
     optional.add_option('--EMAR_SusPool',dest='EMAR_SP',type='float',help='expected allel ratioin sus pool', default= 3)
-    optional.add_option('--Expected_CrossOver',dest='EX_CO_Chrom',type='int',help='Expected Number of Crossover per Chromosome', default=2)
+    optional.add_option('--Expected_CrossOvers',dest='EX_CO_Chrom',type='int',help='Expected Number of Crossover per Chromosome', default=2)
     
     #optimization flags
     

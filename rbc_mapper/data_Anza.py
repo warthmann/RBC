@@ -241,7 +241,7 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     print ("Note: Total Number %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     Iok_test=Iok
     difference= None        
-        
+# This filter is for the filtering of the data according to the chromosome     
     if chrom is not None:
         Iok = Iok & (D['chrom']==chrom)
         difference=set(D['pos'][Iok_test]) - set(D['pos'][Iok])
@@ -252,11 +252,11 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
         
         #difference= None
     # changed the value to 0 from None by Anza
-    if start is not 0:
+    if start is not None:
         Iok = Iok & (D['pos']>=start)
         print(start)
     # changed the value to 0 from None by Anza
-    if stop is not 0:
+    if stop is not None:
         Iok = Iok & (D['pos']<=stop)
         print(stop)
 
@@ -342,7 +342,6 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     if filter_flags:
         lf = str.split(str.upper(filter_flags),',')
         #lf = str.split(filter_flags.upper(),',')
-        print('lf:%s'%type(lf) )
         ifilter = SP.array([SP.array([e in lf for e in _filter]).all() for _filter in D['filter']])
         
         Iok = Iok & ifilter
@@ -398,7 +397,7 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     
     #segragation p-value?
     # Not Working for now Hard Coded
-    if min_segr_pv is not None:
+    if min_segr_pv is not 0:
         print('min_segr_pv working')
         pv = calc_p_value_fair(D)
         Iok = pv>min_segr_pv

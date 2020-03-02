@@ -1,8 +1,7 @@
 {'data_file': 'mapper_test.rbci'
  'out_dir': '../test3'
  'verbose': False
- 'chrom': '9311chr07
-9311chr07'
+ 'chrom': None
  'start': 0
  'stop': 0
  'n_res': 178
@@ -11,7 +10,6 @@
  'plots': True
  'min_qual': 100
  'filter_flags': 'ExactAN
-NoSBtag@ExactAN
 NoSBtag'
  'trust_gatk': False
  'dp_max_ratio': 1.5
