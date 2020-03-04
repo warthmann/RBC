@@ -14,6 +14,9 @@ import pdb
 import sys
 from scipy.special import gammaln, betaln
 from scipy import stats
+import logging
+
+logging.basicConfig(filename="Information.log",format='%(asctime)s %(levelname)-8s %(message)s',level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S')
 
 
 def calc_p_value_fair(data,index_res=0,p=0.5,field='counts_both'):
@@ -145,7 +148,7 @@ class RcombinationMapping(object):
             
             NI = I.shape[0]
             NI = 1
-          #NI = 1
+           #NI = 1
           if 0:
             #total number based window
             dd = SP.absolute(p-self.pos).argmin()
@@ -197,7 +200,7 @@ class RcombinationMapping(object):
             PL.plot(self.pos,mv_res[0]+SP.sqrt(mv_res[1]),'b--')
             PL.plot(self.pos,mv_res[0]-SP.sqrt(mv_res[1]),'b--')
             pass
-            
+       
           if 0:
             PL.ion()
             PL.figure(1,figsize=[15,6])
@@ -349,7 +352,6 @@ class RcombinationMapping(object):
       beta  = (v + mu2 - mu)*(mu-1) / v
       return [alpha,beta]
 
-
   def _getBetaOLD(self,d=None,podd=None,pool='res',eps=1E-2):
       """get parameters of beta function for distance d
       pool: res/sus
@@ -453,9 +455,8 @@ def binomial_opt(data,p_res=0.99,p_sus=0.33):
     return R
 
 
-
              
-
+# This function is for the arguments that are given on the command line
 def parse_options(argv):
     """Parses options from the command line """
 
@@ -488,6 +489,8 @@ def parse_options(argv):
     # Addition EMAR SusPool and Expected Chromosome
     optional.add_option('--EMAR_SusPool',dest='EMAR_SP',type='float',help='expected allel ratioin sus pool', default= 3)
     optional.add_option('--Expected_CrossOvers',dest='EX_CO_Chrom',type='int',help='Expected Number of Crossover per Chromosome', default=2)
+
+    optional.add_option('--config_file',dest='config_file',type='str',help='To take different config files', default='config_1.yaml')
     
     #optimization flags
     

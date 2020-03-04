@@ -1,13 +1,13 @@
 import scipy as SP
 import pylab as PL
 import os
-import cPickle
+#import cPickle
 import scipy.misc
 import sys
 import pdb
-import pyplot
+#import pyplot
 
-from models import *
+#from models import *
 
 
 if __name__ == '__main__':
@@ -23,4 +23,5 @@ if __name__ == '__main__':
     PL.legend([p0,p1],['res','sus'])
     PL.xlabel('Distance')
     PL.ylabel('Frequency, resistant parent')
-    PL.savefig('freq_parent.pdf')
+    #PL.savefig('freq_parent.pdf')
+    PL.show()

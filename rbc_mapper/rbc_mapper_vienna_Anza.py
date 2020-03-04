@@ -8,6 +8,7 @@ import pdb
 import copy 
 import yaml
 import numpy as np
+import logging
 
 from models_Anza import *
 from data_Anza import *
@@ -29,7 +30,7 @@ def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_
     score = S-S0
     #set scores to 0 if negative
     score[score<0] = 0
-    
+
     if 0:
         PL.figure(1,figsize=[10,5])
         PL.clf()
@@ -39,13 +40,13 @@ def analyse_rm(data,samples_res,samples_sus,recombination_rate,window_size,step_
         PL.subplot(212)
         PL.plot(P,score)
     if 1:
-        
         PL.figure(1,figsize=[10,5])
         PL.clf()
         PL.plot(P,score,'k.',alpha=0.5)
         PL.grid()
         PL.title("Chromosome : %s" %np.unique(data['chrom']))
         PL.show()
+
     if 0:
         PL.figure(1,figsize=[10,5])
         PL.clf()
@@ -96,15 +97,34 @@ def main(options):
     if samples_sus is None:
         print ("Need number of sus samples")
         sys.exit(1)
-   
+# if recalc parameter is given on the command line a new pickle file will be generated
     recalc = 'recalc' in sys.argv # "recalc" in commandline triggers replacement of existing pickle file 
     #1. load raw data
-    
-    chromosome_names = str.split(preprocess_params['chrom'],',')
 
+# The below code is to get the data from the data_file or if there is a pickle file use that.
+    fileName, fileExtension = os.path.splitext(data_file)
+    if not os.path.exists(data_file_cached) or recalc:
+        data = load_data_irbc(data_file,with_parents=options["with_parents"])
+        pickle.dump(data,open(data_file_cached,'wb'),-1)
+    else:
+        data = pickle.load(open(data_file_cached,'rb'))
+
+# The below code is for checking if the chromosome names are defined in the command line or config file if not then it will ask the user to either enter the required chromosomes or run for all the chromosomes(Anza)
+
+    if preprocess_params['chrom'] is None:
+        print('\n\n\nWarning: All the chromosomes will be used:%s' %np.unique(data['chrom']))
+        print('\nWarning: Total number of chromosomes: %s' %len(np.unique(data['chrom'])))
+        chromosomes_selected= input('\n\nPress Enter to use all the chromosomes or the Names that you want comma seprated:\n')
+        if chromosomes_selected is None:
+            chromosome_names= np.unique(data['chrom'])
+        else:
+            chromosome_names= str.split(chromosomes_selected,',')
+    else:
+        chromosome_names = str.split(preprocess_params['chrom'],',')
+# Once the chromosome names are defined or given the below code will send chromosome name one by one for processing(This is done so that the original code is changed).(Anza)
     #filter_flags_split= str.split(preprocess_params['filter_flags'],'@')
     for i in range(0,len(chromosome_names)):
-        print('Chromosome: %s' %chromosome_names[i])
+        print('\n\n\nChromosome: %s' %chromosome_names[i])
         print('Filter Flags: %s' %preprocess_params['filter_flags'])
 
     #1. load raw data
@@ -114,11 +134,13 @@ def main(options):
             pickle.dump(data,open(data_file_cached,'wb'),-1)
         else:
             data = pickle.load(open(data_file_cached,'rb'))
+
         chrom=chromosome_names[i]
         preprocess_params['chrom']=chromosome_names[i]
         #preprocess_params['filter_flags']=filter_flags_split[i]
+# The statement is for sending the data and the parameters to the preprocess_data function where all the filtering is done wrt the parameters set and we get back the filtered file.(Anza)
         preprocess_data(data,**preprocess_params)    
-        
+# The below statement is to get a parameter which should be multiplied with the counts_res and counts_sus to make the weight of these two approximately same for counts both calculation.(Anza)      
         #get library size correction
         [LSres,LSsus] = lib_size_factors(data)
         
@@ -127,7 +149,7 @@ def main(options):
         ##[LSres,LSsus] = lib_size_factors(data)
 
 
-
+# counts_both is adding allel count for res and sus. Right now the counts_res has major minor configuration and counts_sus has a configuration in which major or minor allel can be anywhere.
         data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
     #    data['counts_both'] = LSres*data['counts_res']+LSsus*data['counts_sus']
         #print(LSres*data['counts_res']) #printed for better understanding (Norman, Anza Jan 2020)
@@ -150,7 +172,7 @@ def main(options):
         uchrom = np.unique(chrom)
 
         for c in uchrom:
-            print ("Note: processing Chromosome %s" % (c))
+            
             _data = copy.deepcopy(data)
             Ic = (data['chrom']==c)
             filter_data(_data,Ic)
@@ -163,10 +185,11 @@ def main(options):
                 
                 recombination_rate = options["EX_CO_Chrom"]/options["chrom_size"]
 
-    # The below if statement is not working 
+  # The below if statement is not working 
             if 0:
                 print ("recombination rate factor on")
                 recombination_rate *= 2
+
     # This is where the plot is being developed
             analyse_rm(_data,samples_res,samples_sus,recombination_rate,out_base = os.path.join(out_dir,'chrom_%s' % (c)),**analyse_params)
 
@@ -198,17 +221,30 @@ def main(options):
 
 if __name__ == '__main__':
     #parse command line
-    if len(sys.argv) > 2:
+    file_name= parse_options(sys.argv)
+    
+    logging.basicConfig(filename="Information.log",format='%(asctime)s %(levelname)-8s %(message)s', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S')  
+
+# The below statements are for checking if the parameters are set on the command line or if there is a config file from where the data should be taken(Anza)
+    if len(sys.argv) > 3:
         options_parsed   = parse_options(sys.argv)
         options = vars(options_parsed)
         print(options)
+        logging.info('The parameters are set as: %s' %options)
         Command_line_argv_file = 'argv.txt'
         f= open(Command_line_argv_file,'w')
         f.write(str(options).replace(',','\n'))
     else:
-        with open('config_1.yaml') as file:
+        options_parsed= vars(parse_options(sys.argv))
+        file_name=options_parsed['config_file']
+        print('Config_file being used: %s' %file_name)
+        
+   
+        with open(file_name) as file:
             options = yaml.load(file)
             print(options)
+        
+    
         
     #print (type(options))
     #print (options['min_qual'])
@@ -219,6 +255,7 @@ if __name__ == '__main__':
     #print ("Note: using options: %s" % (str(options)))
     #print(type(options['window_size']))
     #print(type(options['window_size']))
+    logging.info('The parameters are set as: %s' %options)
     main(options)
     
 

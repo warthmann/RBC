@@ -4,7 +4,7 @@ data_file: mapper_test.rbci
 out_dir: ../mapper_test
 n_res: 178
 n_sus: 280
-chrom: 9311chr07,9311chr07 
+chrom: null 
 hs_max: 0.0
 start: null
 stop: null
