@@ -10,8 +10,8 @@ import string
 import sys
 import numpy as np
 from models_Anza import calc_p_value_fair
-
-
+import logging
+logging.basicConfig(filename="Information.log", format='%(asctime)s %(levelname)-8s %(message)s',level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S')
 
 def load_data_irbc(data_file,with_parents=False):
     """load fixed format vcf file used with the scripts provided here
@@ -212,7 +212,7 @@ def load_data_vcf(data_file,with_parents=False):
     RV = {'pos':SP.array(pos),'chrom':SP.array(chrom), 'counts_res':SP.array(counts_res),'counts_sus':SP.array(counts_sus),'alleles_res':SP.array(alleles),'alleles_sus': SP.array(alleles), 'qual':SP.array(qual,dtype='int'),'parent_geno':parent_geno,'filter':SP.array(filter)}
     return RV
 
-
+# This function is filtering the original data according to the set parameters for plotting and further calculations(Anza)
 def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enforce_match_minor=False, res_index=0,filter_parent=True,min_qual=0,trust_gatk=False,filter_flags='PASS',dp_max_ratio=0.5,hs_max=1.0,chrom=None,start=None,stop=None,min_segr_pv=None):
     """preprocess loaded data file
     D: data object from rbci reader
@@ -238,7 +238,9 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 
     #2.filter genomic positiosn if applicable
     Iok = SP.ones(D['alleles_res'].shape[0],dtype='bool') 
+    print('\n'+'\033[1m \033[34m'+'Filtering Data:'+'\033[0m'+'\n')
     print ("Note: Total Number %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+    logging.info('Total Number %d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
     Iok_test=Iok
     difference= None        
 # This filter is for the filtering of the data according to the chromosome     
@@ -247,7 +249,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
         difference=set(D['pos'][Iok_test]) - set(D['pos'][Iok])
 #        if difference is not None:
 #            print('These are the positions which are removed because of the chrom filter: %s' %difference)
-        print ("Note: filtering retained after chrom filter %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'chrom filter'+'\033[0m'+' %d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info ("filtering retained after chrom filter %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         Iok_test=Iok
         
         #difference= None
@@ -261,7 +264,7 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
         print(stop)
 
     print ("Note: restricting analysis to chrom: %s, start: %s, stop: %s" % (chrom,start,stop))
-
+    logging.info ("restricting analysis to chrom: %s, start: %s, stop: %s" % (chrom,start,stop))
     #filter
     filter_data(D,Iok)
     
@@ -279,8 +282,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #      if difference is not None:
 #        print('These are the positions which are removed because of filterN: %s' %difference)
       
-      print ("Note: filtering retained after filterN %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
-
+      print ('Note: Filtering retained after'+'\033[1m \033[31m'+'filterN: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+      logging.info("filtering retained after filterN %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
       Iok_test=Iok
       difference= None
     if filter_dash:
@@ -290,8 +293,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #      if difference is not None:
 #        print('These are the positions which are removed because of filterN: %s' %difference)
       
-      print ("Note: filtering retained after filter_dash %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
-
+      print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'filter_dash: ' +'\033[0m'+'%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+      logging.info("filtering retained after filter_dash %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
       Iok_test=Iok
       difference= None
     #enforce match major?
@@ -302,7 +305,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #      if difference is not None:
 #        print('These are the positions which are removed because of enforce_match_major: %s' %difference)
       
-      print ("Note: filtering retained after enforce_match_major %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+      print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'enforce_match_major: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+      logging.info("filtering retained after enforce_match_major %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
       Iok_test=Iok
       difference= None
     #enforce match minor?
@@ -322,7 +326,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #        if difference is not None:
 #            print('These are the positions which are removed because of min_qual: %s' %difference)
 #        print(difference)
-        print ("Note: filtering retained after min_qual %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'min_qual: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after min_qual %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         Iok_test=Iok
         difference= None
     #filter hs score
@@ -333,7 +338,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #        if difference is not None:
 #            print('These are the positions which are removed because of hs_max: %s' %difference)
 
-        print ("Note: filtering retained after hs_max %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'hs_max: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after hs_max %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         Iok_test=Iok
         difference= None
         #pass
@@ -350,13 +356,14 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #        if difference is not None:
 #            print('These are the positions which are removed because of filter_flags: %s' %difference)
 
-        print ("Note: filtering retained after filter_flags %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'filter_flags: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after filter_flags %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         difference= None
         Iok_test=Iok
     #coverage filter
     #res
     if dp_max_ratio:
-        print('This is mCres %s'%mCres)
+        #print('This is mCres %s'%mCres)
         Cres = D['counts_res'].sum(axis=1)
         Cs = dp_max_ratio*mCres
         c_min = mCres-Cs
@@ -367,12 +374,14 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
 #            print('These are the positions which are removed because of dp_max_ratio_res: %s' %difference)
 
 
-        print ("Note: filtering retained after dp_max_ratio on res %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'dp_max_ratio on res: ' +'\033[0m'+'%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after dp_max_ratio on res %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         Iok_test=Iok
         difference=None
         #print('Number of Trues %s' %np.sum(Iok))
         #sus
-        print('This is mCsus %s' %mCsus)
+        #print('This is mCsus %s' %mCsus)
+        #logging.info('This is mCsus %s' %mCsus)
         Csus = D['counts_sus'].sum(axis=1)
         Cs = dp_max_ratio*mCsus
         c_min = mCsus-Cs
@@ -381,27 +390,35 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
         difference=set(D['pos'][Iok_test]) - set(D['pos'][Iok])
 #        if difference is not None:
 #            print('These are the positions which are removed because of dp_max_ratio on sus: %s' %difference)
-        print ("Note: filtering retained after dp_max_ratio on sus %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
-        print('Number of Trues %s' %np.sum(Iok))
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'dp_max_ratio on sus: '+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after dp_max_ratio on sus %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+        #print('Number of Trues %s' %np.sum(Iok))
+        #logging.info('Number of Trues %s' %np.sum(Iok))
+        Iok_test=Iok
+        difference=None
     #filter parent geno for segragation if we do have parental data
     if filter_parent and D['parent_geno'] is not None:
         ip = (D['parent_geno'][:,0]=='0|0') & (D['parent_geno'][:,1]=='1|1') | ((D['parent_geno'][:,0]=='1|1') & (D['parent_geno'][:,1]=='0|0'))
         Iok = Iok & ip
+        print ('Note:Filtering retained after'+'\033[1m \033[31m'+ 'parent_geno'+'\033[0m'+ '%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info("filtering retained after parent_geno %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
         pass
     #apply filter
-    print ("Note: filtering retained %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
+    print ('\n\nNote: Filtering retained %d/%d SNPs\n\n' % (Iok.sum(),Iok.shape[0]))
+    logging.info ("filtering retained %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     filter_data(D,Iok)
-    #calc joint count with lib size factor adjustment
+    '''#calc joint count with lib size factor adjustment
     [LSres,LSsus] = lib_size_factors(D)
-    D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']
+    D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']'''
     
     #segragation p-value?
     # Not Working for now Hard Coded
     if min_segr_pv is not None:
-        print('min_segr_pv working')
         pv = calc_p_value_fair(D)
         Iok = pv>min_segr_pv
         filter_data(D,Iok)
+        print ('Note: Filtering retained after'+'\033[1m \033[31m'+ 'min_segr_pv: ' +'\033[0m'+'%d/%d SNPs' % (Iok.sum(),Iok.shape[0]))
+        logging.info ("filtering retained after minsegr_pv %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     
     #gatk transform
     if trust_gatk:
@@ -457,17 +474,21 @@ def filter_data(D,I):
 
 
 
-
+# This fuction is for the size correction of the allel in the res and sus pool
 def lib_size_factors(data):
     """calculate library size correction factors"""
     print('lib_size_factors values printed:')
+    logging.info('lib_size_factors values printed:')
     res_sum = data['counts_res'].sum()
     sus_sum = data['counts_sus'].sum()
-    print(res_sum)
-    print(sus_sum)
+    print('res_sum: %s'%res_sum)
+    logging.info('res_sum: %s' %res_sum)
+    print('sus_sum:%s' %sus_sum)
+    logging.info('res_sum: %s' %sus_sum)
 
     L = [1.0, SP.double(res_sum/sus_sum)] 
     print("L is equal to %s"%L)
+    logging.info("L is equal to %s"%L)
     return L
          
     

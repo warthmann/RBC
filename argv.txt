@@ -1,8 +1,7 @@
 {'data_file': 'mapper_test.rbci'
- 'out_dir': '../test3'
+ 'out_dir': '../mapper_test'
  'verbose': False
- 'chrom': '9311chr07
-9311chr07'
+ 'chrom': None
  'start': None
  'stop': None
  'n_res': 178
@@ -20,7 +19,8 @@ NoSBtag'
  'chrom_size': None
  'window_size': 5000000.0
  'phenoNoise': 1e-10
- 'EMAR_SP': 3.0
+ 'EMAR_SP': 3
  'EX_CO_Chrom': 2
+ 'config_file': 'config_1.yaml'
  'opt_eps': False
  'opt_recombination': False}
