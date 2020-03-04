@@ -1,0 +1,31 @@
+2020-03-04 16:41:05 INFO     The parameters are set as: {'min_qual': 100, 'start': None, 'data_file': 'mapper_test.rbci', 'min_segr_pv': None, 'n_res': 178, 'with_parents': False, 'dp_max_ratio': 1.5, 'EMAR_SP': 3, 'phenoNoise': '1E-10', 'plots': True, 'hs_max': 0.0, 'EX_CO_Chrom': 2, 'chrom_size': None, 'trust_gatk': False, 'filter_flags': 'ExactAN,NoSBtag', 'out_dir': '../mapper_test', 'chrom': '9311chr03,9311chr07', 'resolution': 100000, 'opt_recombination': False, 'opt_eps': False, 'window_size': 5000000.0, 'stop': None, 'n_sus': 280}
+2020-03-04 16:41:06 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:41:06 INFO     filtering retained after chrom filter 193012/452387 SNPs
+2020-03-04 16:41:06 INFO     restricting analysis to chrom: 9311chr03, start: None, stop: None
+2020-03-04 16:41:06 INFO     filtering retained after filterN 193012/193012 SNPs
+2020-03-04 16:41:06 INFO     filtering retained after filter_dash 193012/193012 SNPs
+2020-03-04 16:41:07 INFO     filtering retained after enforce_match_major 193012/193012 SNPs
+2020-03-04 16:41:07 INFO     filtering retained after min_qual 160290/193012 SNPs
+2020-03-04 16:41:08 INFO     filtering retained after filter_flags 8793/193012 SNPs
+2020-03-04 16:41:08 INFO     filtering retained after dp_max_ratio on res 8263/193012 SNPs
+2020-03-04 16:41:08 INFO     filtering retained after dp_max_ratio on sus 8263/193012 SNPs
+2020-03-04 16:41:08 INFO     filtering retained 8263/193012 SNPs
+2020-03-04 16:41:08 INFO     lib_size_factors values printed:
+2020-03-04 16:41:08 INFO     res_sum: 135709
+2020-03-04 16:41:08 INFO     res_sum: 150009
+2020-03-04 16:41:08 INFO     L is equal to [1.0, 0.9046723863234872]
+2020-03-04 16:41:20 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:41:20 INFO     filtering retained after chrom filter 153428/452387 SNPs
+2020-03-04 16:41:20 INFO     restricting analysis to chrom: 9311chr07, start: None, stop: None
+2020-03-04 16:41:20 INFO     filtering retained after filterN 153428/153428 SNPs
+2020-03-04 16:41:20 INFO     filtering retained after filter_dash 153428/153428 SNPs
+2020-03-04 16:41:20 INFO     filtering retained after enforce_match_major 153428/153428 SNPs
+2020-03-04 16:41:20 INFO     filtering retained after min_qual 125727/153428 SNPs
+2020-03-04 16:41:21 INFO     filtering retained after filter_flags 25771/153428 SNPs
+2020-03-04 16:41:21 INFO     filtering retained after dp_max_ratio on res 25119/153428 SNPs
+2020-03-04 16:41:21 INFO     filtering retained after dp_max_ratio on sus 25119/153428 SNPs
+2020-03-04 16:41:21 INFO     filtering retained 25119/153428 SNPs
+2020-03-04 16:41:21 INFO     lib_size_factors values printed:
+2020-03-04 16:41:21 INFO     res_sum: 363243
+2020-03-04 16:41:21 INFO     res_sum: 433393
+2020-03-04 16:41:21 INFO     L is equal to [1.0, 0.8381376718128811]

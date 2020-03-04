@@ -407,16 +407,10 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     print ('\n\nNote: Filtering retained %d/%d SNPs\n\n' % (Iok.sum(),Iok.shape[0]))
     logging.info ("filtering retained %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     filter_data(D,Iok)
-<<<<<<< Updated upstream
-    '''#calc joint count with lib size factor adjustment
-    [LSres,LSsus] = lib_size_factors(D)
-    D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']'''
-=======
     #calc joint count with lib size factor adjustment
     #[LSres,LSsus] = lib_size_factors(D)
     #D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']
->>>>>>> Stashed changes
-    
+
     #segragation p-value?
     # Not Working for now Hard Coded
     if min_segr_pv is not None:
