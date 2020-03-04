@@ -242,7 +242,7 @@ class RcombinationMapping(object):
     if opt_eps:
       epsr = 10**(SP.linspace(-10,-1,ngrid))
     else:
-      epsr = [1E-2]
+      epsr = [1E-2] #0.001
 
     if opt_recombination:
       scalemr = SP.linspace(0.1,10,ngrid)
@@ -258,6 +258,8 @@ class RcombinationMapping(object):
         for i3 in range(len(scalepr)):
             LL[i1,i2,i3] = self._LL(p,I,eps=epsr[i1],scalem=scalemr[i2],scalep=scalepr[i3])[0]
     #get best parameters and return
+    print("LL0_max=%s"%LL0.max())
+    print("LL_max=%s"%LL.max())
     return [LL0.max(),LL.max()]
         
           
@@ -487,7 +489,7 @@ def parse_options(argv):
     optional.add_option('--phenoNoise',dest='phenoNoise',type='float',help='Phenotyping noise', default=1E-4)
     
     # Addition EMAR SusPool and Expected Chromosome
-    optional.add_option('--EMAR_SusPool',dest='EMAR_SP',type='float',help='expected allel ratioin sus pool', default= 3)
+    optional.add_option('--EMAR_SusPool',dest='EMAR_SP',type='float',help='expected allele ratio in sus pool', default= 3)
     optional.add_option('--Expected_CrossOvers',dest='EX_CO_Chrom',type='int',help='Expected Number of Crossover per Chromosome', default=2)
 
     optional.add_option('--config_file',dest='config_file',type='str',help='To take different config files', default='config_1.yaml')

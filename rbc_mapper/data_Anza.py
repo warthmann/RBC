@@ -346,8 +346,8 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     #filter filter flag
     #1. get list of legal flags
     if filter_flags:
-        lf = str.split(str.upper(filter_flags),',')
-        #lf = str.split(filter_flags.upper(),',')
+        #lf = str.split(str.upper(filter_flags),',')
+        lf = str.split(filter_flags.upper(),',')
         ifilter = SP.array([SP.array([e in lf for e in _filter]).all() for _filter in D['filter']])
         
         Iok = Iok & ifilter
@@ -407,9 +407,15 @@ def preprocess_data(D,filterN=True,filter_dash=True,enforce_match_major=True,enf
     print ('\n\nNote: Filtering retained %d/%d SNPs\n\n' % (Iok.sum(),Iok.shape[0]))
     logging.info ("filtering retained %d/%d SNPs" % (Iok.sum(),Iok.shape[0]))
     filter_data(D,Iok)
+<<<<<<< Updated upstream
     '''#calc joint count with lib size factor adjustment
     [LSres,LSsus] = lib_size_factors(D)
     D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']'''
+=======
+    #calc joint count with lib size factor adjustment
+    #[LSres,LSsus] = lib_size_factors(D)
+    #D['counts_both'] = LSres*D['counts_res']+LSsus*D['counts_sus']
+>>>>>>> Stashed changes
     
     #segragation p-value?
     # Not Working for now Hard Coded
@@ -474,7 +480,7 @@ def filter_data(D,I):
 
 
 
-# This fuction is for the size correction of the allel in the res and sus pool
+# This fuction is correcting for different average genome coverages of the pools (res and sus). 
 def lib_size_factors(data):
     """calculate library size correction factors"""
     print('lib_size_factors values printed:')

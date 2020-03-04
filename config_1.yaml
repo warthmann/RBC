@@ -4,7 +4,11 @@ data_file: mapper_test.rbci
 out_dir: ../mapper_test
 n_res: 178
 n_sus: 280
+<<<<<<< Updated upstream
 chrom: null 
+=======
+chrom: 9311chr03,9311chr07
+>>>>>>> Stashed changes
 hs_max: 0.0
 start: null
 stop: null
