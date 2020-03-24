@@ -29,3 +29,878 @@
 2020-03-04 16:41:21 INFO     res_sum: 363243
 2020-03-04 16:41:21 INFO     res_sum: 433393
 2020-03-04 16:41:21 INFO     L is equal to [1.0, 0.8381376718128811]
+2020-03-04 16:43:07 INFO     The parameters are set as: {'resolution': 100000, 'min_segr_pv': None, 'with_parents': False, 'chrom': None, 'hs_max': 0.0, 'n_res': 178, 'opt_recombination': False, 'plots': True, 'trust_gatk': False, 'opt_eps': False, 'out_dir': '../mapper_test', 'chrom_size': None, 'min_qual': 100, 'filter_flags': 'ExactAN,NoSBtag', 'EX_CO_Chrom': 2, 'data_file': 'mapper_test.rbci', 'dp_max_ratio': 1.5, 'n_sus': 280, 'stop': None, 'start': None, 'window_size': 5000000.0, 'EMAR_SP': 3, 'phenoNoise': '1E-10'}
+2020-03-04 16:43:46 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:43:47 INFO     filtering retained after chrom filter 193012/452387 SNPs
+2020-03-04 16:43:47 INFO     restricting analysis to chrom: 9311chr03, start: None, stop: None
+2020-03-04 16:43:47 INFO     filtering retained after filterN 193012/193012 SNPs
+2020-03-04 16:43:47 INFO     filtering retained after filter_dash 193012/193012 SNPs
+2020-03-04 16:43:47 INFO     filtering retained after enforce_match_major 193012/193012 SNPs
+2020-03-04 16:43:47 INFO     filtering retained after min_qual 160290/193012 SNPs
+2020-03-04 16:43:48 INFO     filtering retained after filter_flags 8793/193012 SNPs
+2020-03-04 16:43:48 INFO     filtering retained after dp_max_ratio on res 8263/193012 SNPs
+2020-03-04 16:43:48 INFO     filtering retained after dp_max_ratio on sus 8263/193012 SNPs
+2020-03-04 16:43:48 INFO     filtering retained 8263/193012 SNPs
+2020-03-04 16:43:48 INFO     lib_size_factors values printed:
+2020-03-04 16:43:48 INFO     res_sum: 135709
+2020-03-04 16:43:48 INFO     res_sum: 150009
+2020-03-04 16:43:48 INFO     L is equal to [1.0, 0.9046723863234872]
+2020-03-04 16:43:56 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:43:56 INFO     filtering retained after chrom filter 153428/452387 SNPs
+2020-03-04 16:43:56 INFO     restricting analysis to chrom: 9311chr07, start: None, stop: None
+2020-03-04 16:43:57 INFO     filtering retained after filterN 153428/153428 SNPs
+2020-03-04 16:43:57 INFO     filtering retained after filter_dash 153428/153428 SNPs
+2020-03-04 16:43:57 INFO     filtering retained after enforce_match_major 153428/153428 SNPs
+2020-03-04 16:43:57 INFO     filtering retained after min_qual 125727/153428 SNPs
+2020-03-04 16:43:57 INFO     filtering retained after filter_flags 25771/153428 SNPs
+2020-03-04 16:43:58 INFO     filtering retained after dp_max_ratio on res 25119/153428 SNPs
+2020-03-04 16:43:58 INFO     filtering retained after dp_max_ratio on sus 25119/153428 SNPs
+2020-03-04 16:43:58 INFO     filtering retained 25119/153428 SNPs
+2020-03-04 16:43:58 INFO     lib_size_factors values printed:
+2020-03-04 16:43:58 INFO     res_sum: 363243
+2020-03-04 16:43:58 INFO     res_sum: 433393
+2020-03-04 16:43:58 INFO     L is equal to [1.0, 0.8381376718128811]
+2020-03-04 16:44:03 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:44:03 INFO     filtering retained after chrom filter 105539/452387 SNPs
+2020-03-04 16:44:03 INFO     restricting analysis to chrom: 9311chr09, start: None, stop: None
+2020-03-04 16:44:03 INFO     filtering retained after filterN 105539/105539 SNPs
+2020-03-04 16:44:03 INFO     filtering retained after filter_dash 105539/105539 SNPs
+2020-03-04 16:44:03 INFO     filtering retained after enforce_match_major 105539/105539 SNPs
+2020-03-04 16:44:03 INFO     filtering retained after min_qual 84937/105539 SNPs
+2020-03-04 16:44:04 INFO     filtering retained after filter_flags 4658/105539 SNPs
+2020-03-04 16:44:04 INFO     filtering retained after dp_max_ratio on res 4308/105539 SNPs
+2020-03-04 16:44:04 INFO     filtering retained after dp_max_ratio on sus 4308/105539 SNPs
+2020-03-04 16:44:04 INFO     filtering retained 4308/105539 SNPs
+2020-03-04 16:44:04 INFO     lib_size_factors values printed:
+2020-03-04 16:44:04 INFO     res_sum: 76389
+2020-03-04 16:44:04 INFO     res_sum: 85862
+2020-03-04 16:44:04 INFO     L is equal to [1.0, 0.8896717989331718]
+2020-03-04 16:45:04 INFO     The parameters are set as: {'EX_CO_Chrom': 2, 'config_file': 'config_1.yaml', 'verbose': False, 'hs_max': None, 'min_qual': 100, 'start': None, 'opt_recombination': False, 'opt_eps': False, 'EMAR_SP': 3, 'out_dir': '-', 'chrom': None, 'window_size': 5000000.0, 'data_file': '-', 'dp_max_ratio': None, 'phenoNoise': 0.0001, 'trust_gatk': False, 'resolution': 100000.0, 'n_sus': None, 'n_res': None, 'chrom_size': None, 'with_parents': False, 'filter_flags': 'PASS', 'min_segr_pv': None, 'plots': True, 'stop': None}
+2020-03-04 16:45:04 INFO     The parameters are set as: {'EX_CO_Chrom': 2, 'config_file': 'config_1.yaml', 'verbose': False, 'hs_max': None, 'min_qual': 100, 'start': None, 'opt_recombination': False, 'opt_eps': False, 'EMAR_SP': 3, 'out_dir': '-', 'chrom': None, 'window_size': 5000000.0, 'data_file': '-', 'dp_max_ratio': None, 'phenoNoise': 0.0001, 'trust_gatk': False, 'resolution': 100000.0, 'n_sus': None, 'n_res': None, 'chrom_size': None, 'with_parents': False, 'filter_flags': 'PASS', 'min_segr_pv': None, 'plots': True, 'stop': None}
+2020-03-04 16:45:24 INFO     The parameters are set as: {'data_file': 'mapper_test.rbci', 'dp_max_ratio': 1.5, 'n_sus': 280, 'min_qual': 100, 'opt_eps': False, 'start': None, 'opt_recombination': False, 'phenoNoise': '1E-10', 'trust_gatk': False, 'chrom': None, 'EX_CO_Chrom': 2, 'out_dir': '../mapper_test', 'hs_max': 0.0, 'plots': True, 'n_res': 178, 'filter_flags': 'ExactAN,NoSBtag', 'chrom_size': None, 'stop': None, 'min_segr_pv': None, 'with_parents': False, 'EMAR_SP': 3, 'resolution': 100000, 'window_size': 5000000.0}
+2020-03-04 16:45:30 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after chrom filter 174/452387 SNPs
+2020-03-04 16:45:30 INFO     restricting analysis to chrom: 9311chrC, start: None, stop: None
+2020-03-04 16:45:30 INFO     filtering retained after filterN 174/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after filter_dash 174/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after enforce_match_major 174/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after min_qual 157/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after filter_flags 0/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after dp_max_ratio on res 0/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained after dp_max_ratio on sus 0/174 SNPs
+2020-03-04 16:45:30 INFO     filtering retained 0/174 SNPs
+2020-03-04 16:45:30 INFO     lib_size_factors values printed:
+2020-03-04 16:45:30 INFO     res_sum: 0
+2020-03-04 16:45:30 INFO     res_sum: 0
+2020-03-04 16:45:30 INFO     L is equal to [1.0, nan]
+2020-03-04 16:47:21 INFO     The parameters are set as: {'opt_recombination': False, 'start': None, 'chrom': None, 'resolution': 100000, 'opt_eps': False, 'filter_flags': 'ExactAN,NoSBtag', 'data_file': 'mapper_test.rbci', 'min_segr_pv': None, 'EMAR_SP': 3, 'out_dir': '../mapper_test', 'window_size': 5000000.0, 'plots': True, 'EX_CO_Chrom': 2, 'n_res': 178, 'min_qual': 100, 'chrom_size': None, 'trust_gatk': False, 'with_parents': False, 'dp_max_ratio': 1.5, 'hs_max': 0.0, 'phenoNoise': '1E-10', 'stop': None, 'n_sus': 280}
+2020-03-04 16:47:56 INFO     Total Number 452387/452387 SNPs
+2020-03-04 16:47:56 INFO     filtering retained after chrom filter 153428/452387 SNPs
+2020-03-04 16:47:56 INFO     restricting analysis to chrom: 9311chr07, start: None, stop: None
+2020-03-04 16:47:56 INFO     filtering retained after filterN 153428/153428 SNPs
+2020-03-04 16:47:57 INFO     filtering retained after filter_dash 153428/153428 SNPs
+2020-03-04 16:47:57 INFO     filtering retained after enforce_match_major 153428/153428 SNPs
+2020-03-04 16:47:57 INFO     filtering retained after min_qual 125727/153428 SNPs
+2020-03-04 16:47:58 INFO     filtering retained after filter_flags 25771/153428 SNPs
+2020-03-04 16:47:58 INFO     filtering retained after dp_max_ratio on res 25119/153428 SNPs
+2020-03-04 16:47:58 INFO     filtering retained after dp_max_ratio on sus 25119/153428 SNPs
+2020-03-04 16:47:58 INFO     filtering retained 25119/153428 SNPs
+2020-03-04 16:47:58 INFO     lib_size_factors values printed:
+2020-03-04 16:47:58 INFO     res_sum: 363243
+2020-03-04 16:47:58 INFO     res_sum: 433393
+2020-03-04 16:47:58 INFO     L is equal to [1.0, 0.8381376718128811]
+2020-03-04 16:50:03 INFO     The parameters are set as: {'n_res': 45, 'chrom_size': None, 'with_parents': False, 'min_qual': 200, 'min_segr_pv': None, 'opt_eps': False, 'data_file': 'freebayes_D2.filtered.rbci', 'window_size': 5000000.0, 'trust_gatk': False, 'opt_recombination': False, 'start': None, 'dp_max_ratio': 1.5, 'EMAR_SP': 100, 'hs_max': 0.0, 'EX_CO_Chrom': 2, 'filter_flags': 'PASS', 'phenoNoise': '1E-10', 'plots': True, 'out_dir': '../mapper_test', 'chrom': None, 'stop': None, 'n_sus': 178, 'resolution': 100000}
+2020-03-04 16:50:20 INFO     Total Number 5995/5995 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 16:50:20 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:50:20 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after min_qual 55/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after filter_flags 55/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after dp_max_ratio on res 55/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained after dp_max_ratio on sus 54/63 SNPs
+2020-03-04 16:50:20 INFO     filtering retained 54/63 SNPs
+2020-03-04 16:50:20 INFO     lib_size_factors values printed:
+2020-03-04 16:50:20 INFO     res_sum: 5229
+2020-03-04 16:50:20 INFO     res_sum: 4278
+2020-03-04 16:50:20 INFO     L is equal to [1.0, 1.2223001402524545]
+2020-03-04 16:53:04 INFO     The parameters are set as: {'resolution': 100000, 'phenoNoise': '1E-10', 'opt_eps': False, 'opt_recombination': False, 'dp_max_ratio': 1.5, 'min_segr_pv': None, 'stop': None, 'trust_gatk': False, 'data_file': 'freebayes_D2.NWfiltered.rbci', 'filter_flags': 'PASS', 'start': None, 'plots': True, 'with_parents': False, 'window_size': 5000000.0, 'hs_max': 0.0, 'chrom_size': None, 'out_dir': '../mapper_test', 'EMAR_SP': 100, 'chrom': None, 'EX_CO_Chrom': 2, 'n_sus': 178, 'min_qual': 200, 'n_res': 45}
+2020-03-04 16:53:16 INFO     Total Number 31135/31135 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after chrom filter 1167/31135 SNPs
+2020-03-04 16:53:16 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:53:16 INFO     filtering retained after filterN 1167/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after filter_dash 1167/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after enforce_match_major 1167/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after min_qual 237/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after filter_flags 0/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after dp_max_ratio on res 0/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained after dp_max_ratio on sus 0/1167 SNPs
+2020-03-04 16:53:16 INFO     filtering retained 0/1167 SNPs
+2020-03-04 16:53:16 INFO     lib_size_factors values printed:
+2020-03-04 16:53:16 INFO     res_sum: 0
+2020-03-04 16:53:16 INFO     res_sum: 0
+2020-03-04 16:53:16 INFO     L is equal to [1.0, nan]
+2020-03-04 16:54:33 INFO     The parameters are set as: {'chrom': None, 'resolution': 100000, 'start': None, 'with_parents': False, 'window_size': 5000000.0, 'phenoNoise': '1E-10', 'stop': None, 'min_qual': 200, 'opt_eps': False, 'out_dir': '../mapper_test', 'EX_CO_Chrom': 2, 'data_file': 'freebayes_D2.NWfiltered.rbci', 'plots': True, 'n_res': 45, 'chrom_size': None, 'min_segr_pv': None, 'trust_gatk': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'dp_max_ratio': 1.5, 'EMAR_SP': 100, 'n_sus': 178, 'opt_recombination': False, 'hs_max': 0.0}
+2020-03-04 16:54:42 INFO     Total Number 31135/31135 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after chrom filter 1167/31135 SNPs
+2020-03-04 16:54:42 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:54:42 INFO     filtering retained after filterN 1167/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after filter_dash 1167/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after enforce_match_major 1167/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after min_qual 237/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after filter_flags 237/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after dp_max_ratio on res 187/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained after dp_max_ratio on sus 172/1167 SNPs
+2020-03-04 16:54:42 INFO     filtering retained 172/1167 SNPs
+2020-03-04 16:54:42 INFO     lib_size_factors values printed:
+2020-03-04 16:54:42 INFO     res_sum: 5734
+2020-03-04 16:54:42 INFO     res_sum: 4928
+2020-03-04 16:54:42 INFO     L is equal to [1.0, 1.1635551948051948]
+2020-03-04 16:56:09 INFO     The parameters are set as: {'chrom': None, 'EX_CO_Chrom': 2, 'min_segr_pv': None, 'trust_gatk': False, 'opt_eps': False, 'EMAR_SP': 100, 'opt_recombination': False, 'resolution': 100000, 'hs_max': 0.0, 'phenoNoise': '1E-10', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'data_file': 'freebayes_D2.NWfiltered.rbci', 'plots': True, 'with_parents': False, 'min_qual': 100, 'chrom_size': None, 'out_dir': '../mapper_test', 'n_res': 45, 'stop': None, 'dp_max_ratio': 1.5, 'n_sus': 178, 'start': None, 'window_size': 5000000.0}
+2020-03-04 16:56:15 INFO     Total Number 31135/31135 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after chrom filter 1167/31135 SNPs
+2020-03-04 16:56:15 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:56:15 INFO     filtering retained after filterN 1167/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after filter_dash 1167/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after enforce_match_major 1167/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after min_qual 320/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after filter_flags 320/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after dp_max_ratio on res 268/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained after dp_max_ratio on sus 250/1167 SNPs
+2020-03-04 16:56:15 INFO     filtering retained 250/1167 SNPs
+2020-03-04 16:56:15 INFO     lib_size_factors values printed:
+2020-03-04 16:56:15 INFO     res_sum: 7276
+2020-03-04 16:56:15 INFO     res_sum: 6159
+2020-03-04 16:56:15 INFO     L is equal to [1.0, 1.1813606104887158]
+2020-03-04 16:56:52 INFO     The parameters are set as: {'out_dir': '../mapper_test', 'resolution': 100000, 'chrom': None, 'hs_max': 0.0, 'min_qual': 10, 'min_segr_pv': None, 'plots': True, 'stop': None, 'opt_recombination': False, 'opt_eps': False, 'with_parents': False, 'n_sus': 178, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'phenoNoise': '1E-10', 'n_res': 45, 'chrom_size': None, 'window_size': 5000000.0, 'trust_gatk': False, 'data_file': 'freebayes_D2.NWfiltered.rbci', 'EMAR_SP': 100, 'EX_CO_Chrom': 2, 'start': None, 'dp_max_ratio': 1.5}
+2020-03-04 16:56:59 INFO     Total Number 31135/31135 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after chrom filter 1167/31135 SNPs
+2020-03-04 16:56:59 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:56:59 INFO     filtering retained after filterN 1167/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after filter_dash 1167/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after enforce_match_major 1167/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after min_qual 553/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after filter_flags 553/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after dp_max_ratio on res 496/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained after dp_max_ratio on sus 477/1167 SNPs
+2020-03-04 16:56:59 INFO     filtering retained 477/1167 SNPs
+2020-03-04 16:56:59 INFO     lib_size_factors values printed:
+2020-03-04 16:56:59 INFO     res_sum: 10487
+2020-03-04 16:56:59 INFO     res_sum: 8771
+2020-03-04 16:56:59 INFO     L is equal to [1.0, 1.1956447383422644]
+2020-03-04 16:58:20 INFO     The parameters are set as: {'EMAR_SP': 100, 'out_dir': '../mapper_test', 'min_qual': 10, 'dp_max_ratio': 1.5, 'phenoNoise': '1E-10', 'opt_recombination': False, 'n_sus': 178, 'hs_max': 0.0, 'chrom_size': None, 'plots': True, 'min_segr_pv': None, 'n_res': 45, 'window_size': 5000000.0, 'stop': None, 'opt_eps': False, 'chrom': None, 'trust_gatk': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'start': None, 'resolution': 100000}
+2020-03-04 16:58:25 INFO     Total Number 16949/16949 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 16:58:25 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:58:25 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after min_qual 363/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after filter_flags 363/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after dp_max_ratio on res 318/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained after dp_max_ratio on sus 304/565 SNPs
+2020-03-04 16:58:25 INFO     filtering retained 304/565 SNPs
+2020-03-04 16:58:25 INFO     lib_size_factors values printed:
+2020-03-04 16:58:25 INFO     res_sum: 7278
+2020-03-04 16:58:25 INFO     res_sum: 6142
+2020-03-04 16:58:25 INFO     L is equal to [1.0, 1.184956040377727]
+2020-03-04 16:59:13 INFO     The parameters are set as: {'plots': True, 'trust_gatk': False, 'dp_max_ratio': 1.5, 'window_size': 5000000.0, 'opt_eps': False, 'EX_CO_Chrom': 2, 'phenoNoise': '1E-10', 'n_sus': 178, 'out_dir': '../mapper_test', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_qual': 100, 'n_res': 45, 'EMAR_SP': 100, 'opt_recombination': False, 'with_parents': False, 'hs_max': 0.0, 'resolution': 100000, 'min_segr_pv': None, 'start': None, 'chrom': None, 'stop': None}
+2020-03-04 16:59:17 INFO     Total Number 16949/16949 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 16:59:17 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 16:59:17 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 16:59:17 INFO     filtering retained 152/565 SNPs
+2020-03-04 16:59:17 INFO     lib_size_factors values printed:
+2020-03-04 16:59:17 INFO     res_sum: 4962
+2020-03-04 16:59:17 INFO     res_sum: 4205
+2020-03-04 16:59:17 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:00:02 INFO     The parameters are set as: {'trust_gatk': False, 'n_res': 45, 'data_file': 'freebayes_D2.filtered.rbci', 'out_dir': '../mapper_test', 'chrom_size': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'n_sus': 178, 'resolution': 100000, 'chrom': None, 'opt_eps': False, 'stop': None, 'hs_max': 0.0, 'EX_CO_Chrom': 2, 'with_parents': False, 'min_qual': 100, 'window_size': 5000000.0, 'dp_max_ratio': 1.5, 'plots': True, 'phenoNoise': '1E-10', 'EMAR_SP': 100, 'start': None, 'opt_recombination': False, 'min_segr_pv': None}
+2020-03-04 17:00:07 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:00:07 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:00:07 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after filter_flags 0/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after dp_max_ratio on res 0/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained after dp_max_ratio on sus 0/63 SNPs
+2020-03-04 17:00:07 INFO     filtering retained 0/63 SNPs
+2020-03-04 17:00:07 INFO     lib_size_factors values printed:
+2020-03-04 17:00:07 INFO     res_sum: 0
+2020-03-04 17:00:07 INFO     res_sum: 0
+2020-03-04 17:00:07 INFO     L is equal to [1.0, nan]
+2020-03-04 17:00:48 INFO     The parameters are set as: {'dp_max_ratio': 1.5, 'chrom_size': None, 'min_qual': 100, 'plots': True, 'opt_eps': False, 'phenoNoise': '1E-10', 'opt_recombination': False, 'n_sus': 178, 'EX_CO_Chrom': 2, 'min_segr_pv': None, 'stop': None, 'out_dir': '../mapper_test', 'filter_flags': 'PASS', 'EMAR_SP': 100, 'resolution': 100000, 'hs_max': 0.0, 'window_size': 5000000.0, 'start': None, 'n_res': 45, 'chrom': None, 'data_file': 'freebayes_D2.filtered.rbci', 'trust_gatk': False, 'with_parents': False}
+2020-03-04 17:00:52 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:00:52 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:00:52 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:00:52 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:00:52 INFO     lib_size_factors values printed:
+2020-03-04 17:00:52 INFO     res_sum: 5421
+2020-03-04 17:00:52 INFO     res_sum: 4401
+2020-03-04 17:00:52 INFO     L is equal to [1.0, 1.2317655078391274]
+2020-03-04 17:08:22 INFO     The parameters are set as: {'chrom': 'Chr04', 'EMAR_SP': 100, 'n_sus': 178, 'EX_CO_Chrom': 2, 'n_res': 45, 'start': None, 'resolution': 100000, 'min_segr_pv': None, 'out_dir': '../mapper_test', 'filter_flags': 'NoSBtag,NoSBtag\\;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'dp_max_ratio': 1.5, 'trust_gatk': False, 'opt_recombination': False, 'stop': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'chrom_size': None, 'with_parents': False, 'plots': True, 'hs_max': 0.0, 'min_qual': 100, 'opt_eps': False, 'phenoNoise': '1E-10'}
+2020-03-04 17:08:23 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:08:23 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:08:23 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after filter_flags 159/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after dp_max_ratio on res 134/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained after dp_max_ratio on sus 124/565 SNPs
+2020-03-04 17:08:23 INFO     filtering retained 124/565 SNPs
+2020-03-04 17:08:23 INFO     lib_size_factors values printed:
+2020-03-04 17:08:23 INFO     res_sum: 4051
+2020-03-04 17:08:23 INFO     res_sum: 3453
+2020-03-04 17:08:23 INFO     L is equal to [1.0, 1.173182739646684]
+2020-03-04 17:09:09 INFO     The parameters are set as: {'start': None, 'EMAR_SP': 100, 'opt_recombination': False, 'n_res': 45, 'resolution': 100000, 'window_size': 5000000.0, 'min_segr_pv': None, 'opt_eps': False, 'stop': None, 'chrom': 'Chr04', 'with_parents': False, 'trust_gatk': False, 'min_qual': 100, 'plots': True, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'out_dir': '../mapper_test', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'chrom_size': None, 'hs_max': 0.0, 'phenoNoise': '1E-10', 'dp_max_ratio': 1.5, 'n_sus': 178, 'EX_CO_Chrom': 2}
+2020-03-04 17:09:09 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:09:09 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:09:09 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:09:09 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:09:09 INFO     lib_size_factors values printed:
+2020-03-04 17:09:09 INFO     res_sum: 4962
+2020-03-04 17:09:09 INFO     res_sum: 4205
+2020-03-04 17:09:09 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:11:24 INFO     The parameters are set as: {'n_res': 45, 'chrom_size': None, 'plots': True, 'window_size': 5000000.0, 'trust_gatk': True, 'opt_eps': False, 'opt_recombination': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_qual': 100, 'EX_CO_Chrom': 2, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'out_dir': '../mapper_test', 'n_sus': 178, 'dp_max_ratio': 1.5, 'stop': None, 'hs_max': 0.0, 'resolution': 100000, 'min_segr_pv': None, 'with_parents': False, 'EMAR_SP': 100, 'chrom': 'Chr04', 'phenoNoise': '1E-10', 'start': None}
+2020-03-04 17:11:25 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:11:25 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:11:25 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:11:25 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:11:25 INFO     lib_size_factors values printed:
+2020-03-04 17:11:25 INFO     res_sum: 4861
+2020-03-04 17:11:25 INFO     res_sum: 3833
+2020-03-04 17:11:25 INFO     L is equal to [1.0, 1.2681972345421342]
+2020-03-04 17:11:53 INFO     The parameters are set as: {'plots': True, 'phenoNoise': '1E-10', 'n_sus': 280, 'opt_eps': False, 'n_res': 178, 'with_parents': False, 'window_size': 5000000.0, 'min_qual': 100, 'data_file': 'mapper_test.rbci', 'dp_max_ratio': 1.5, 'stop': None, 'filter_flags': 'ExactAN,NoSBtag', 'hs_max': 0.0, 'start': None, 'out_dir': '../mapper_test', 'min_segr_pv': None, 'EX_CO_Chrom': 2, 'trust_gatk': False, 'resolution': 100000, 'opt_recombination': False, 'EMAR_SP': 3, 'chrom_size': None, 'chrom': None}
+2020-03-04 17:12:30 INFO     Total Number 452387/452387 SNPs
+2020-03-04 17:12:30 INFO     filtering retained after chrom filter 153428/452387 SNPs
+2020-03-04 17:12:30 INFO     restricting analysis to chrom: 9311chr07, start: None, stop: None
+2020-03-04 17:12:31 INFO     filtering retained after filterN 153428/153428 SNPs
+2020-03-04 17:12:31 INFO     filtering retained after filter_dash 153428/153428 SNPs
+2020-03-04 17:12:31 INFO     filtering retained after enforce_match_major 153428/153428 SNPs
+2020-03-04 17:12:31 INFO     filtering retained after min_qual 125727/153428 SNPs
+2020-03-04 17:12:32 INFO     filtering retained after filter_flags 25771/153428 SNPs
+2020-03-04 17:12:32 INFO     filtering retained after dp_max_ratio on res 25119/153428 SNPs
+2020-03-04 17:12:32 INFO     filtering retained after dp_max_ratio on sus 25119/153428 SNPs
+2020-03-04 17:12:32 INFO     filtering retained 25119/153428 SNPs
+2020-03-04 17:12:32 INFO     lib_size_factors values printed:
+2020-03-04 17:12:32 INFO     res_sum: 363243
+2020-03-04 17:12:32 INFO     res_sum: 433393
+2020-03-04 17:12:32 INFO     L is equal to [1.0, 0.8381376718128811]
+2020-03-04 17:14:47 INFO     The parameters are set as: {'out_dir': '../mapper_test', 'filter_flags': 'ExactAN,NoSBtag', 'EX_CO_Chrom': 2, 'trust_gatk': False, 'resolution': 100000, 'min_segr_pv': None, 'n_sus': 280, 'stop': None, 'plots': True, 'start': None, 'hs_max': 0.0, 'dp_max_ratio': 1.5, 'opt_recombination': False, 'data_file': 'mapper_test.rbci', 'phenoNoise': '1E-10', 'chrom': None, 'chrom_size': None, 'window_size': 5000000.0, 'n_res': 178, 'opt_eps': False, 'min_qual': 100, 'with_parents': False, 'EMAR_SP': 3}
+2020-03-04 17:15:15 INFO     The parameters are set as: {'with_parents': False, 'chrom_size': None, 'opt_recombination': False, 'plots': True, 'window_size': 5000000.0, 'out_dir': '../mapper_test', 'dp_max_ratio': 1.5, 'opt_eps': False, 'min_segr_pv': None, 'filter_flags': 'PASS', 'hs_max': 0.0, 'EMAR_SP': 100, 'chrom': 'Chr04', 'resolution': 100000, 'phenoNoise': '1E-10', 'n_res': 45, 'stop': None, 'start': None, 'min_qual': 100, 'trust_gatk': True, 'data_file': 'freebayes_D2.filtered.rbci', 'n_sus': 178, 'EX_CO_Chrom': 2}
+2020-03-04 17:15:15 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:15:15 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:15:15 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:15:15 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:15:15 INFO     lib_size_factors values printed:
+2020-03-04 17:15:15 INFO     res_sum: 5316
+2020-03-04 17:15:15 INFO     res_sum: 2508
+2020-03-04 17:15:15 INFO     L is equal to [1.0, 2.1196172248803826]
+2020-03-04 17:15:48 INFO     The parameters are set as: {'phenoNoise': '1E-10', 'resolution': 100000, 'with_parents': False, 'opt_eps': False, 'stop': None, 'EX_CO_Chrom': 2, 'min_segr_pv': None, 'filter_flags': 'PASS', 'out_dir': '../mapper_test', 'chrom_size': None, 'trust_gatk': False, 'n_res': 45, 'opt_recombination': False, 'chrom': 'Chr04', 'hs_max': 0.0, 'min_qual': 100, 'dp_max_ratio': 1.5, 'EMAR_SP': 100, 'plots': True, 'data_file': 'freebayes_D2.filtered.rbci', 'window_size': 5000000.0, 'n_sus': 178, 'start': None}
+2020-03-04 17:15:48 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:15:48 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:15:48 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:15:48 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:15:48 INFO     lib_size_factors values printed:
+2020-03-04 17:15:48 INFO     res_sum: 5421
+2020-03-04 17:15:48 INFO     res_sum: 4401
+2020-03-04 17:15:48 INFO     L is equal to [1.0, 1.2317655078391274]
+2020-03-04 17:17:26 INFO     The parameters are set as: {'chrom': 'Chr04', 'opt_recombination': False, 'stop': None, 'plots': True, 'EMAR_SP': 100, 'n_res': 45, 'phenoNoise': '1E-10', 'min_segr_pv': None, 'window_size': 5000000.0, 'trust_gatk': False, 'filter_flags': 'PASS', 'data_file': 'freebayes_D2.filtered.rbci', 'resolution': 10000, 'min_qual': 100, 'start': None, 'hs_max': 0.0, 'with_parents': False, 'chrom_size': None, 'opt_eps': False, 'n_sus': 178, 'out_dir': '../mapper_test', 'dp_max_ratio': 1.5, 'EX_CO_Chrom': 2}
+2020-03-04 17:17:26 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:17:26 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:17:26 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:17:26 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:17:26 INFO     lib_size_factors values printed:
+2020-03-04 17:17:26 INFO     res_sum: 5421
+2020-03-04 17:17:26 INFO     res_sum: 4401
+2020-03-04 17:17:26 INFO     L is equal to [1.0, 1.2317655078391274]
+2020-03-04 17:17:52 INFO     The parameters are set as: {'stop': None, 'EMAR_SP': 100, 'phenoNoise': '1E-10', 'opt_recombination': False, 'min_segr_pv': None, 'resolution': 1000000, 'plots': True, 'start': None, 'window_size': 5000000.0, 'hs_max': 0.0, 'n_sus': 178, 'n_res': 45, 'data_file': 'freebayes_D2.filtered.rbci', 'with_parents': False, 'trust_gatk': False, 'out_dir': '../mapper_test', 'opt_eps': False, 'min_qual': 100, 'EX_CO_Chrom': 2, 'dp_max_ratio': 1.5, 'filter_flags': 'PASS', 'chrom_size': None, 'chrom': 'Chr04'}
+2020-03-04 17:17:52 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:17:52 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:17:52 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:17:52 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:17:52 INFO     lib_size_factors values printed:
+2020-03-04 17:17:52 INFO     res_sum: 5421
+2020-03-04 17:17:52 INFO     res_sum: 4401
+2020-03-04 17:17:52 INFO     L is equal to [1.0, 1.2317655078391274]
+2020-03-04 17:18:11 INFO     The parameters are set as: {'hs_max': 0.0, 'EX_CO_Chrom': 2, 'min_qual': 100, 'start': None, 'out_dir': '../mapper_test', 'with_parents': False, 'chrom_size': None, 'dp_max_ratio': 1.5, 'EMAR_SP': 100, 'resolution': 10000, 'filter_flags': 'PASS', 'data_file': 'freebayes_D2.filtered.rbci', 'phenoNoise': '1E-10', 'trust_gatk': False, 'stop': None, 'opt_eps': False, 'min_segr_pv': None, 'plots': True, 'chrom': 'Chr04', 'opt_recombination': False, 'n_sus': 178, 'window_size': 5000000.0, 'n_res': 45}
+2020-03-04 17:18:11 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:18:11 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:18:11 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after min_qual 61/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after filter_flags 61/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after dp_max_ratio on res 61/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained after dp_max_ratio on sus 60/63 SNPs
+2020-03-04 17:18:11 INFO     filtering retained 60/63 SNPs
+2020-03-04 17:18:11 INFO     lib_size_factors values printed:
+2020-03-04 17:18:11 INFO     res_sum: 5421
+2020-03-04 17:18:11 INFO     res_sum: 4401
+2020-03-04 17:18:11 INFO     L is equal to [1.0, 1.2317655078391274]
+2020-03-04 17:26:18 INFO     The parameters are set as: {'stop': None, 'dp_max_ratio': 5, 'n_sus': 178, 'start': None, 'min_qual': 100, 'hs_max': 0.0, 'opt_eps': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'EX_CO_Chrom': 2, 'window_size': 5000000.0, 'opt_recombination': False, 'EMAR_SP': 3, 'n_res': 45, 'phenoNoise': '1E-10', 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_segr_pv': None, 'trust_gatk': False, 'out_dir': '../mapper_test', 'plots': True, 'resolution': 10000, 'chrom': 'Chr04'}
+2020-03-04 17:26:18 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:26:18 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:26:18 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:26:18 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:26:18 INFO     lib_size_factors values printed:
+2020-03-04 17:26:18 INFO     res_sum: 9838
+2020-03-04 17:26:18 INFO     res_sum: 7961
+2020-03-04 17:26:18 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:27:40 INFO     The parameters are set as: {'trust_gatk': False, 'opt_recombination': False, 'start': None, 'n_sus': 178, 'min_segr_pv': None, 'opt_eps': False, 'with_parents': False, 'chrom_size': None, 'min_qual': 1000, 'EX_CO_Chrom': 2, 'stop': None, 'hs_max': None, 'config_file': 'config_1.yaml', 'EMAR_SP': 3, 'verbose': False, 'resolution': 100000, 'phenoNoise': 1e-10, 'dp_max_ratio': 5.0, 'plots': True, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'out_dir': 'mapper_test', 'n_res': 45, 'window_size': 5000000.0, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'chrom': 'Chr04'}
+2020-03-04 17:27:40 INFO     The parameters are set as: {'trust_gatk': False, 'opt_recombination': False, 'start': None, 'n_sus': 178, 'min_segr_pv': None, 'opt_eps': False, 'with_parents': False, 'chrom_size': None, 'min_qual': 1000, 'EX_CO_Chrom': 2, 'stop': None, 'hs_max': None, 'config_file': 'config_1.yaml', 'EMAR_SP': 3, 'verbose': False, 'resolution': 100000, 'phenoNoise': 1e-10, 'dp_max_ratio': 5.0, 'plots': True, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'out_dir': 'mapper_test', 'n_res': 45, 'window_size': 5000000.0, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'chrom': 'Chr04'}
+2020-03-04 17:27:41 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:27:41 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:27:41 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after min_qual 49/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after filter_flags 49/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after dp_max_ratio on res 47/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained after dp_max_ratio on sus 43/565 SNPs
+2020-03-04 17:27:41 INFO     filtering retained 43/565 SNPs
+2020-03-04 17:27:41 INFO     lib_size_factors values printed:
+2020-03-04 17:27:41 INFO     res_sum: 3894
+2020-03-04 17:27:41 INFO     res_sum: 3100
+2020-03-04 17:27:41 INFO     L is equal to [1.0, 1.2561290322580645]
+2020-03-04 17:29:11 INFO     The parameters are set as: {'config_file': 'config_1.yaml', 'phenoNoise': 1e-10, 'window_size': 5000000.0, 'EMAR_SP': 3, 'stop': None, 'opt_recombination': False, 'plots': True, 'n_sus': 178, 'chrom_size': None, 'trust_gatk': False, 'opt_eps': False, 'min_segr_pv': None, 'hs_max': None, 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'min_qual': 100, 'start': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 100000, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'verbose': False, 'dp_max_ratio': 5.0, 'n_res': 45, 'with_parents': False, 'EX_CO_Chrom': 2}
+2020-03-04 17:29:11 INFO     The parameters are set as: {'config_file': 'config_1.yaml', 'phenoNoise': 1e-10, 'window_size': 5000000.0, 'EMAR_SP': 3, 'stop': None, 'opt_recombination': False, 'plots': True, 'n_sus': 178, 'chrom_size': None, 'trust_gatk': False, 'opt_eps': False, 'min_segr_pv': None, 'hs_max': None, 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'min_qual': 100, 'start': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 100000, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'verbose': False, 'dp_max_ratio': 5.0, 'n_res': 45, 'with_parents': False, 'EX_CO_Chrom': 2}
+2020-03-04 17:29:12 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:29:12 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:29:12 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:29:12 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:29:12 INFO     lib_size_factors values printed:
+2020-03-04 17:29:12 INFO     res_sum: 9838
+2020-03-04 17:29:12 INFO     res_sum: 7961
+2020-03-04 17:29:12 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:29:57 INFO     The parameters are set as: {'plots': True, 'min_qual': 100, 'opt_eps': False, 'dp_max_ratio': 5.0, 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 10000, 'n_sus': 178, 'stop': None, 'window_size': 5000000.0, 'out_dir': 'mapper_test', 'EX_CO_Chrom': 2, 'EMAR_SP': 3, 'phenoNoise': 1e-10, 'chrom': 'Chr04', 'opt_recombination': False, 'start': None, 'config_file': 'config_1.yaml', 'hs_max': None, 'verbose': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'trust_gatk': False, 'n_res': 45, 'min_segr_pv': None, 'with_parents': False}
+2020-03-04 17:29:57 INFO     The parameters are set as: {'plots': True, 'min_qual': 100, 'opt_eps': False, 'dp_max_ratio': 5.0, 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 10000, 'n_sus': 178, 'stop': None, 'window_size': 5000000.0, 'out_dir': 'mapper_test', 'EX_CO_Chrom': 2, 'EMAR_SP': 3, 'phenoNoise': 1e-10, 'chrom': 'Chr04', 'opt_recombination': False, 'start': None, 'config_file': 'config_1.yaml', 'hs_max': None, 'verbose': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'trust_gatk': False, 'n_res': 45, 'min_segr_pv': None, 'with_parents': False}
+2020-03-04 17:29:58 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:29:58 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:29:58 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:29:58 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:29:58 INFO     lib_size_factors values printed:
+2020-03-04 17:29:58 INFO     res_sum: 9838
+2020-03-04 17:29:58 INFO     res_sum: 7961
+2020-03-04 17:29:58 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:30:25 INFO     The parameters are set as: {'n_sus': 178, 'min_qual': 100, 'chrom': 'Chr04', 'min_segr_pv': None, 'with_parents': False, 'EMAR_SP': 3, 'EX_CO_Chrom': 2, 'start': None, 'n_res': 45, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_recombination': False, 'out_dir': 'mapper_test', 'phenoNoise': 1e-10, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'trust_gatk': False, 'verbose': False, 'config_file': 'config_1.yaml', 'dp_max_ratio': 1.5, 'opt_eps': False, 'stop': None, 'resolution': 10000, 'hs_max': None, 'chrom_size': None, 'plots': True, 'window_size': 5000000.0}
+2020-03-04 17:30:25 INFO     The parameters are set as: {'n_sus': 178, 'min_qual': 100, 'chrom': 'Chr04', 'min_segr_pv': None, 'with_parents': False, 'EMAR_SP': 3, 'EX_CO_Chrom': 2, 'start': None, 'n_res': 45, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_recombination': False, 'out_dir': 'mapper_test', 'phenoNoise': 1e-10, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'trust_gatk': False, 'verbose': False, 'config_file': 'config_1.yaml', 'dp_max_ratio': 1.5, 'opt_eps': False, 'stop': None, 'resolution': 10000, 'hs_max': None, 'chrom_size': None, 'plots': True, 'window_size': 5000000.0}
+2020-03-04 17:30:26 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:30:26 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:30:26 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:30:26 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:30:26 INFO     lib_size_factors values printed:
+2020-03-04 17:30:26 INFO     res_sum: 4962
+2020-03-04 17:30:26 INFO     res_sum: 4205
+2020-03-04 17:30:26 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:31:38 INFO     The parameters are set as: {'start': None, 'stop': None, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'verbose': False, 'chrom_size': None, 'trust_gatk': False, 'window_size': 5000000.0, 'EMAR_SP': 3, 'min_qual': 100, 'n_res': 45, 'out_dir': 'mapper_test', 'chrom': 'Chr04', 'EX_CO_Chrom': 2, 'hs_max': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'n_sus': 178, 'with_parents': False, 'opt_recombination': False, 'dp_max_ratio': 1.5, 'resolution': 100000, 'phenoNoise': 1e-10, 'min_segr_pv': None, 'plots': True, 'opt_eps': False}
+2020-03-04 17:31:38 INFO     The parameters are set as: {'start': None, 'stop': None, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'verbose': False, 'chrom_size': None, 'trust_gatk': False, 'window_size': 5000000.0, 'EMAR_SP': 3, 'min_qual': 100, 'n_res': 45, 'out_dir': 'mapper_test', 'chrom': 'Chr04', 'EX_CO_Chrom': 2, 'hs_max': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'n_sus': 178, 'with_parents': False, 'opt_recombination': False, 'dp_max_ratio': 1.5, 'resolution': 100000, 'phenoNoise': 1e-10, 'min_segr_pv': None, 'plots': True, 'opt_eps': False}
+2020-03-04 17:31:39 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:31:39 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:31:39 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:31:39 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:31:39 INFO     lib_size_factors values printed:
+2020-03-04 17:31:39 INFO     res_sum: 4962
+2020-03-04 17:31:39 INFO     res_sum: 4205
+2020-03-04 17:31:39 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:31:50 INFO     The parameters are set as: {'plots': True, 'opt_recombination': False, 'chrom_size': None, 'n_sus': 178, 'min_segr_pv': None, 'stop': None, 'window_size': 5000000.0, 'verbose': False, 'trust_gatk': False, 'phenoNoise': 1e-10, 'EMAR_SP': 3, 'chrom': 'Chr04', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'opt_eps': False, 'config_file': 'config_1.yaml', 'resolution': 10000, 'EX_CO_Chrom': 2, 'with_parents': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_qual': 100, 'hs_max': None, 'n_res': 45, 'out_dir': 'mapper_test', 'start': None, 'dp_max_ratio': 1.5}
+2020-03-04 17:31:50 INFO     The parameters are set as: {'plots': True, 'opt_recombination': False, 'chrom_size': None, 'n_sus': 178, 'min_segr_pv': None, 'stop': None, 'window_size': 5000000.0, 'verbose': False, 'trust_gatk': False, 'phenoNoise': 1e-10, 'EMAR_SP': 3, 'chrom': 'Chr04', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'opt_eps': False, 'config_file': 'config_1.yaml', 'resolution': 10000, 'EX_CO_Chrom': 2, 'with_parents': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_qual': 100, 'hs_max': None, 'n_res': 45, 'out_dir': 'mapper_test', 'start': None, 'dp_max_ratio': 1.5}
+2020-03-04 17:31:51 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:31:51 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:31:51 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:31:51 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:31:51 INFO     lib_size_factors values printed:
+2020-03-04 17:31:51 INFO     res_sum: 4962
+2020-03-04 17:31:51 INFO     res_sum: 4205
+2020-03-04 17:31:51 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:32:33 INFO     The parameters are set as: {'n_sus': 178, 'dp_max_ratio': 1.5, 'chrom': 'Chr04', 'min_qual': 100, 'opt_recombination': False, 'EX_CO_Chrom': 2, 'verbose': False, 'chrom_size': None, 'out_dir': 'mapper_test', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 10000, 'min_segr_pv': None, 'trust_gatk': False, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'opt_eps': False, 'n_res': 45, 'EMAR_SP': 100.0, 'stop': None, 'window_size': 5000000.0, 'start': None, 'with_parents': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'plots': True, 'hs_max': None}
+2020-03-04 17:32:33 INFO     The parameters are set as: {'n_sus': 178, 'dp_max_ratio': 1.5, 'chrom': 'Chr04', 'min_qual': 100, 'opt_recombination': False, 'EX_CO_Chrom': 2, 'verbose': False, 'chrom_size': None, 'out_dir': 'mapper_test', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 10000, 'min_segr_pv': None, 'trust_gatk': False, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'opt_eps': False, 'n_res': 45, 'EMAR_SP': 100.0, 'stop': None, 'window_size': 5000000.0, 'start': None, 'with_parents': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'plots': True, 'hs_max': None}
+2020-03-04 17:32:33 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:32:33 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:32:33 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after dp_max_ratio on res 165/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained after dp_max_ratio on sus 152/565 SNPs
+2020-03-04 17:32:33 INFO     filtering retained 152/565 SNPs
+2020-03-04 17:32:33 INFO     lib_size_factors values printed:
+2020-03-04 17:32:33 INFO     res_sum: 4962
+2020-03-04 17:32:33 INFO     res_sum: 4205
+2020-03-04 17:32:33 INFO     L is equal to [1.0, 1.1800237812128418]
+2020-03-04 17:32:57 INFO     The parameters are set as: {'hs_max': None, 'EMAR_SP': 100.0, 'start': None, 'config_file': 'config_1.yaml', 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'phenoNoise': 1e-10, 'EX_CO_Chrom': 2, 'opt_recombination': False, 'trust_gatk': False, 'n_sus': 178, 'stop': None, 'out_dir': 'mapper_test', 'plots': True, 'window_size': 5000000.0, 'resolution': 10000, 'n_res': 45, 'min_qual': 100, 'opt_eps': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'verbose': False, 'chrom': 'Chr04'}
+2020-03-04 17:32:57 INFO     The parameters are set as: {'hs_max': None, 'EMAR_SP': 100.0, 'start': None, 'config_file': 'config_1.yaml', 'chrom_size': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'phenoNoise': 1e-10, 'EX_CO_Chrom': 2, 'opt_recombination': False, 'trust_gatk': False, 'n_sus': 178, 'stop': None, 'out_dir': 'mapper_test', 'plots': True, 'window_size': 5000000.0, 'resolution': 10000, 'n_res': 45, 'min_qual': 100, 'opt_eps': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'verbose': False, 'chrom': 'Chr04'}
+2020-03-04 17:32:58 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:32:58 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:32:58 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:32:58 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:32:58 INFO     lib_size_factors values printed:
+2020-03-04 17:32:58 INFO     res_sum: 9838
+2020-03-04 17:32:58 INFO     res_sum: 7961
+2020-03-04 17:32:58 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:33:16 INFO     The parameters are set as: {'trust_gatk': False, 'verbose': False, 'phenoNoise': 1e-10, 'hs_max': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_eps': False, 'with_parents': False, 'chrom': 'Chr04', 'n_res': 45, 'chrom_size': None, 'plots': True, 'min_segr_pv': None, 'opt_recombination': False, 'EX_CO_Chrom': 2, 'window_size': 5000000.0, 'config_file': 'config_1.yaml', 'EMAR_SP': 3.0, 'resolution': 10000, 'min_qual': 100, 'out_dir': 'mapper_test', 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'n_sus': 178, 'stop': None, 'start': None}
+2020-03-04 17:33:16 INFO     The parameters are set as: {'trust_gatk': False, 'verbose': False, 'phenoNoise': 1e-10, 'hs_max': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_eps': False, 'with_parents': False, 'chrom': 'Chr04', 'n_res': 45, 'chrom_size': None, 'plots': True, 'min_segr_pv': None, 'opt_recombination': False, 'EX_CO_Chrom': 2, 'window_size': 5000000.0, 'config_file': 'config_1.yaml', 'EMAR_SP': 3.0, 'resolution': 10000, 'min_qual': 100, 'out_dir': 'mapper_test', 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'n_sus': 178, 'stop': None, 'start': None}
+2020-03-04 17:33:17 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:33:17 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:33:17 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:33:17 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:33:17 INFO     lib_size_factors values printed:
+2020-03-04 17:33:17 INFO     res_sum: 9838
+2020-03-04 17:33:17 INFO     res_sum: 7961
+2020-03-04 17:33:17 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:34:05 INFO     The parameters are set as: {'with_parents': False, 'plots': True, 'EX_CO_Chrom': 2, 'verbose': False, 'phenoNoise': 1e-10, 'chrom_size': None, 'trust_gatk': False, 'out_dir': 'mapper_test', 'dp_max_ratio': 5.0, 'hs_max': None, 'chrom': 'Chr04', 'min_segr_pv': None, 'resolution': 10000, 'n_sus': 178, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'stop': None, 'n_res': 45, 'opt_recombination': False, 'min_qual': 1000, 'config_file': 'config_1.yaml', 'window_size': 5000000.0, 'opt_eps': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'start': None, 'EMAR_SP': 100.0}
+2020-03-04 17:34:05 INFO     The parameters are set as: {'with_parents': False, 'plots': True, 'EX_CO_Chrom': 2, 'verbose': False, 'phenoNoise': 1e-10, 'chrom_size': None, 'trust_gatk': False, 'out_dir': 'mapper_test', 'dp_max_ratio': 5.0, 'hs_max': None, 'chrom': 'Chr04', 'min_segr_pv': None, 'resolution': 10000, 'n_sus': 178, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'stop': None, 'n_res': 45, 'opt_recombination': False, 'min_qual': 1000, 'config_file': 'config_1.yaml', 'window_size': 5000000.0, 'opt_eps': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'start': None, 'EMAR_SP': 100.0}
+2020-03-04 17:34:06 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:34:06 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:34:06 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after min_qual 49/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after filter_flags 49/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after dp_max_ratio on res 47/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained after dp_max_ratio on sus 43/565 SNPs
+2020-03-04 17:34:06 INFO     filtering retained 43/565 SNPs
+2020-03-04 17:34:06 INFO     lib_size_factors values printed:
+2020-03-04 17:34:06 INFO     res_sum: 3894
+2020-03-04 17:34:06 INFO     res_sum: 3100
+2020-03-04 17:34:06 INFO     L is equal to [1.0, 1.2561290322580645]
+2020-03-04 17:34:39 INFO     The parameters are set as: {'verbose': False, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'hs_max': None, 'stop': None, 'with_parents': False, 'min_segr_pv': None, 'plots': True, 'n_sus': 178, 'dp_max_ratio': 5.0, 'chrom': 'Chr04', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'resolution': 10000, 'opt_recombination': False, 'out_dir': 'mapper_test', 'n_res': 45, 'trust_gatk': False, 'chrom_size': None, 'start': None, 'EMAR_SP': 100.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'opt_eps': False, 'min_qual': 200}
+2020-03-04 17:34:39 INFO     The parameters are set as: {'verbose': False, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'hs_max': None, 'stop': None, 'with_parents': False, 'min_segr_pv': None, 'plots': True, 'n_sus': 178, 'dp_max_ratio': 5.0, 'chrom': 'Chr04', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'resolution': 10000, 'opt_recombination': False, 'out_dir': 'mapper_test', 'n_res': 45, 'trust_gatk': False, 'chrom_size': None, 'start': None, 'EMAR_SP': 100.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'opt_eps': False, 'min_qual': 200}
+2020-03-04 17:34:40 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:34:40 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:34:40 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after min_qual 142/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after filter_flags 142/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after dp_max_ratio on res 139/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained after dp_max_ratio on sus 134/565 SNPs
+2020-03-04 17:34:40 INFO     filtering retained 134/565 SNPs
+2020-03-04 17:34:40 INFO     lib_size_factors values printed:
+2020-03-04 17:34:40 INFO     res_sum: 8034
+2020-03-04 17:34:40 INFO     res_sum: 6521
+2020-03-04 17:34:40 INFO     L is equal to [1.0, 1.2320196288912744]
+2020-03-04 17:34:49 INFO     The parameters are set as: {'EMAR_SP': 100.0, 'min_segr_pv': None, 'min_qual': 200, 'verbose': False, 'plots': True, 'phenoNoise': 1e-10, 'trust_gatk': False, 'n_sus': 178, 'opt_recombination': False, 'stop': None, 'window_size': 5000000.0, 'opt_eps': False, 'resolution': 10000, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'hs_max': None, 'chrom': 'Chr04', 'dp_max_ratio': 5.0, 'out_dir': 'mapper_test', 'chrom_size': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'start': None, 'with_parents': False, 'n_res': 45}
+2020-03-04 17:34:49 INFO     The parameters are set as: {'EMAR_SP': 100.0, 'min_segr_pv': None, 'min_qual': 200, 'verbose': False, 'plots': True, 'phenoNoise': 1e-10, 'trust_gatk': False, 'n_sus': 178, 'opt_recombination': False, 'stop': None, 'window_size': 5000000.0, 'opt_eps': False, 'resolution': 10000, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'hs_max': None, 'chrom': 'Chr04', 'dp_max_ratio': 5.0, 'out_dir': 'mapper_test', 'chrom_size': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'start': None, 'with_parents': False, 'n_res': 45}
+2020-03-04 17:34:50 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:34:50 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:34:50 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after min_qual 142/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after filter_flags 142/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after dp_max_ratio on res 139/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained after dp_max_ratio on sus 134/565 SNPs
+2020-03-04 17:34:50 INFO     filtering retained 134/565 SNPs
+2020-03-04 17:34:50 INFO     lib_size_factors values printed:
+2020-03-04 17:34:50 INFO     res_sum: 8034
+2020-03-04 17:34:50 INFO     res_sum: 6521
+2020-03-04 17:34:50 INFO     L is equal to [1.0, 1.2320196288912744]
+2020-03-04 17:35:03 INFO     The parameters are set as: {'with_parents': False, 'config_file': 'config_1.yaml', 'min_segr_pv': None, 'phenoNoise': 1e-10, 'n_sus': 178, 'out_dir': 'mapper_test', 'start': None, 'hs_max': None, 'plots': True, 'n_res': 45, 'opt_recombination': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_qual': 600, 'chrom_size': None, 'EX_CO_Chrom': 2, 'verbose': False, 'stop': None, 'opt_eps': False, 'resolution': 10000, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'EMAR_SP': 100.0, 'chrom': 'Chr04', 'trust_gatk': False, 'window_size': 5000000.0, 'dp_max_ratio': 5.0}
+2020-03-04 17:35:03 INFO     The parameters are set as: {'with_parents': False, 'config_file': 'config_1.yaml', 'min_segr_pv': None, 'phenoNoise': 1e-10, 'n_sus': 178, 'out_dir': 'mapper_test', 'start': None, 'hs_max': None, 'plots': True, 'n_res': 45, 'opt_recombination': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_qual': 600, 'chrom_size': None, 'EX_CO_Chrom': 2, 'verbose': False, 'stop': None, 'opt_eps': False, 'resolution': 10000, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'EMAR_SP': 100.0, 'chrom': 'Chr04', 'trust_gatk': False, 'window_size': 5000000.0, 'dp_max_ratio': 5.0}
+2020-03-04 17:35:04 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:35:04 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:35:04 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after min_qual 74/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after filter_flags 74/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after dp_max_ratio on res 71/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained after dp_max_ratio on sus 67/565 SNPs
+2020-03-04 17:35:04 INFO     filtering retained 67/565 SNPs
+2020-03-04 17:35:04 INFO     lib_size_factors values printed:
+2020-03-04 17:35:04 INFO     res_sum: 5320
+2020-03-04 17:35:04 INFO     res_sum: 4274
+2020-03-04 17:35:04 INFO     L is equal to [1.0, 1.2447356106691623]
+2020-03-04 17:36:09 INFO     The parameters are set as: {'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'n_sus': 178, 'chrom_size': None, 'EMAR_SP': 100.0, 'EX_CO_Chrom': 2, 'opt_recombination': False, 'chrom': 'Chr04', 'min_qual': 600, 'phenoNoise': 1e-10, 'window_size': 5000000.0, 'trust_gatk': False, 'with_parents': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'dp_max_ratio': 5.0, 'hs_max': None, 'start': None, 'resolution': 10000, 'verbose': False, 'n_res': 45, 'plots': True, 'config_file': 'config_1.yaml', 'opt_eps': False, 'stop': None, 'out_dir': 'mapper_test', 'min_segr_pv': None}
+2020-03-04 17:36:09 INFO     The parameters are set as: {'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'n_sus': 178, 'chrom_size': None, 'EMAR_SP': 100.0, 'EX_CO_Chrom': 2, 'opt_recombination': False, 'chrom': 'Chr04', 'min_qual': 600, 'phenoNoise': 1e-10, 'window_size': 5000000.0, 'trust_gatk': False, 'with_parents': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'dp_max_ratio': 5.0, 'hs_max': None, 'start': None, 'resolution': 10000, 'verbose': False, 'n_res': 45, 'plots': True, 'config_file': 'config_1.yaml', 'opt_eps': False, 'stop': None, 'out_dir': 'mapper_test', 'min_segr_pv': None}
+2020-03-04 17:36:10 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:36:10 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:36:10 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after min_qual 74/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after filter_flags 74/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after dp_max_ratio on res 71/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained after dp_max_ratio on sus 67/565 SNPs
+2020-03-04 17:36:10 INFO     filtering retained 67/565 SNPs
+2020-03-04 17:36:10 INFO     lib_size_factors values printed:
+2020-03-04 17:36:10 INFO     res_sum: 5320
+2020-03-04 17:36:10 INFO     res_sum: 4274
+2020-03-04 17:36:10 INFO     L is equal to [1.0, 1.2447356106691623]
+2020-03-04 17:36:23 INFO     The parameters are set as: {'trust_gatk': False, 'stop': None, 'min_qual': 200, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'EX_CO_Chrom': 2, 'n_res': 45, 'n_sus': 178, 'chrom': 'Chr04', 'resolution': 10000, 'phenoNoise': 1e-10, 'verbose': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'EMAR_SP': 100.0, 'chrom_size': None, 'with_parents': False, 'out_dir': 'mapper_test', 'opt_recombination': False, 'hs_max': None, 'start': None, 'window_size': 5000000.0, 'plots': True, 'opt_eps': False, 'config_file': 'config_1.yaml'}
+2020-03-04 17:36:23 INFO     The parameters are set as: {'trust_gatk': False, 'stop': None, 'min_qual': 200, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'EX_CO_Chrom': 2, 'n_res': 45, 'n_sus': 178, 'chrom': 'Chr04', 'resolution': 10000, 'phenoNoise': 1e-10, 'verbose': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'EMAR_SP': 100.0, 'chrom_size': None, 'with_parents': False, 'out_dir': 'mapper_test', 'opt_recombination': False, 'hs_max': None, 'start': None, 'window_size': 5000000.0, 'plots': True, 'opt_eps': False, 'config_file': 'config_1.yaml'}
+2020-03-04 17:36:24 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:36:24 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:36:24 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after min_qual 142/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after filter_flags 142/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after dp_max_ratio on res 139/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained after dp_max_ratio on sus 134/565 SNPs
+2020-03-04 17:36:24 INFO     filtering retained 134/565 SNPs
+2020-03-04 17:36:24 INFO     lib_size_factors values printed:
+2020-03-04 17:36:24 INFO     res_sum: 8034
+2020-03-04 17:36:24 INFO     res_sum: 6521
+2020-03-04 17:36:24 INFO     L is equal to [1.0, 1.2320196288912744]
+2020-03-04 17:37:13 INFO     The parameters are set as: {'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'opt_recombination': False, 'verbose': False, 'min_segr_pv': None, 'opt_eps': False, 'EX_CO_Chrom': 2, 'chrom_size': None, 'dp_max_ratio': 5.0, 'n_sus': 178, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'plots': True, 'window_size': 5000000.0, 'start': None, 'with_parents': False, 'stop': None, 'n_res': 45, 'min_qual': 100, 'chrom': 'Chr04', 'trust_gatk': False, 'out_dir': 'mapper_test', 'EMAR_SP': 100.0, 'resolution': 10000, 'hs_max': None}
+2020-03-04 17:37:13 INFO     The parameters are set as: {'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'opt_recombination': False, 'verbose': False, 'min_segr_pv': None, 'opt_eps': False, 'EX_CO_Chrom': 2, 'chrom_size': None, 'dp_max_ratio': 5.0, 'n_sus': 178, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'plots': True, 'window_size': 5000000.0, 'start': None, 'with_parents': False, 'stop': None, 'n_res': 45, 'min_qual': 100, 'chrom': 'Chr04', 'trust_gatk': False, 'out_dir': 'mapper_test', 'EMAR_SP': 100.0, 'resolution': 10000, 'hs_max': None}
+2020-03-04 17:37:14 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:37:14 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:37:14 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-04 17:37:14 INFO     filtering retained 197/565 SNPs
+2020-03-04 17:37:14 INFO     lib_size_factors values printed:
+2020-03-04 17:37:14 INFO     res_sum: 9838
+2020-03-04 17:37:14 INFO     res_sum: 7961
+2020-03-04 17:37:14 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-04 17:37:31 INFO     The parameters are set as: {'stop': None, 'chrom': 'Chr04', 'chrom_size': None, 'n_sus': 178, 'hs_max': None, 'trust_gatk': False, 'resolution': 10000, 'EMAR_SP': 100.0, 'opt_eps': False, 'with_parents': False, 'out_dir': 'mapper_test', 'plots': True, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_segr_pv': None, 'config_file': 'config_1.yaml', 'min_qual': 1000, 'EX_CO_Chrom': 2, 'phenoNoise': 1e-10, 'n_res': 45, 'opt_recombination': False, 'start': None, 'window_size': 5000000.0, 'verbose': False, 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci'}
+2020-03-04 17:37:31 INFO     The parameters are set as: {'stop': None, 'chrom': 'Chr04', 'chrom_size': None, 'n_sus': 178, 'hs_max': None, 'trust_gatk': False, 'resolution': 10000, 'EMAR_SP': 100.0, 'opt_eps': False, 'with_parents': False, 'out_dir': 'mapper_test', 'plots': True, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_segr_pv': None, 'config_file': 'config_1.yaml', 'min_qual': 1000, 'EX_CO_Chrom': 2, 'phenoNoise': 1e-10, 'n_res': 45, 'opt_recombination': False, 'start': None, 'window_size': 5000000.0, 'verbose': False, 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci'}
+2020-03-04 17:37:32 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:37:32 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:37:32 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after min_qual 49/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after filter_flags 49/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after dp_max_ratio on res 47/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained after dp_max_ratio on sus 43/565 SNPs
+2020-03-04 17:37:32 INFO     filtering retained 43/565 SNPs
+2020-03-04 17:37:32 INFO     lib_size_factors values printed:
+2020-03-04 17:37:32 INFO     res_sum: 3894
+2020-03-04 17:37:32 INFO     res_sum: 3100
+2020-03-04 17:37:32 INFO     L is equal to [1.0, 1.2561290322580645]
+2020-03-04 17:39:35 INFO     The parameters are set as: {'plots': True, 'chrom_size': None, 'min_qual': 1000, 'opt_eps': False, 'trust_gatk': False, 'phenoNoise': 1e-10, 'n_res': 45, 'chrom': 'Chr04', 'resolution': 100000, 'out_dir': 'mapper_test', 'hs_max': None, 'EX_CO_Chrom': 2, 'stop': None, 'dp_max_ratio': 5.0, 'n_sus': 178, 'config_file': 'config_1.yaml', 'verbose': False, 'with_parents': False, 'min_segr_pv': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EMAR_SP': 100.0, 'window_size': 5000000.0, 'start': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_recombination': False}
+2020-03-04 17:39:35 INFO     The parameters are set as: {'plots': True, 'chrom_size': None, 'min_qual': 1000, 'opt_eps': False, 'trust_gatk': False, 'phenoNoise': 1e-10, 'n_res': 45, 'chrom': 'Chr04', 'resolution': 100000, 'out_dir': 'mapper_test', 'hs_max': None, 'EX_CO_Chrom': 2, 'stop': None, 'dp_max_ratio': 5.0, 'n_sus': 178, 'config_file': 'config_1.yaml', 'verbose': False, 'with_parents': False, 'min_segr_pv': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EMAR_SP': 100.0, 'window_size': 5000000.0, 'start': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'opt_recombination': False}
+2020-03-04 17:39:36 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:39:36 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:39:36 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after min_qual 49/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after filter_flags 49/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after dp_max_ratio on res 47/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained after dp_max_ratio on sus 43/565 SNPs
+2020-03-04 17:39:36 INFO     filtering retained 43/565 SNPs
+2020-03-04 17:39:36 INFO     lib_size_factors values printed:
+2020-03-04 17:39:36 INFO     res_sum: 3894
+2020-03-04 17:39:36 INFO     res_sum: 3100
+2020-03-04 17:39:36 INFO     L is equal to [1.0, 1.2561290322580645]
+2020-03-04 17:41:52 INFO     The parameters are set as: {'start': None, 'config_file': 'config_1.yaml', 'trust_gatk': False, 'out_dir': 'mapper_test', 'n_res': 45, 'min_segr_pv': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'opt_recombination': False, 'n_sus': 178, 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_qual': 200, 'EMAR_SP': 100.0, 'verbose': False, 'resolution': 100000, 'opt_eps': False, 'chrom': 'Chr04', 'hs_max': None, 'stop': None, 'chrom_size': None, 'plots': True, 'window_size': 5000000.0, 'phenoNoise': 1e-10, 'EX_CO_Chrom': 2}
+2020-03-04 17:41:52 INFO     The parameters are set as: {'start': None, 'config_file': 'config_1.yaml', 'trust_gatk': False, 'out_dir': 'mapper_test', 'n_res': 45, 'min_segr_pv': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'opt_recombination': False, 'n_sus': 178, 'dp_max_ratio': 5.0, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'min_qual': 200, 'EMAR_SP': 100.0, 'verbose': False, 'resolution': 100000, 'opt_eps': False, 'chrom': 'Chr04', 'hs_max': None, 'stop': None, 'chrom_size': None, 'plots': True, 'window_size': 5000000.0, 'phenoNoise': 1e-10, 'EX_CO_Chrom': 2}
+2020-03-04 17:41:52 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:41:52 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:41:52 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:41:53 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after min_qual 142/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after filter_flags 142/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after dp_max_ratio on res 139/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained after dp_max_ratio on sus 134/565 SNPs
+2020-03-04 17:41:53 INFO     filtering retained 134/565 SNPs
+2020-03-04 17:41:53 INFO     lib_size_factors values printed:
+2020-03-04 17:41:53 INFO     res_sum: 8034
+2020-03-04 17:41:53 INFO     res_sum: 6521
+2020-03-04 17:41:53 INFO     L is equal to [1.0, 1.2320196288912744]
+2020-03-04 17:42:37 INFO     The parameters are set as: {'n_sus': 178, 'stop': None, 'opt_eps': False, 'verbose': False, 'EX_CO_Chrom': 2, 'trust_gatk': False, 'window_size': 5000000.0, 'min_segr_pv': None, 'start': None, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 100000, 'phenoNoise': 1e-10, 'dp_max_ratio': 5.0, 'with_parents': False, 'n_res': 45, 'hs_max': None, 'plots': True, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'EMAR_SP': 100.0, 'opt_recombination': False, 'min_qual': 400, 'chrom_size': None}
+2020-03-04 17:42:37 INFO     The parameters are set as: {'n_sus': 178, 'stop': None, 'opt_eps': False, 'verbose': False, 'EX_CO_Chrom': 2, 'trust_gatk': False, 'window_size': 5000000.0, 'min_segr_pv': None, 'start': None, 'config_file': 'config_1.yaml', 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'resolution': 100000, 'phenoNoise': 1e-10, 'dp_max_ratio': 5.0, 'with_parents': False, 'n_res': 45, 'hs_max': None, 'plots': True, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'EMAR_SP': 100.0, 'opt_recombination': False, 'min_qual': 400, 'chrom_size': None}
+2020-03-04 17:42:38 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:42:38 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:42:38 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after min_qual 97/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after filter_flags 97/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after dp_max_ratio on res 94/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained after dp_max_ratio on sus 90/565 SNPs
+2020-03-04 17:42:38 INFO     filtering retained 90/565 SNPs
+2020-03-04 17:42:38 INFO     lib_size_factors values printed:
+2020-03-04 17:42:38 INFO     res_sum: 6591
+2020-03-04 17:42:38 INFO     res_sum: 5291
+2020-03-04 17:42:38 INFO     L is equal to [1.0, 1.2457002457002457]
+2020-03-04 17:42:54 INFO     The parameters are set as: {'window_size': 5000000.0, 'config_file': 'config_1.yaml', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_qual': 600, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'verbose': False, 'chrom': 'Chr04', 'phenoNoise': 1e-10, 'plots': True, 'opt_recombination': False, 'hs_max': None, 'stop': None, 'start': None, 'out_dir': 'mapper_test', 'min_segr_pv': None, 'n_res': 45, 'opt_eps': False, 'chrom_size': None, 'trust_gatk': False, 'with_parents': False, 'EMAR_SP': 100.0, 'dp_max_ratio': 5.0, 'n_sus': 178, 'resolution': 100000}
+2020-03-04 17:42:54 INFO     The parameters are set as: {'window_size': 5000000.0, 'config_file': 'config_1.yaml', 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'min_qual': 600, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'EX_CO_Chrom': 2, 'verbose': False, 'chrom': 'Chr04', 'phenoNoise': 1e-10, 'plots': True, 'opt_recombination': False, 'hs_max': None, 'stop': None, 'start': None, 'out_dir': 'mapper_test', 'min_segr_pv': None, 'n_res': 45, 'opt_eps': False, 'chrom_size': None, 'trust_gatk': False, 'with_parents': False, 'EMAR_SP': 100.0, 'dp_max_ratio': 5.0, 'n_sus': 178, 'resolution': 100000}
+2020-03-04 17:42:55 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:42:55 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:42:55 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after min_qual 74/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after filter_flags 74/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after dp_max_ratio on res 71/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained after dp_max_ratio on sus 67/565 SNPs
+2020-03-04 17:42:55 INFO     filtering retained 67/565 SNPs
+2020-03-04 17:42:55 INFO     lib_size_factors values printed:
+2020-03-04 17:42:55 INFO     res_sum: 5320
+2020-03-04 17:42:55 INFO     res_sum: 4274
+2020-03-04 17:42:55 INFO     L is equal to [1.0, 1.2447356106691623]
+2020-03-04 17:43:18 INFO     The parameters are set as: {'stop': None, 'with_parents': False, 'EMAR_SP': 100.0, 'n_sus': 178, 'chrom_size': None, 'min_qual': 800, 'window_size': 5000000.0, 'verbose': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'config_file': 'config_1.yaml', 'phenoNoise': 1e-10, 'chrom': 'Chr04', 'trust_gatk': False, 'start': None, 'resolution': 100000, 'plots': True, 'n_res': 45, 'out_dir': 'mapper_test', 'opt_recombination': False, 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'EX_CO_Chrom': 2, 'opt_eps': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'hs_max': None}
+2020-03-04 17:43:18 INFO     The parameters are set as: {'stop': None, 'with_parents': False, 'EMAR_SP': 100.0, 'n_sus': 178, 'chrom_size': None, 'min_qual': 800, 'window_size': 5000000.0, 'verbose': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'config_file': 'config_1.yaml', 'phenoNoise': 1e-10, 'chrom': 'Chr04', 'trust_gatk': False, 'start': None, 'resolution': 100000, 'plots': True, 'n_res': 45, 'out_dir': 'mapper_test', 'opt_recombination': False, 'min_segr_pv': None, 'dp_max_ratio': 5.0, 'EX_CO_Chrom': 2, 'opt_eps': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'hs_max': None}
+2020-03-04 17:43:19 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:43:19 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:43:19 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after min_qual 61/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after filter_flags 61/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after dp_max_ratio on res 59/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained after dp_max_ratio on sus 55/565 SNPs
+2020-03-04 17:43:19 INFO     filtering retained 55/565 SNPs
+2020-03-04 17:43:19 INFO     lib_size_factors values printed:
+2020-03-04 17:43:19 INFO     res_sum: 4642
+2020-03-04 17:43:19 INFO     res_sum: 3732
+2020-03-04 17:43:19 INFO     L is equal to [1.0, 1.2438370846730975]
+2020-03-04 17:43:45 INFO     The parameters are set as: {'dp_max_ratio': 5.0, 'phenoNoise': 1e-10, 'plots': True, 'opt_recombination': False, 'start': None, 'opt_eps': False, 'window_size': 5000000.0, 'min_segr_pv': None, 'EMAR_SP': 100.0, 'trust_gatk': False, 'config_file': 'config_1.yaml', 'resolution': 100000, 'n_res': 45, 'min_qual': 2000, 'stop': None, 'hs_max': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'n_sus': 178, 'EX_CO_Chrom': 2, 'chrom_size': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'verbose': False, 'out_dir': 'mapper_test', 'chrom': 'Chr04'}
+2020-03-04 17:43:45 INFO     The parameters are set as: {'dp_max_ratio': 5.0, 'phenoNoise': 1e-10, 'plots': True, 'opt_recombination': False, 'start': None, 'opt_eps': False, 'window_size': 5000000.0, 'min_segr_pv': None, 'EMAR_SP': 100.0, 'trust_gatk': False, 'config_file': 'config_1.yaml', 'resolution': 100000, 'n_res': 45, 'min_qual': 2000, 'stop': None, 'hs_max': None, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'n_sus': 178, 'EX_CO_Chrom': 2, 'chrom_size': None, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'with_parents': False, 'verbose': False, 'out_dir': 'mapper_test', 'chrom': 'Chr04'}
+2020-03-04 17:43:46 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:43:46 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:43:46 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after min_qual 29/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after filter_flags 29/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after dp_max_ratio on res 27/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained after dp_max_ratio on sus 24/565 SNPs
+2020-03-04 17:43:46 INFO     filtering retained 24/565 SNPs
+2020-03-04 17:43:46 INFO     lib_size_factors values printed:
+2020-03-04 17:43:46 INFO     res_sum: 2691
+2020-03-04 17:43:46 INFO     res_sum: 2115
+2020-03-04 17:43:46 INFO     L is equal to [1.0, 1.2723404255319148]
+2020-03-04 17:45:40 INFO     The parameters are set as: {'EX_CO_Chrom': 2, 'opt_recombination': False, 'EMAR_SP': 100.0, 'plots': True, 'min_segr_pv': None, 'n_sus': 178, 'resolution': 100000, 'opt_eps': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'phenoNoise': 1e-10, 'min_qual': 3000, 'trust_gatk': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'with_parents': False, 'stop': None, 'start': None, 'verbose': False, 'dp_max_ratio': 5.0, 'chrom_size': None, 'n_res': 45, 'config_file': 'config_1.yaml', 'hs_max': None}
+2020-03-04 17:45:40 INFO     The parameters are set as: {'EX_CO_Chrom': 2, 'opt_recombination': False, 'EMAR_SP': 100.0, 'plots': True, 'min_segr_pv': None, 'n_sus': 178, 'resolution': 100000, 'opt_eps': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'chrom': 'Chr04', 'out_dir': 'mapper_test', 'phenoNoise': 1e-10, 'min_qual': 3000, 'trust_gatk': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'with_parents': False, 'stop': None, 'start': None, 'verbose': False, 'dp_max_ratio': 5.0, 'chrom_size': None, 'n_res': 45, 'config_file': 'config_1.yaml', 'hs_max': None}
+2020-03-04 17:45:41 INFO     Total Number 16949/16949 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-04 17:45:41 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:45:41 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after min_qual 20/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after filter_flags 20/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after dp_max_ratio on res 18/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained after dp_max_ratio on sus 15/565 SNPs
+2020-03-04 17:45:41 INFO     filtering retained 15/565 SNPs
+2020-03-04 17:45:41 INFO     lib_size_factors values printed:
+2020-03-04 17:45:41 INFO     res_sum: 1997
+2020-03-04 17:45:41 INFO     res_sum: 1567
+2020-03-04 17:45:41 INFO     L is equal to [1.0, 1.2744097000638162]
+2020-03-04 17:47:29 INFO     The parameters are set as: {'dp_max_ratio': 5.0, 'filter_flags': 'PASS', 'chrom_size': None, 'verbose': False, 'n_sus': 178, 'EX_CO_Chrom': 2, 'stop': None, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'hs_max': None, 'data_file': 'freebayes_D2.filtered.rbci', 'min_qual': 3000, 'min_segr_pv': None, 'chrom': 'Chr04', 'opt_recombination': False, 'opt_eps': False, 'n_res': 45, 'resolution': 100000, 'trust_gatk': False, 'out_dir': 'mapper_test', 'with_parents': False, 'window_size': 5000000.0, 'start': None, 'plots': True, 'EMAR_SP': 100.0}
+2020-03-04 17:47:29 INFO     The parameters are set as: {'dp_max_ratio': 5.0, 'filter_flags': 'PASS', 'chrom_size': None, 'verbose': False, 'n_sus': 178, 'EX_CO_Chrom': 2, 'stop': None, 'phenoNoise': 1e-10, 'config_file': 'config_1.yaml', 'hs_max': None, 'data_file': 'freebayes_D2.filtered.rbci', 'min_qual': 3000, 'min_segr_pv': None, 'chrom': 'Chr04', 'opt_recombination': False, 'opt_eps': False, 'n_res': 45, 'resolution': 100000, 'trust_gatk': False, 'out_dir': 'mapper_test', 'with_parents': False, 'window_size': 5000000.0, 'start': None, 'plots': True, 'EMAR_SP': 100.0}
+2020-03-04 17:47:29 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:47:29 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:47:29 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after min_qual 20/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after filter_flags 20/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after dp_max_ratio on res 20/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained after dp_max_ratio on sus 20/63 SNPs
+2020-03-04 17:47:29 INFO     filtering retained 20/63 SNPs
+2020-03-04 17:47:29 INFO     lib_size_factors values printed:
+2020-03-04 17:47:29 INFO     res_sum: 3126
+2020-03-04 17:47:29 INFO     res_sum: 2535
+2020-03-04 17:47:29 INFO     L is equal to [1.0, 1.2331360946745562]
+2020-03-04 17:48:36 INFO     The parameters are set as: {'trust_gatk': False, 'phenoNoise': 1e-10, 'resolution': 100000, 'stop': None, 'with_parents': False, 'dp_max_ratio': 5.0, 'out_dir': 'mapper_test', 'n_res': 45, 'chrom': 'Chr04', 'hs_max': None, 'window_size': 5000000.0, 'opt_eps': False, 'EMAR_SP': 100.0, 'verbose': False, 'EX_CO_Chrom': 2, 'filter_flags': 'PASS', 'n_sus': 178, 'opt_recombination': False, 'data_file': 'freebayes_D2.filtered.rbci', 'start': None, 'min_segr_pv': None, 'config_file': 'config_1.yaml', 'plots': True, 'chrom_size': None, 'min_qual': 600}
+2020-03-04 17:48:36 INFO     The parameters are set as: {'trust_gatk': False, 'phenoNoise': 1e-10, 'resolution': 100000, 'stop': None, 'with_parents': False, 'dp_max_ratio': 5.0, 'out_dir': 'mapper_test', 'n_res': 45, 'chrom': 'Chr04', 'hs_max': None, 'window_size': 5000000.0, 'opt_eps': False, 'EMAR_SP': 100.0, 'verbose': False, 'EX_CO_Chrom': 2, 'filter_flags': 'PASS', 'n_sus': 178, 'opt_recombination': False, 'data_file': 'freebayes_D2.filtered.rbci', 'start': None, 'min_segr_pv': None, 'config_file': 'config_1.yaml', 'plots': True, 'chrom_size': None, 'min_qual': 600}
+2020-03-04 17:48:36 INFO     Total Number 5995/5995 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after chrom filter 63/5995 SNPs
+2020-03-04 17:48:36 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-04 17:48:36 INFO     filtering retained after filterN 63/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after filter_dash 63/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after enforce_match_major 63/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after min_qual 40/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after filter_flags 40/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after dp_max_ratio on res 40/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained after dp_max_ratio on sus 40/63 SNPs
+2020-03-04 17:48:36 INFO     filtering retained 40/63 SNPs
+2020-03-04 17:48:36 INFO     lib_size_factors values printed:
+2020-03-04 17:48:36 INFO     res_sum: 4744
+2020-03-04 17:48:36 INFO     res_sum: 3834
+2020-03-04 17:48:36 INFO     L is equal to [1.0, 1.2373500260824204]
+2020-03-05 13:26:59 INFO     The parameters are set as: {'dp_max_ratio': 1.5, 'stop': None, 'chrom': None, 'n_res': 178, 'window_size': 5000000.0, 'data_file': 'mapper_test.rbci', 'start': None, 'trust_gatk': False, 'opt_eps': False, 'with_parents': False, 'min_segr_pv': None, 'filter_flags': 'ExactAN,NoSBtag', 'opt_recombination': False, 'resolution': 100000, 'phenoNoise': '1E-10', 'out_dir': '../mapper_test', 'plots': True, 'EMAR_SP': 3, 'hs_max': 0.0, 'min_qual': 100, 'EX_CO_Chrom': 2, 'n_sus': 280, 'chrom_size': None}
+2020-03-05 13:27:32 INFO     Total Number 452387/452387 SNPs
+2020-03-05 13:27:32 INFO     filtering retained after chrom filter 153428/452387 SNPs
+2020-03-05 13:27:32 INFO     restricting analysis to chrom: 9311chr07, start: None, stop: None
+2020-03-05 13:27:32 INFO     filtering retained after filterN 153428/153428 SNPs
+2020-03-05 13:27:32 INFO     filtering retained after filter_dash 153428/153428 SNPs
+2020-03-05 13:27:32 INFO     filtering retained after enforce_match_major 153428/153428 SNPs
+2020-03-05 13:27:32 INFO     filtering retained after min_qual 125727/153428 SNPs
+2020-03-05 13:27:33 INFO     filtering retained after filter_flags 25771/153428 SNPs
+2020-03-05 13:27:33 INFO     filtering retained after dp_max_ratio on res 25119/153428 SNPs
+2020-03-05 13:27:33 INFO     filtering retained after dp_max_ratio on sus 25119/153428 SNPs
+2020-03-05 13:27:33 INFO     filtering retained 25119/153428 SNPs
+2020-03-05 13:27:33 INFO     lib_size_factors values printed:
+2020-03-05 13:27:33 INFO     res_sum: 363243
+2020-03-05 13:27:33 INFO     res_sum: 433393
+2020-03-05 13:27:33 INFO     L is equal to [1.0, 0.8381376718128811]
+2020-03-05 13:29:19 INFO     The parameters are set as: {'stop': None, 'phenoNoise': '1E-10', 'n_res': 45, 'chrom_size': None, 'n_sus': 178, 'out_dir': '../mapper_test', 'plots': True, 'chrom': 'Chr04', 'EMAR_SP': 3, 'dp_max_ratio': 5, 'min_segr_pv': None, 'min_qual': 100, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'resolution': 10000, 'hs_max': 0.0, 'with_parents': False, 'window_size': 5000000.0, 'EX_CO_Chrom': 2, 'opt_eps': False, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'start': None, 'trust_gatk': False, 'opt_recombination': False}
+2020-03-05 13:29:20 INFO     Total Number 16949/16949 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-05 13:29:20 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-05 13:29:20 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-05 13:29:20 INFO     filtering retained 197/565 SNPs
+2020-03-05 13:29:20 INFO     lib_size_factors values printed:
+2020-03-05 13:29:20 INFO     res_sum: 9838
+2020-03-05 13:29:20 INFO     res_sum: 7961
+2020-03-05 13:29:20 INFO     L is equal to [1.0, 1.2357744002009798]
+2020-03-05 13:37:20 INFO     The parameters are set as: {'out_dir': '../mapper_test', 'n_sus': 178, 'dp_max_ratio': 5, 'EX_CO_Chrom': 2, 'start': None, 'stop': None, 'hs_max': 0.0, 'min_qual': 100, 'opt_recombination': False, 'chrom_size': None, 'plots': True, 'with_parents': False, 'opt_eps': False, 'phenoNoise': '1E-10', 'EMAR_SP': 3, 'data_file': 'freebayes_D2.NWfiltered_2.rbci', 'n_res': 45, 'chrom': 'Chr04', 'trust_gatk': False, 'filter_flags': 'NoSBtag,NoSBtag;NonPhasingPoolHomozygous', 'window_size': 5000000.0, 'resolution': 10000, 'min_segr_pv': None}
+2020-03-05 13:37:20 INFO     Total Number 16949/16949 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after chrom filter 565/16949 SNPs
+2020-03-05 13:37:20 INFO     restricting analysis to chrom: Chr04, start: None, stop: None
+2020-03-05 13:37:20 INFO     filtering retained after filterN 565/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after filter_dash 565/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after enforce_match_major 565/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after min_qual 205/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after filter_flags 205/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after dp_max_ratio on res 202/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained after dp_max_ratio on sus 197/565 SNPs
+2020-03-05 13:37:20 INFO     filtering retained 197/565 SNPs
+2020-03-05 13:37:20 INFO     lib_size_factors values printed:
+2020-03-05 13:37:20 INFO     res_sum: 9838
+2020-03-05 13:37:20 INFO     res_sum: 7961
+2020-03-05 13:37:20 INFO     L is equal to [1.0, 1.2357744002009798]

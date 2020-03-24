@@ -1,0 +1,26 @@
+{'phenoNoise': 1e-10
+ 'stop': None
+ 'plots': True
+ 'verbose': False
+ 'EMAR_SP': 100.0
+ 'n_sus': 178
+ 'trust_gatk': False
+ 'min_qual': 1000
+ 'opt_eps': False
+ 'min_segr_pv': None
+ 'out_dir': '../mapper_test'
+ 'hs_max': None
+ 'EX_CO_Chrom': 2
+ 'window_size': 5000000.0
+ 'chrom': 'Chr04'
+ 'with_parents': False
+ 'data_file': '../freebayes_D2.NWfiltered_2.rbci'
+ 'opt_recombination': False
+ 'chrom_size': None
+ 'filter_flags': 'NoSBtag
+NoSBtag;NonPhasingPoolHomozygous'
+ 'config_file': 'config_1.yaml'
+ 'start': None
+ 'dp_max_ratio': 5.0
+ 'n_res': 45
+ 'resolution': 100000}

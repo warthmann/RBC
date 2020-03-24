@@ -1,26 +1,25 @@
-{'data_file': 'mapper_test.rbci'
- 'out_dir': '../mapper_test'
- 'verbose': False
- 'chrom': None
- 'start': None
- 'stop': None
- 'n_res': 178
- 'n_sus': 280
- 'with_parents': False
- 'plots': True
- 'min_qual': 100
- 'filter_flags': 'ExactAN
-NoSBtag'
- 'trust_gatk': False
- 'dp_max_ratio': 1.5
- 'hs_max': None
- 'resolution': 100000
- 'min_segr_pv': None
- 'chrom_size': None
- 'window_size': 5000000.0
+{'trust_gatk': False
  'phenoNoise': 1e-10
- 'EMAR_SP': 3
- 'EX_CO_Chrom': 2
- 'config_file': 'config_1.yaml'
+ 'resolution': 100000
+ 'stop': None
+ 'with_parents': False
+ 'dp_max_ratio': 5.0
+ 'out_dir': 'mapper_test'
+ 'n_res': 45
+ 'chrom': 'Chr04'
+ 'hs_max': None
+ 'window_size': 5000000.0
  'opt_eps': False
- 'opt_recombination': False}
+ 'EMAR_SP': 100.0
+ 'verbose': False
+ 'EX_CO_Chrom': 2
+ 'filter_flags': 'PASS'
+ 'n_sus': 178
+ 'opt_recombination': False
+ 'data_file': 'freebayes_D2.filtered.rbci'
+ 'start': None
+ 'min_segr_pv': None
+ 'config_file': 'config_1.yaml'
+ 'plots': True
+ 'chrom_size': None
+ 'min_qual': 600}

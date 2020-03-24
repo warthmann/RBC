@@ -31,7 +31,7 @@ my $VERSION = "0.1";
 ###############################################################################
 my $VERBOSE    => 0;
 use constant DEBUG      => 0;
-use constant DEBUG_P3   => 0;
+use constant DEBUG_P3   => 1;
 use constant DEBUG_MFEP => 0;
 
 
@@ -57,6 +57,7 @@ my $MAX_SECONDARY_INDEL_LEN = 5;
 # Executables
 #
 my $fastacmd_bin = `which fastacmd`; chomp $fastacmd_bin;
+my $blastdbcmd_bin = `which blastdbcmd`; chomp $blastdbcmd_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
 my $p3_conf = "";
@@ -175,10 +176,12 @@ if($p3_conf eq "" || $loc_seq_db eq "") {
 # Check executables
 die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
 die "[ERROR] Executable MFGprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
-die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
+#die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
+die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
 die "[ERROR] '$p3_bin' not executable\n" if (! -x $p3_bin);
 die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
-die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
+#die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
+die "[ERROR] '$blastdbcmd_bin' not executable\n" if (! -x $blastdbcmd_bin);
 
 # Check data files
 die "[ERROR] rbci input file does not exist: '$loc_rbci'\n" if(! -e $loc_rbci);
@@ -431,7 +434,8 @@ sub init_rbci {
 sub get_seq {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
 	#get_seq_cut($loc_seq_db, $chr, $start, $end);
-	get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
+	#get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
+    get_seq_blastdbcmd($loc_seq_db, $chr, $start, $end);
 }
 
 
@@ -444,6 +448,27 @@ sub get_seq_fastacmd {
 	
 	warn "in get_seq_fastacmd()" if(DEBUG);
 	my $cmd = "$fastacmd_bin -d $loc_seq_db -s $chr -L $start,$end";
+	warn "cmd: $cmd" if(DEBUG);
+	open P,"$cmd |" or die "error running command $cmd: $!";
+	my $seq;
+	while(<P>) {
+		next if(/^>/);
+		chomp;
+		$seq .= $_;
+	}
+	close P;
+	my $exit_value=$? >> 8;
+	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
+	return $seq;
+}
+
+# Extract subsequences using blastdbcmd (added by Norman 23.3.2020)
+#
+sub get_seq_blastdbcmd {
+	my ($loc_seq_db, $chr, $start, $end) = @_;
+	
+	warn "in get_seq_fastacmd()" if(DEBUG);
+	my $cmd = "$blastdbcmd_bin -db $loc_seq_db -dbtype nucl -entry $chr -range $start-$end -strand plus";
 	warn "cmd: $cmd" if(DEBUG);
 	open P,"$cmd |" or die "error running command $cmd: $!";
 	my $seq;
@@ -657,9 +682,11 @@ PRIMER_PRODUCT_SIZE_RANGE=$PRODUCT_SIZE_RANGE_MIN-$PRODUCT_SIZE_RANGE_MAX
 PRIMER_PRODUCT_OPT_SIZE=$PRODUCT_OPT_SIZE
 =
 OUT
-
-	my $cmd = qq(echo -n "$out" | $p3_bin -p3_settings_file=$p3_conf);
-	warn "cmd: $cmd" if(DEBUG);
+    
+	chomp $out; #removing the newline, otherwise primer3 complains of missing "="; echo -n wasn't doing it. (Norman 3/2020)
+	my $cmd = qq(echo "$out" | $p3_bin -p3_settings_file=$p3_conf);
+    #my $cmd = qq(echo -n "$out" | $p3_bin -p3_settings_file=$p3_conf);
+	warn "**cmd: $cmd" if(DEBUG);
 	
 	open P,"$cmd |" or die "error running command $cmd: $!";
 
@@ -822,7 +849,7 @@ Only SNPs with user given flags (defaults to PASS) are considered.
 Results are printed to STDOUT in rcbp format.
 
 Mandatory input files:
-  -i, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
+  -r, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
   -b, --loc_seq_db=FASTA             (mandatory) FASTA file within preprocessed BLAST DB.
   
 SNP control:

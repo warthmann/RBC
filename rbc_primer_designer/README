@@ -1,0 +1,13 @@
+use like so
+
+perl rbc_primer_designer/rbc_primer_designer.pl \
+-r freebayes_D2.NWfiltered.rbci \
+-b /Users/u5264546/genomes/Sorghum/Sbicolor_454_v3.0.1.fa \
+-c Chr01 -s 1 -e 30000000 \
+-f NoSBtag \
+-p /Users/u5264546/miniconda3/envs/RBC/bin/primer3_core \
+-d /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/p3_Vienna_settings.txt \
+-m /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/MFEprimer/MFEprimer.py \
+-v \
+> primerdesign_outfile_test
+

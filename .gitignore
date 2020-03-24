@@ -5,10 +5,17 @@ test1.rbci.pickle
 mapper_test
 mapper_test/*
 
+rbc_primer_designer/MFEprimer/LightBio/*.pyc
+primerdesign_outfile
+
 *.vcf
 *.vcf.*
 
 *.rbci
 *.rbci.*
 
+*.MFEprimer.tmp
+
 rbc_mapper/__pycache__/*
+Information.log
+

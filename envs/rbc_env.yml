@@ -1,0 +1,11 @@
+name: RBC
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+#  - r
+dependencies:
+  - python =3.6
+  - bcftools
+  - blast
+  - primer3

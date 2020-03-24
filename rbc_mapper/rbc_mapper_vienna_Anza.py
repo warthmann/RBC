@@ -161,8 +161,8 @@ def main(options):
             #filter by ratio (a normal SNP should have 50% over both pools, but this is true only, if the numbers of individuals in th epools reflect the inheritance (I.e. 3:1, in a recessive one-gene trait, the phenotype(-) pools has to have 3 times the size of the phenotype(+) pool)
             # this filter needs to take pools size into account. Do not hard code ratios.
             ratio =data['counts_both'][:,0]/data['counts_both'].sum(axis=1)
-            #Iok = (0.45<ratio) & (ratio<0.65)
-            Iok = (0.30<ratio) & (ratio<0.70)
+            Iok = (0.20<ratio) & (ratio<0.65)
+            #Iok = (0.30<ratio) & (ratio<0.70)
             filter_data(data,Iok)
 
         pos = data['pos']
@@ -226,7 +226,7 @@ if __name__ == '__main__':
     logging.basicConfig(filename="Information.log",format='%(asctime)s %(levelname)-8s %(message)s', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S')  
 
 # The below statements are for checking if the parameters are set on the command line or if there is a config file from where the data should be taken(Anza)
-    if len(sys.argv) > 3:
+    if len(sys.argv) > 4:
         options_parsed   = parse_options(sys.argv)
         options = vars(options_parsed)
         print(options)

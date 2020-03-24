@@ -1,21 +1,23 @@
 %YAML 1.0
 ---
-data_file: mapper_test.rbci
+#data_file: freebayes_D2.filtered.rbci
+data_file: freebayes_D2.NWfiltered_2.rbci
 out_dir: ../mapper_test
-n_res: 178
-n_sus: 280
-chrom: null
-#chrom: 9311chr03,9311chr07
+n_res: 45
+n_sus: 178
+chrom: Chr04
+#chrom: 
 hs_max: 0.0
 start: null
 stop: null
 with_parents: False
 plots: True
-dp_max_ratio: 1.5
+dp_max_ratio: 5
 trust_gatk: False
-filter_flags: ExactAN,NoSBtag 
+#filter_flags: PASS
+filter_flags: NoSBtag,NoSBtag;NonPhasingPoolHomozygous 
 min_qual: 100
-resolution: 100000
+resolution: 10000
 phenoNoise: 1E-10
 min_segr_pv: null
 chrom_size: null
