@@ -34,20 +34,35 @@ use constant DEBUG      => 0;
 use constant DEBUG_P3   => 1;
 use constant DEBUG_MFEP => 0;
 
+# Defaults for Illumina
+##############################################################################
+	# Primer product sizes
+	my $PRODUCT_SIZE_RANGE_MIN = 280;
+	my $PRODUCT_SIZE_RANGE_MAX = 400; 
+	my $PRODUCT_OPT_SIZE = 300;
 
-# Primer product sizes
-my $PRODUCT_SIZE_RANGE_MIN = 280;
-my $PRODUCT_SIZE_RANGE_MAX = 400; 
-my $PRODUCT_OPT_SIZE = 300;
+	# Regions for primers
+	my $P_DIST_MAX     = 50;   # max distance from SNP
+	my $P_DIST_MIN     = 3;    # min distance from SNP
 
-# Regions for primers
-my $P_DIST_MAX     = 50;   # max distance from SNP
-my $P_DIST_MIN     = 3;    # min distance from SNP
+	# Variants stuff
+	# skip secondary variants if indel length larger than this
+	my $MAX_SECONDARY_INDEL_LEN = 5; 
 
+# Defaults for Oxford Nanopore
+##############################################################################
+	# Primer product sizes
+	my $PRODUCT_SIZE_RANGE_MIN = 600;
+	my $PRODUCT_SIZE_RANGE_MAX = 2000; 
+	my $PRODUCT_OPT_SIZE = 1200;
 
-# Variants stuff
-# skip secondary variants if indel length larger than this
-my $MAX_SECONDARY_INDEL_LEN = 5; 
+	# Regions for primers
+	my $P_DIST_MAX     = 1200;   # max distance from SNP
+	my $P_DIST_MIN     = 20;    # min distance from SNP
+
+	# Variants stuff
+	# skip secondary variants if indel length larger than this
+	my $MAX_SECONDARY_INDEL_LEN = 20; 
 
 #
 # 3rd party tools
@@ -444,7 +459,7 @@ sub get_seq {
 
 
 #
-# Extract subsequences using fastacmd
+# Extract subsequences using fastacmd (original)
 #
 sub get_seq_fastacmd {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
