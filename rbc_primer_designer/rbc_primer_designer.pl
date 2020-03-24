@@ -58,6 +58,7 @@ my $MAX_SECONDARY_INDEL_LEN = 5;
 #
 my $fastacmd_bin = `which fastacmd`; chomp $fastacmd_bin;
 my $blastdbcmd_bin = `which blastdbcmd`; chomp $blastdbcmd_bin;
+my $samtools_bin = `which samtools`; chomp $samtools_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
 my $p3_conf = "";
@@ -177,7 +178,8 @@ if($p3_conf eq "" || $loc_seq_db eq "") {
 die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
 die "[ERROR] Executable MFGprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
 #die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
-die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
+#die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
+die "[ERROR] Executable for samtools not found: '$samtools_bin'\n" if (! -e $samtools_bin);
 die "[ERROR] '$p3_bin' not executable\n" if (! -x $p3_bin);
 die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
 #die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
@@ -435,7 +437,8 @@ sub get_seq {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
 	#get_seq_cut($loc_seq_db, $chr, $start, $end);
 	#get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
-    get_seq_blastdbcmd($loc_seq_db, $chr, $start, $end);
+    #get_seq_blastdbcmd($loc_seq_db, $chr, $start, $end);
+	get_seq_samtools($loc_seq_db, $chr, $start, $end);
 }
 
 
@@ -483,6 +486,26 @@ sub get_seq_blastdbcmd {
 	return $seq;
 }
 
+# Extract subsequences using samtools faidx (added by Norman 24.3.2020), the other 2 above are not case sensitive, hence no soft-masking is retained.
+#
+sub get_seq_samtools {
+	my ($loc_seq_db, $chr, $start, $end) = @_;
+	
+	warn "in get_seq_samtools()" if(DEBUG);
+	my $cmd = "$samtools_bin faidx $loc_seq_db $chr:$start-$end";
+	warn "cmd: $cmd" if(DEBUG);
+	open P,"$cmd |" or die "error running command $cmd: $!";
+	my $seq;
+	while(<P>) {
+		next if(/^>/);
+		chomp;
+		$seq .= $_;
+	}
+	close P;
+	my $exit_value=$? >> 8;
+	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
+	return $seq;
+}
 
 
 #
@@ -842,7 +865,7 @@ sub print_help {
 
 $prog_name $VERSION
 
-Usage: $0 [OPTIONS] -r rbcifile -b blastdb -c chr -s start -e end -p primer3_bin -d primer3_conf -m mfprimer_bin
+Usage: $0 [OPTIONS] -r rbci-file -b fasta-file -c chr -s start -e end -p primer3_bin -d primer3_conf -m mfprimer_bin
 
 Designs primers for SNPs defined in variants.rbci for specified region (chromosome, start, end). 
 Only SNPs with user given flags (defaults to PASS) are considered.
@@ -850,7 +873,7 @@ Results are printed to STDOUT in rcbp format.
 
 Mandatory input files:
   -r, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
-  -b, --loc_seq_db=FASTA             (mandatory) FASTA file within preprocessed BLAST DB.
+  -b, --loc_seq_db=FASTA             (mandatory) (multi-)FASTA file of genome (deprecated: within preprocessed BLAST DB).
   
 SNP control:
   -c, --chr=ID                       (mandatory) use ID as chromosome identifier
