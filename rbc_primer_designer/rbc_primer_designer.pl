@@ -32,7 +32,7 @@ my $VERSION = "0.1";
 my $VERBOSE    => 0;
 use constant DEBUG      => 0;
 use constant DEBUG_P3   => 1;
-use constant DEBUG_MFEP => 0;
+use constant DEBUG_MFEP => 1;
 
 # Defaults for Illumina
 ##############################################################################
@@ -76,10 +76,14 @@ my $blastdbcmd_bin = `which blastdbcmd`; chomp $blastdbcmd_bin;
 my $samtools_bin = `which samtools`; chomp $samtools_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
+my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
 
 my $mfeprimer_args_intern = "-T F -W 4 -a 2 --ppc_cutoff=0.255";
 my $mfeprimer_args = "";
+
+my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
+my $mfeprimer_3_args = "";
 
 my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
  
@@ -165,7 +169,8 @@ my $result = GetOptions(
 	"p3_conf|d=s"                  => \$p3_conf,
 	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
 	"mfeprimer_args=s"             => \$mfeprimer_args,
-	
+    "mfeprimer_3_bin|z=s"          => \$mfeprimer_3_bin,
+	"mfeprimer_3_args=s"           => \$mfeprimer_3_args,
 	"major"                        => \$ann_major,
 	
 	"VERBOSE|v+"                   => \$VERBOSE,
@@ -191,24 +196,35 @@ if($p3_conf eq "" || $loc_seq_db eq "") {
 
 # Check executables
 die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
-die "[ERROR] Executable MFGprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
+#die "[ERROR] Executable MFEprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
+#die "[ERROR] Executable MFEprimer_3 not found: '$mfeprimer_3_bin'\n" if (! -e $mfeprimer_3_bin);
 #die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
 #die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
 die "[ERROR] Executable for samtools not found: '$samtools_bin'\n" if (! -e $samtools_bin);
 die "[ERROR] '$p3_bin' not executable\n" if (! -x $p3_bin);
-die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
+#die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
+die "[ERROR] '$mfeprimer_3_bin' not executable\n" if (! -x $mfeprimer_3_bin);
 #die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
-die "[ERROR] '$blastdbcmd_bin' not executable\n" if (! -x $blastdbcmd_bin);
+#die "[ERROR] '$blastdbcmd_bin' not executable\n" if (! -x $blastdbcmd_bin);
 
 # Check data files
 die "[ERROR] rbci input file does not exist: '$loc_rbci'\n" if(! -e $loc_rbci);
 die "[ERROR] BLAST DB does not exist: '$loc_seq_db'\n" if(! -e $loc_seq_db);
+die "[ERROR] DB for MFEprimer does not exist: run mfeprimer index on '$loc_seq_db'\n" if(! -e $loc_seq_db.".primerqc.fai");
 die "[ERROR] Primer3 configuration does not exist: '$p3_conf'\n" if(! -e $p3_conf);
+
+
 
 # Set mfeprimer_args
 if($mfeprimer_args eq "") {
 	$mfeprimer_args = $mfeprimer_args_intern . " -e " . 10*$PRODUCT_SIZE_RANGE_MAX;
 }
+
+# Set mfeprimer_3_args
+if($mfeprimer_3_args eq "") {
+	$mfeprimer_3_args = $mfeprimer_3_args_intern;
+}
+
 
 if($VERBOSE) {
 	print_params();
@@ -252,7 +268,8 @@ if($run_mode eq "design_primers") {
 			# Run mfe_primer and check primer maps on genome
 			warn "$out[1] $out[2]" if(DEBUG_MFEP);
 
-			my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
+			#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
+			my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
 			push @out, $hits;
 			warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
 			if($hits == 1) {
@@ -277,7 +294,8 @@ if($run_mode eq "design_primers") {
 				# Run mfe_primer and check primer maps on genome
 				warn "$out[1] $out[2]" if(DEBUG_MFEP);
 
-				my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
+				#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
+				my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
 				push @out, $hits;
 				warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
 				if($hits == 1) {
@@ -861,6 +879,46 @@ sub run_mfeprimer {
 	return $output;
 }
 
+sub run_mfeprimer_3 {
+	my ($seq_a, $seq_b, $loc_seq_db) = @_;
+	my $fasta=">seq_a\n$seq_a\n>seq_b\n$seq_b\n";
+	
+	my $tmp = File::Temp->new( TEMPLATE => 'dcof-m_tempXXXXX',
+		DIR => '/tmp',
+		SUFFIX => '.fa',
+		UNLINK => 1);
+	my $fname = $tmp->filename;
+	print $tmp $fasta;
+	warn "Created tmp fasta file for MFEPrimer: $fname" if(DEBUG_MFEP);
+	
+	my $cmd = qq($mfeprimer_3_bin spec -i $fname -d $loc_seq_db $mfeprimer_3_args);
+	warn "cmd=$cmd" if(DEBUG_MFEP);
+	
+	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
+	
+	my $output;
+	while(<P>) {
+		if(/FATAL ERROR: (.*)/) {
+			#die "[!!] Primer3 Error: $1\nUsed input:\n$out\nDied";
+		}
+		# grep in MFEprimer 3 output for the number in
+		# "Descriptions of [ x ] potential amplicons"
+		
+		chomp;
+		if(m/Descriptions of/) {
+			my @matches = /[0-9]+/g;
+			$output = $matches[0];
+		}
+		#$output .= $_;
+	}
+	my $exit_value=$? >> 8;
+	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
+	
+	warn "output: '$output'\n" if($VERBOSE>2);
+	
+	return $output;
+}
+
 
 
 sub print_version {
@@ -906,14 +964,23 @@ Primer design control:
   -N, --MAX_SECONDARY_INDEL_LEN=NUM  (=$MAX_SECONDARY_INDEL_LEN)	 discard assay, if secondary indel exists longer than NUM
 
 Helper tools:
+
+#Primer3 and config
   -d, --p3_conf=FILE                 (mandatory) use FILE as primer3 configuration
   -p, --p3_bin=BIN                   (optional)  set absolute path of primer3 binary to BIN.
                                                  Defaults to \$PATH/primer3_core
-  -m, --mfeprimer_bin=BIN            (optional)  set absolute path of mfeprimer to BIN.
+
+#MFE primer (use MFEprimer 3, MFEprimer v1 is there for legacy reasons) 
+  -m, --mfeprimer_bin=BIN            (optional)  set absolute path mfeprimer v1 python script.
                                                  Defaults to \$PATH/MFEprimer.py
-      --mfeprimer_args=ARGS          (optional)  use custom ARGS arguments for mfeprimer.
+                                                 Use of mfe primer requires to first run makeblastdb (self)
+      --mfeprimer_args=ARGS          (optional)  use custom arguments for mfeprimer.
                                                  Defaults to "$mfeprimer_args_intern -e <10*PRODUCT_SIZE_RANGE_MAX>"
 
+  -z, --mfeprimer_3_bin=BIN            (optional)  set absolute path to mfeprimer3 binary. (no default)
+                                                   use of mfeprimer3 requires to first run mfeprimer3 index (self)
+      --mfeprimer_3_args=ARGS          (optional)  use custom arguments for mfeprimer 3. Defaults to $mfeprimer_3_args_intern
+                                                 
 Miscellaneous:         
   -v, --verbose                      (optional)  print verbose status messages
   -h, --help                                     display this help and exit
@@ -969,4 +1036,9 @@ sub print_params {
 	warn "[INFO]     mfeprimer_bin = $mfeprimer_bin\n";
 	warn "[INFO]     mfeprimer_args = $mfeprimer_args\n";
 	warn "\n";
+	# MFEPrimer 3
+	warn "[INFO]     mfeprimer_3_bin = $mfeprimer_3_bin\n";
+	warn "[INFO]     mfeprimer_3_args = $mfeprimer_3_args\n";
+	warn "\n";
+
 }
