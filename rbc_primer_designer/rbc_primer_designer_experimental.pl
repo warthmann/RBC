@@ -78,6 +78,7 @@ my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
 my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
+my $primer_num_return=1; #added by Norman 3/2020
 
 my $mfeprimer_args_intern = "-T F -W 4 -a 2 --ppc_cutoff=0.255";
 my $mfeprimer_args = "";
@@ -85,7 +86,7 @@ my $mfeprimer_args = "";
 my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
 my $mfeprimer_3_args = "";
 
-my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
+#my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
  
 ###############################################################################
 # END OF CONFIGURATION
@@ -134,6 +135,8 @@ PRIMER_LEFT_0_SEQUENCE
 PRIMER_RIGHT_0_SEQUENCE
 /;
 
+my @p3_res_tags_current = @p3_res_tags;
+
 my $prog_name = "rbc_primer_designer";
 
 
@@ -167,6 +170,7 @@ my $result = GetOptions(
 	
 	"p3_bin|p=s"                   => \$p3_bin,
 	"p3_conf|d=s"                  => \$p3_conf,
+	"primer_num_return|T:i"        => \$primer_num_return,
 	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
 	"mfeprimer_args=s"             => \$mfeprimer_args,
     "mfeprimer_3_bin|z=s"          => \$mfeprimer_3_bin,
@@ -253,46 +257,24 @@ if($run_mode eq "design_primers") {
 #looking for primers in the forward and reverse direction makes sense for illumina reads where read length is shorter than amplicon length (and snp must be within sequencing length of the illumina fwd sequencing read)!
 
 	my $snp_nr=1;
-	foreach my $snp_pos (sort {$a<=>$b} keys %prim_snplist) {
-		my $direction="fwd";
-		
-		my ($header, $ann_seq) = get_template_seq($snp_pos, $direction, "PRIMER_SEQ", "HEADER", "$MAJOR_ANN_FLAG");
-
-		warn "[INFO] Trying $direction primers for SNP no $snp_nr, $chr:$snp_pos\n" if($VERBOSE);
 	
-	my $primercount = 0;
-		
-		my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header" );
-		my @out = split("\t", $res );
-
-		warn "[INFO]     Got primer3 results: @out\n" if($VERBOSE>1);
-		
+	foreach my $snp_pos (sort {$a<=>$b} keys %prim_snplist) {
 		my $found_primers = 0;
-		if( not (($out[1] eq "N/A") or ($out[2] eq "N/A")) ) {
-			# Run mfe_primer and check primer maps on genome
-			warn "# $out[0] # $out[1] $out[2] # $out[3] # $out[4] # $out[5]" if(DEBUG_MFEP);
+		
+		my $direction="fwd"; # lets first try to find primers for the forward direction. 
+		my ($header, $ann_seq) = get_template_seq($snp_pos, $direction, "PRIMER_SEQ", "HEADER", "$MAJOR_ANN_FLAG");
+		warn "[INFO] Trying $direction primers for SNP no $snp_nr, $chr:$snp_pos\n" if($VERBOSE);
+					
+	    my $primercount = 0; #from 0 to $primer_num_return #(added by NW)
+	
+        while ($found_primers == 0 && $primercount < $primer_num_return) { #try as many primers as primer3 was asked to return
+			warn "[INFO]     ######################################### current value of FWD primercount: $primercount\n" if($VERBOSE>1);
 
-			#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
-			my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
-			push @out, $hits;
-			warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
-			if($hits == 1) { # then record for outputfile
-				warn "[INFO]     Found Primers ($direction, $hits off-target) for SNP no $snp_nr, $chr:$snp_pos.\n" if($VERBOSE);
-				
-				print rcbp_output($chr, $snp_pos, $direction, $out[4], $out[5],
-					get_product_seq($ann_seq, $snp_pos, $out[1], $out[2], $direction, $restriction_seq)) ."\n";
-						
-				$found_primers = 1;
-			}
-		}
-		if($found_primers != 1) { # no primers found so far
-			my $direction="rev";
-			my ($header, $ann_seq) = get_template_seq($snp_pos, $direction, "PRIMER_SEQ", "HEADER", "$MAJOR_ANN_FLAG");
-
-			warn "[INFO] Trying $direction primers for SNP no $snp_nr, $chr:$snp_pos\n" if($VERBOSE);
-			
-			my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header" );
+		
+			my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header", "$primercount" ); #( $primercount added by NW)
 			my @out = split("\t", $res );
+			warn "[INFO]     Got primer3 FWD results: @out\n" if($VERBOSE>1);
+		
 		
 			if( not (($out[1] eq "N/A") or ($out[2] eq "N/A")) ) {
 				# Run mfe_primer and check primer maps on genome
@@ -302,16 +284,55 @@ if($run_mode eq "design_primers") {
 				my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
 				push @out, $hits;
 				warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
-				if($hits == 1) { # then record for outputfile 
+				if($hits == 1) { # then record for outputfile
 					print rcbp_output($chr, $snp_pos, $direction, $out[4], $out[5],
 						get_product_seq($ann_seq, $snp_pos, $out[1], $out[2], $direction, $restriction_seq)) ."\n";
-							
-					warn "[INFO] Found Primers ($direction, $hits off-target) for $chr:$snp_pos.\n" if($VERBOSE);
-				} else {
-					warn "[INFO] NO primers found for SNP no $snp_nr, $chr:$snp_pos.\n";
+					$found_primers = 1;
+                    warn "[INFO]     Found Primers ($direction, $hits off-target) for SNP no $snp_nr, $chr:$snp_pos.\n" if($VERBOSE);
 				}
-			}
+	        }
+			$primercount = $primercount + 1;
+		
 		}
+		
+		if($found_primers != 1) { # no primers found so far in the forward direction, then do same for reverse direction
+			
+			my $direction="rev";
+			my ($header, $ann_seq) = get_template_seq($snp_pos, $direction, "PRIMER_SEQ", "HEADER", "$MAJOR_ANN_FLAG");
+			warn "[INFO] Trying $direction primers for SNP no $snp_nr, $chr:$snp_pos\n" if($VERBOSE);
+						
+			my $primercount = 0; #from 0 to $primer_num_return #(added by NW)
+
+			while ($found_primers == 0 && $primercount < $primer_num_return) { #try as many primers as primer3 was asked to return
+				warn "[INFO]     ######################################### current value of FWD primercount: $primercount\n" if($VERBOSE>1);
+
+			
+				my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header", "$primercount" );
+				my @out = split("\t", $res );
+				warn "[INFO]     Got primer3 REV results: @out\n" if($VERBOSE>1);
+			
+				if( not (($out[1] eq "N/A") or ($out[2] eq "N/A")) ) {
+					# Run mfe_primer and check primer maps on genome
+					warn "# $out[0] # $out[1] $out[2] # $out[3] # $out[4] # $out[5]" if(DEBUG_MFEP);
+
+					#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
+					my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
+					push @out, $hits;
+					warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
+					if($hits == 1) { # then record for outputfile 
+						print rcbp_output($chr, $snp_pos, $direction, $out[4], $out[5],
+							get_product_seq($ann_seq, $snp_pos, $out[1], $out[2], $direction, $restriction_seq)) ."\n";
+						$found_primers = 1;
+						warn "[INFO] Found Primers ($direction, $hits off-target) for $chr:$snp_pos.\n" if($VERBOSE);
+					} 			
+				}
+			    $primercount = $primercount + 1;
+			} 
+		}
+		if($found_primers != 1) { # if still no primers found give up and say:
+			warn "[INFO] NO primers found for SNP no $snp_nr, $chr:$snp_pos.\n";
+			}
+			
 		$snp_nr++;
 	}
 
@@ -480,48 +501,6 @@ sub get_seq {
 
 
 
-#
-# Extract subsequences using fastacmd (original)
-#
-# sub get_seq_fastacmd {
-# 	my ($loc_seq_db, $chr, $start, $end) = @_;
-# 	
-# 	warn "in get_seq_fastacmd()" if(DEBUG);
-# 	my $cmd = "$fastacmd_bin -d $loc_seq_db -s $chr -L $start,$end";
-# 	warn "cmd: $cmd" if(DEBUG);
-# 	open P,"$cmd |" or die "error running command $cmd: $!";
-# 	my $seq;
-# 	while(<P>) {
-# 		next if(/^>/);
-# 		chomp;
-# 		$seq .= $_;
-# 	}
-# 	close P;
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
-# 	return $seq;
-# }
-
-# Extract subsequences using blastdbcmd (added by Norman 23.3.2020)
-#
-# sub get_seq_blastdbcmd {
-# 	my ($loc_seq_db, $chr, $start, $end) = @_;
-# 	
-# 	warn "in get_seq_fastacmd()" if(DEBUG);
-# 	my $cmd = "$blastdbcmd_bin -db $loc_seq_db -dbtype nucl -entry $chr -range $start-$end -strand plus";
-# 	warn "cmd: $cmd" if(DEBUG);
-# 	open P,"$cmd |" or die "error running command $cmd: $!";
-# 	my $seq;
-# 	while(<P>) {
-# 		next if(/^>/);
-# 		chomp;
-# 		$seq .= $_;
-# 	}
-# 	close P;
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
-# 	return $seq;
-# }
 
 # Extract subsequences using samtools faidx (added by Norman 24.3.2020), the other 2 above are not case sensitive, hence no soft-masking is retained.
 #
@@ -740,7 +719,7 @@ SEQUENCE_TARGET=$SNP_FLANKING,1
 SEQUENCE_PRIMER_PAIR_OK_REGION_LIST=$start1,$len1,$start2,$len2
 PRIMER_PRODUCT_SIZE_RANGE=$PRODUCT_SIZE_RANGE_MIN-$PRODUCT_SIZE_RANGE_MAX
 PRIMER_PRODUCT_OPT_SIZE=$PRODUCT_OPT_SIZE
-PRIMER_NUM_RETURN=3
+PRIMER_NUM_RETURN=$primer_num_return
 =
 OUT
     
@@ -784,11 +763,19 @@ OUT
 # @return: string, tab delimited, new line terminated
 #
 sub p3_res_2tab {
-	my ($p3_res, $header) = @_;
+	my ($p3_res, $header, $primercount) = @_; #($primercount added by NW)
+	warn "\n\nxxx\n primercount = $primercount \nxxx \n" if(DEBUG); #(added by NW)
 	
 	my @line;
 	push @line, $header;
-	foreach my $tag (@p3_res_tags) {
+	
+		warn "################# @p3_res_tags\n" if(DEBUG); #(added by NW) 
+		@p3_res_tags_current = @p3_res_tags; #(added by NW)
+		for(@p3_res_tags_current){s/0/$primercount/g}; #(added by NW, changing the number in the tag to check the respective primers)
+		warn "################# @p3_res_tags_current\n\n\n\n" if(DEBUG); #(added by NW)
+	
+	foreach my $tag (@p3_res_tags_current) { #changed by NW)
+		
 		warn "checking tag '$tag'\n" if(DEBUG);
 		if($p3_res =~/${tag}=(.*)/) {
 			push @line, $1;
@@ -798,7 +785,7 @@ sub p3_res_2tab {
 		}
 	}
 	my $res = join("\t", @line);
-	warn "... this goes into the primer3 result table $res\n" if(DEBUG);
+	warn "\n\n... this goes into the primer3 result table $res\n" if(DEBUG);
     return  $res;
 }
 
@@ -842,49 +829,6 @@ sub rcbp_output {
 #
 # @return: number_of_hits
 #
-
-# sub run_mfeprimer {
-# 	my ($seq_a, $seq_b, $loc_seq_db) = @_;
-# 	my $fasta=">seq_a\n$seq_a\n>seq_b\n$seq_b\n";
-# 	
-# 	my $tmp = File::Temp->new( TEMPLATE => 'dcof-m_tempXXXXX',
-# 		DIR => '/tmp',
-# 		SUFFIX => '.fa',
-# 		UNLINK => 1);
-# 	my $fname = $tmp->filename;
-# 	print $tmp $fasta;
-# 	warn "Created tmp fasta file for MFEPrimer: $fname" if(DEBUG_MFEP);
-# 	
-# 	my $cmd = qq($PYTHON2 $mfeprimer_bin -i $fname -d $loc_seq_db $mfeprimer_args);
-# 	warn "cmd=$cmd" if(DEBUG_MFEP);
-# 	
-# 	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
-# 	
-# 	my $output;
-# 	while(<P>) {
-# 		if(/FATAL ERROR: (.*)/) {
-# 			#die "[!!] Primer3 Error: $1\nUsed input:\n$out\nDied";
-# 		}
-# 		#chomp;
-# 		
-# 		# grep in MFEprimer output for
-# 		# Distribution of 33 MFEprimer hits on the query primers
-# 		
-# 		chomp;
-# 		if(m/Distribution of/) {
-# 			$output = (split(" ", $_))[2];
-# 		}
-# 		#$output .= $_;
-# 	}
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
-# 	
-# 	
-# 	
-# 	warn "output: '$output'\n" if($VERBOSE>2);
-# 	
-# 	return $output;
-# }
 
 sub run_mfeprimer_3 {
 	my ($seq_a, $seq_b, $loc_seq_db) = @_;
