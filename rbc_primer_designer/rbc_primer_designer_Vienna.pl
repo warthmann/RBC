@@ -4,14 +4,14 @@
 #
 # rbc_primer_designer -- Designs primers for given variants in rbci format
 #
-# Version: 0.1
+# Version: 0.2
 #
-# Author: 
-#   Joffrey Fitz <joffrey.fitz@tuebingen.mpg.de>
+# Authors: 
+#   v.0.2   Norman Warthmann <norman@warthmann.com> (2020)
+#   v.0.1   Joffrey Fitz <joffrey.fitz@tuebingen.mpg.de> (2012)
 #
-# Copyright (c) 2012 Max Planck Institute for Developmental Biology, 
-#   http://www.eb.tuebingen.mpg.de
-#
+# Copyright (c) is with the authors
+#  
 # This program is free software; you can redistribute it and/or modify it                        
 # under the terms of the GNU General Public License as published by the Free                     
 # Software Foundation; either version 2, or (at your option) any later 
@@ -25,11 +25,14 @@
 ###############################################################################
 
 my $VERSION = "0.2";
-#(soft)masking of sequences is preserved (extracts sequences with samtools faidx) 
-#uses mfeprimer3,
-#number of primers to return and test can be adjusted (-T)
-#Fragment defaults provided for Sanger, ONT, and illumina, but can still be adjusted
-#TODO: improve logfile options 
+
+# changes to 0.1
+# (soft)masking of sequences is now preserved (extracts sequences with samtools faidx) 
+# uses mfeprimer v3 rather than mfeprimer v1,
+# number of primers to return and test can now be grater than 1 (adjusted with -T)
+# mfeprimer v3 can be given meaningful paramenters and produces a logfile
+# Fragment defaults provided for Sanger, ONT, and illumina, but can still be fine tuned
+# still TODO: improve logfile behaviour and options 
 
 #
 # Global values
@@ -63,11 +66,11 @@ my $samtools_bin = `which samtools`; chomp $samtools_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
-my $primer_num_return = 1; #added by Norman 3/2020
+my $primer_num_return = 1; 
 
-my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
-my $mfeprimer_3_args = "";
-my $mfeprimer_3_logfile = "mfep3.log";
+my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 "; 
+my $mfeprimer_3_args = ""; 
+my $mfeprimer_3_logfile = "mfep3.log"; 
 
 ###############################################################################
 # END OF CONFIGURATION
@@ -203,7 +206,9 @@ die "[ERROR] DB for MFEprimer is not indexed: run mfeprimer index on '$loc_seq_d
 # Check mfeprimer3 logfile
 die "[ERROR] The logfile for mfeprimer3 already exists: '$mfeprimer_3_logfile'\n" if(-e $mfeprimer_3_logfile);
 
+
 #set the parameters for the desired PCR fragments
+
 if ($seq_type_intended eq "illumina"){
 # Defaults for Illumina
 ##############################################################################
@@ -239,7 +244,7 @@ if ($seq_type_intended eq "illumina"){
 
 } else {
 	
-	warn "[INFO]     no intended sequencing method is set ($seq_type_intended), using defaults  !\n";
+	warn "[INFO]     no intended sequencing method is set, using default ($seq_type_intended)  !\n";
 } 	
 
 #if($VERBOSE) {
@@ -905,7 +910,7 @@ SNP control:
   -c, --chr=ID                       (mandatory) use ID as chromosome identifier
   -s, --start=NUM                    (mandatory) look at region starting from NUM
   -e, --end=NUM                      (mandatory) in conjunction with -s; region ends at NUM      
-  -f, --usr_filter=FLAGS             (=PASS)	 semicolon separated list of rbci variant filter flags
+  -f, --usr_filter=FLAGS             (=PASS)	 semicolon separated (\;) list of rbci variant filter flags
       --major                        (optional)  use major allele for SNP annotation instead of IUPAC base
 
 Primer design control:

@@ -1,38 +1,27 @@
-use like so
+#use like so
 
-perl rbc_primer_designer/rbc_primer_designer.pl \
--r freebayes_D2.NWfiltered.rbci \
--b /Users/u5264546/genomes/Sorghum/Sbicolor_454_v3.0.1.fa \
--c Chr01 -s 1 -e 30000000 \
--f NoSBtag \
--p /Users/u5264546/miniconda3/envs/RBC/bin/primer3_core \
--d /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/p3_Vienna_settings.txt \
--m /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/MFEprimer/MFEprimer.py \
--v \
-> primerdesign_outfile_test
-
-perl rbc_primer_designer/rbc_primer_designer_experimental.pl \
--r freebayes_D2.NWfiltered.rbci \
--b /Users/u5264546/genomes/Sorghum/Sbicolor_454_v3.0.1_chr_only_len17_min5.msk.fa \
--c Chr04 -s 10000000 -e 11000000 \
--f NoSBtag \
--p /Users/u5264546/miniconda3/envs/RBC/bin/primer3_core \
--T 10 \
--d /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/p3_Vienna_settings.txt \
--z /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/utils/mfeprimer-3.1.5-darwin-10.6-amd64
--v -v -v \
-> primerdesign_outfile_Chr04_10-11
-
-perl rbc_primer_designer/rbc_primer_designer_experimental.pl \
+perl rbc_primer_designer//rbc_primer_designer_Vienna.pl \
 -r freebayes_D2.NWfiltered.rbci \
 -c Chr04 -s 10000000 -e 11000000 \
--f NoSBtag \
+-f NoSBtag\;NonPhasingPoolHomozygous \
 -p /Users/u5264546/miniconda3/envs/RBC/bin/primer3_core \
 -d /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/p3_Vienna_settings.txt \
 --SPQRNO=ONT \
-- T 10 \
+-T 10 \
 -z /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/utils/mfeprimer-3.1.5-darwin-10.6-amd64 \
 -b /Users/u5264546/genomes/Sorghum/Sbicolor_454_v3.0.1_chr_only_len17_min5.msk.fa \
 -v -v -v \
 > primer_outfile.rbcp
 
+# or so
+perl rbc_primer_designer/rbc_primer_designer_Vienna.pl \
+-r freebayes_D2.NWfiltered.rbci \
+-b /Users/u5264546/genomes/Sorghum/Sbicolor_454_v3.0.1_chr_only_len17_min5.msk.fa \
+-c Chr04 -s 10000000 -e 11000000 \
+-f NoSBtag\;NonPhasingPoolHomozygous \
+-p /Users/u5264546/miniconda3/envs/RBC/bin/primer3_core \
+-T 10 \
+-d /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/rbc_primer_designer/p3_Vienna_settings.txt \
+-z /Users/u5264546/Work/Projects/RBC_for_github/rice_mapping/RBC_code/utils/mfeprimer-3.1.5-darwin-10.6-amd64 \
+--SPQRNO=ONT \
+--mfeprimer_3_args="-s 100 -S 5000 --tm 50"
