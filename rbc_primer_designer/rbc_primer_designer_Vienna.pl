@@ -354,14 +354,9 @@ if($run_mode eq "design_primers") {
 
 exit;
 
-
-
 #
 # Starting subs
 ###############################################################################
-
-
-
 #
 # Translate given ACGT SNP (e.g. "AT") to IUPAC
 #
@@ -389,8 +384,6 @@ sub to_iupac {
 	$snp =~ s/AG|GA/R/;
 	return $snp;
 }
-
-
 
 #
 # Read SNP list in rbci format
@@ -498,7 +491,6 @@ sub init_rbci {
 
 	return (\%prim_snps, \%prim_major_minors, \%second_snps, \%second_types, \%second_filters, \%rbci);
 }
-
 
 
 #
@@ -653,7 +645,6 @@ sub get_template_seq {
 		return ($header, $ann_seq);
 	}
 }
-
 
 
 #
@@ -882,7 +873,9 @@ sub run_mfeprimer_3 {
 
 sub print_version {
 	warn "$prog_name $VERSION\n\n";
-	warn "Written 2012 by Joffrey Fitz <joffrey.fitz\@tuebingen.mpg.de>\n";
+	warn "This version has been created in March 2020 by Norman Warthmann, FAO/IAEA Joint Division, Seibersdorf, Austria\n";
+	warn "Please direct questions to n.warthmann\@iaea.org\n";
+	warn "Version 0.1 had been written in 2012 by Joffrey Fitz <joffrey.fitz\@tuebingen.mpg.de>\n";
 	warn "Copyright 2012 Max Planck Institute for Developmental Biology, Tübingen, Germany\n";
 	warn "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
 	warn "This is free software: you are free to change and redistribute it.\n";
@@ -916,7 +909,7 @@ SNP control:
       --major                        (optional)  use major allele for SNP annotation instead of IUPAC base
 
 Primer design control:
-  --SPQRNO                           (illumina or ONT) chooses reasonable defaults if amplicons are intended for short or long read sequencing 
+      --SPQRNO                       (illumina or ONT) chooses defaults for amplicons intended for 2nd Gen Seq (Defaults for Sanger) 
   -Q, --PRODUCT_SIZE_RANGE_MIN=NUM   (=$PRODUCT_SIZE_RANGE_MIN)	 set minimum primer product range to NUM
   -P, --PRODUCT_SIZE_RANGE_MAX=NUM   (=$PRODUCT_SIZE_RANGE_MAX)	 set maximum primer product range to NUM
   -O, --PRODUCT_OPT_SIZE=NUM         (=$PRODUCT_OPT_SIZE)	 set optimal primer product size to NUM
@@ -934,10 +927,12 @@ Helper tools:
 
 #MFE primer (uses MFEprimer 3) 
 
-  -z, --mfeprimer_3_bin=BIN            (optional)  set absolute path to the mfeprimer3 binary. (no default)
+  -z, --mfeprimer_3_bin=BIN          (mandatory)  set absolute path to the mfeprimer3 binary. (no default)
                                                    (note: mfeprimer3 requires to first run mfeprimer3 index)
-      --mfeprimer_3_args=ARGS          (optional)  use custom arguments for mfeprimer 3. Defaults to $mfeprimer_3_args_intern
-                                                 
+  -a, --mfeprimer_3_args=ARGS        (mandatory)  use custom arguments for mfeprimer 3. Defaults to \"$mfeprimer_3_args_intern\"
+
+  -l,  --mfeprimer_3_logfile         (optional)  default is mfep3.log 
+
 Miscellaneous:         
   -v, --verbose                      (optional)  print verbose status messages (use cummulative: -v -v -v is most verbose)
   -h, --help                                     display this help and exit
@@ -994,6 +989,6 @@ sub print_params {
 	# MFEPrimer 3
 	warn "[INFO]     mfeprimer_3_bin = $mfeprimer_3_bin\n";
 	warn "[INFO]     mfeprimer_3_args = $mfeprimer_3_args\n";
+	warn "[INFO]     mfeprimer_3_logfile = $mfeprimer_3_logfile\n";
 	warn "\n";
-
 }
