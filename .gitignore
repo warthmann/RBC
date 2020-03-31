@@ -19,6 +19,7 @@ primerdesign_outfile
 rbc_mapper/__pycache__/*
 Information.log
 
+mfep3.log
 error.log
 primerdesign_*
 

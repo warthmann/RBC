@@ -29,6 +29,7 @@ my $VERSION = "0.2";
 #uses mfeprimer3,
 #number of primers to return and test can be adjusted (-T)
 #Fragment defaults provided for Sanger, ONT, and illumina, but can still be adjusted
+#TODO: improve logfile options 
 
 #
 # Global values
@@ -63,11 +64,10 @@ my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
 my $primer_num_return = 1; #added by Norman 3/2020
-#my $seq_type_intended = "ONT";
 
 my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
 my $mfeprimer_3_args = "";
-
+my $mfeprimer_3_logfile = "mfep3.log";
 
 ###############################################################################
 # END OF CONFIGURATION
@@ -142,7 +142,7 @@ my $result = GetOptions(
 	"end|e=i"                      => \$end,
 	"usr_filter|f=s"               => \$usr_filter,
 	"restriction_seq|x=s"          => \$restriction_seq,
-	"SPQRNO|m:s"                     => \$seq_type_intended,
+	"SPQRNO|m:s"                   => \$seq_type_intended,
 	"PRODUCT_SIZE_RANGE_MIN|Q=s"   => \$PRODUCT_SIZE_RANGE_MIN,
 	"PRODUCT_SIZE_RANGE_MAX|P=s"   => \$PRODUCT_SIZE_RANGE_MAX,
 	"PRODUCT_OPT_SIZE|O=s"         => \$PRODUCT_OPT_SIZE,
@@ -153,10 +153,9 @@ my $result = GetOptions(
 	"p3_bin|p=s"                   => \$p3_bin,
 	"p3_conf|d=s"                  => \$p3_conf,
 	"primer_num_return|T:i"        => \$primer_num_return,
-#	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
-#	"mfeprimer_args=s"             => \$mfeprimer_args,
     "mfeprimer_3_bin|z=s"          => \$mfeprimer_3_bin,
-	"mfeprimer_3_args=s"           => \$mfeprimer_3_args,
+	"mfeprimer_3_args|a=s"         => \$mfeprimer_3_args,
+	"mfeprimer_3_logfile|l:s"      => \$mfeprimer_3_logfile,
 	"major"                        => \$ann_major,
 
 	"VERBOSE|v+"                   => \$VERBOSE,
@@ -186,8 +185,6 @@ if($mfeprimer_3_args eq "") {
 }
 
 
-if ($seq_type_intended eq "illumina"){
-
 # Check executables
 die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
 die "[ERROR] Executable MFEprimer_3 not found: '$mfeprimer_3_bin'\n" if (! -e $mfeprimer_3_bin);
@@ -203,7 +200,11 @@ die "[ERROR] Primer3 configuration file does not exist: '$p3_conf'\n" if(! -e $p
 die "[ERROR] DB for MFEprimer does not exist\n" if(! -e $loc_seq_db);
 die "[ERROR] DB for MFEprimer is not indexed: run mfeprimer index on '$loc_seq_db'\n" if(! -e $loc_seq_db.".primerqc.fai");
 
+# Check mfeprimer3 logfile
+die "[ERROR] The logfile for mfeprimer3 already exists: '$mfeprimer_3_logfile'\n" if(-e $mfeprimer_3_logfile);
 
+#set the parameters for the desired PCR fragments
+if ($seq_type_intended eq "illumina"){
 # Defaults for Illumina
 ##############################################################################
 	# Primer product sizes
@@ -851,7 +852,8 @@ sub run_mfeprimer_3 {
 	my $cmd = qq($mfeprimer_3_bin spec -i $fname -d $loc_seq_db $mfeprimer_3_args);
 	warn "cmd=$cmd" if(DEBUG_MFEP);
 	
-	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
+	#open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
+	open P,"$cmd | tee -a $mfeprimer_3_logfile |" or die "error running command $cmd: $!";
 	
 	my $output;
 	while(<P>) {
@@ -866,7 +868,6 @@ sub run_mfeprimer_3 {
 			my @matches = /[0-9]+/g;
 			$output = $matches[0];
 		}
-		#$output .= $_;
 	}
 	my $exit_value=$? >> 8;
 	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
@@ -874,6 +875,7 @@ sub run_mfeprimer_3 {
 	warn "output: '$output'\n" if($VERBOSE>2);
 	
 	return $output;
+	
 }
 
 
