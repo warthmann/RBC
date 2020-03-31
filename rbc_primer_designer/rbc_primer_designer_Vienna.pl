@@ -24,70 +24,51 @@
 #
 ###############################################################################
 
-my $VERSION = "0.1";
+my $VERSION = "0.2";
+#(soft)masking of sequences is preserved (extracts sequences with samtools faidx) 
+#uses mfeprimer3,
+#number of primers to return and test can be adjusted (-T)
+#Fragment defaults provided for Sanger, ONT, and illumina, but can still be adjusted
 
 #
 # Global values
 ###############################################################################
-my $VERBOSE    => 2;
-use constant DEBUG      => 1;
-use constant DEBUG_P3   => 1;
-use constant DEBUG_MFEP => 1;
+my $VERBOSE    = 0;
+use constant DEBUG      => 0;
+use constant DEBUG_P3   => 0;
+use constant DEBUG_MFEP => 0;
 
-# Defaults for Illumina
-##############################################################################
-	# Primer product sizes
-	my $PRODUCT_SIZE_RANGE_MIN = 280;
-	my $PRODUCT_SIZE_RANGE_MAX = 400; 
-	my $PRODUCT_OPT_SIZE = 300;
+# PCR product preferences
+my $seq_type_intended="Default/Sanger";
+my $PRODUCT_SIZE_RANGE_MIN = 200;
+my $PRODUCT_SIZE_RANGE_MAX = 1200; 
+my $PRODUCT_OPT_SIZE = 800;
 
-	# Regions for primers
-	my $P_DIST_MAX     = 50;   # max distance from SNP
-	my $P_DIST_MIN     = 3;    # min distance from SNP
+# Regions for primers
+my $P_DIST_MAX     = 400;   # max distance from SNP
+my $P_DIST_MIN     = 50;    # min distance from SNP
 
-	# Variants stuff
-	# skip secondary variants if indel length larger than this
-	my $MAX_SECONDARY_INDEL_LEN = 5; 
+# Variants stuff
+# skip secondary variants if indel length larger than this
+my $MAX_SECONDARY_INDEL_LEN = 5; 
 
-# Defaults for Oxford Nanopore
-##############################################################################
-	# Primer product sizes
-	my $PRODUCT_SIZE_RANGE_MIN = 600;
-	my $PRODUCT_SIZE_RANGE_MAX = 2000; 
-	my $PRODUCT_OPT_SIZE = 1200;
 
-	# Regions for primers
-	my $P_DIST_MAX     = 1200;   # max distance from SNP
-	my $P_DIST_MIN     = 20;    # min distance from SNP
-
-	# Variants stuff
-	# skip secondary variants if indel length larger than this
-	my $MAX_SECONDARY_INDEL_LEN = 20; 
-
-#
 # 3rd party tools
 ###############################################################################
-
 #
 # Executables
 #
-my $fastacmd_bin = `which fastacmd`; chomp $fastacmd_bin;
-my $blastdbcmd_bin = `which blastdbcmd`; chomp $blastdbcmd_bin;
 my $samtools_bin = `which samtools`; chomp $samtools_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
-my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
 my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
-my $primer_num_return=1; #added by Norman 3/2020
-
-my $mfeprimer_args_intern = "-T F -W 4 -a 2 --ppc_cutoff=0.255";
-my $mfeprimer_args = "";
+my $primer_num_return = 1; #added by Norman 3/2020
+#my $seq_type_intended = "ONT";
 
 my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
 my $mfeprimer_3_args = "";
 
-#my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
- 
+
 ###############################################################################
 # END OF CONFIGURATION
 #
@@ -150,17 +131,18 @@ my ($print_version, $print_help);
 my ($loc_seq_db, $loc_rbci);
 my ($chr, $start, $end);
 my ($usr_filter, $restriction_seq) = ("PASS", "");
-my $ann_major = 0; # use IUPAC base or major allel as annotation for primary SNP
+my $ann_major = 0; # use IUPAC base or major allele as annotation for primary SNP
 
 my $result = GetOptions(
 	"loc_seq_db|b=s"               => \$loc_seq_db,
 	"loc_rbci|r=s"                 => \$loc_rbci,
 	
 	"chr|c=s"               	   => \$chr,
-	"start|s=s"                    => \$start,
+	"start|s=i"                    => \$start,
 	"end|e=i"                      => \$end,
 	"usr_filter|f=s"               => \$usr_filter,
 	"restriction_seq|x=s"          => \$restriction_seq,
+	"SPQRNO|m:s"                     => \$seq_type_intended,
 	"PRODUCT_SIZE_RANGE_MIN|Q=s"   => \$PRODUCT_SIZE_RANGE_MIN,
 	"PRODUCT_SIZE_RANGE_MAX|P=s"   => \$PRODUCT_SIZE_RANGE_MAX,
 	"PRODUCT_OPT_SIZE|O=s"         => \$PRODUCT_OPT_SIZE,
@@ -171,14 +153,14 @@ my $result = GetOptions(
 	"p3_bin|p=s"                   => \$p3_bin,
 	"p3_conf|d=s"                  => \$p3_conf,
 	"primer_num_return|T:i"        => \$primer_num_return,
-	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
-	"mfeprimer_args=s"             => \$mfeprimer_args,
+#	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
+#	"mfeprimer_args=s"             => \$mfeprimer_args,
     "mfeprimer_3_bin|z=s"          => \$mfeprimer_3_bin,
 	"mfeprimer_3_args=s"           => \$mfeprimer_3_args,
 	"major"                        => \$ann_major,
-	
+
 	"VERBOSE|v+"                   => \$VERBOSE,
-	
+
 	"version|V"                    => \$print_version,
 	"help|h"                       => \$print_help,
 );			
@@ -198,41 +180,70 @@ if($p3_conf eq "" || $loc_seq_db eq "") {
 	print_help();
 }
 
-# Check executables
-die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
-#die "[ERROR] Executable MFEprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
-#die "[ERROR] Executable MFEprimer_3 not found: '$mfeprimer_3_bin'\n" if (! -e $mfeprimer_3_bin);
-#die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
-#die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
-die "[ERROR] Executable for samtools not found: '$samtools_bin'\n" if (! -e $samtools_bin);
-die "[ERROR] '$p3_bin' not executable\n" if (! -x $p3_bin);
-#die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
-die "[ERROR] '$mfeprimer_3_bin' not executable\n" if (! -x $mfeprimer_3_bin);
-#die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
-#die "[ERROR] '$blastdbcmd_bin' not executable\n" if (! -x $blastdbcmd_bin);
-
-# Check data files
-die "[ERROR] rbci input file does not exist: '$loc_rbci'\n" if(! -e $loc_rbci);
-die "[ERROR] BLAST DB does not exist: '$loc_seq_db'\n" if(! -e $loc_seq_db);
-die "[ERROR] DB for MFEprimer does not exist: run mfeprimer index on '$loc_seq_db'\n" if(! -e $loc_seq_db.".primerqc.fai");
-die "[ERROR] Primer3 configuration does not exist: '$p3_conf'\n" if(! -e $p3_conf);
-
-
-
-# Set mfeprimer_args
-if($mfeprimer_args eq "") {
-	$mfeprimer_args = $mfeprimer_args_intern . " -e " . 10*$PRODUCT_SIZE_RANGE_MAX;
-}
-
 # Set mfeprimer_3_args
 if($mfeprimer_3_args eq "") {
 	$mfeprimer_3_args = $mfeprimer_3_args_intern;
 }
 
 
-if($VERBOSE) {
+if ($seq_type_intended eq "illumina"){
+
+# Check executables
+die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
+die "[ERROR] Executable MFEprimer_3 not found: '$mfeprimer_3_bin'\n" if (! -e $mfeprimer_3_bin);
+die "[ERROR] Executable for samtools not found: '$samtools_bin'\n" if (! -e $samtools_bin);
+
+die "[ERROR] '$p3_bin' not executable!\n" if (! -x $p3_bin);
+die "[ERROR] '$mfeprimer_3_bin' not executable!\n" if (! -x $mfeprimer_3_bin);
+die "[ERROR] '$samtools_bin' not executable!\n" if (! -x $samtools_bin);
+
+# Check data files
+die "[ERROR] rbci input file does not exist: '$loc_rbci'\n" if(! -e $loc_rbci);
+die "[ERROR] Primer3 configuration file does not exist: '$p3_conf'\n" if(! -e $p3_conf);
+die "[ERROR] DB for MFEprimer does not exist\n" if(! -e $loc_seq_db);
+die "[ERROR] DB for MFEprimer is not indexed: run mfeprimer index on '$loc_seq_db'\n" if(! -e $loc_seq_db.".primerqc.fai");
+
+
+# Defaults for Illumina
+##############################################################################
+	# Primer product sizes
+	$PRODUCT_SIZE_RANGE_MIN = 280;
+	$PRODUCT_SIZE_RANGE_MAX = 400; 
+	$PRODUCT_OPT_SIZE = 300;
+
+	# Regions for primers
+	$P_DIST_MAX     = 80;   # max distance from SNP
+	$P_DIST_MIN     = 3;    # min distance from SNP
+
+	# Variants stuff
+	# skip secondary variants if indel length larger than this
+	$MAX_SECONDARY_INDEL_LEN = 5; 
+
+} elsif ($seq_type_intended eq "ONT") {
+
+# Defaults for Oxford Nanopore
+##############################################################################
+	# Primer product sizes
+	$PRODUCT_SIZE_RANGE_MIN = 600;
+	$PRODUCT_SIZE_RANGE_MAX = 2000; 
+	$PRODUCT_OPT_SIZE = 1200;
+
+	# Regions for primers
+	$P_DIST_MAX     = 1200;   # max distance from SNP
+	$P_DIST_MIN     = 20;    # min distance from SNP
+
+	# Variants stuff
+	# skip secondary variants if indel length larger than this
+	$MAX_SECONDARY_INDEL_LEN = 20; 
+
+} else {
+	
+	warn "[INFO]     no intended sequencing method is set ($seq_type_intended), using defaults  !\n";
+} 	
+
+#if($VERBOSE) {
 	print_params();
-}
+#}
 
 # init primary and secondary SNPs from rbci file
 # use all PASS SNPs as primaries, all other as secondary
@@ -241,6 +252,7 @@ my %prim_snplist = %$prim;
 my %major_minors_list = %$prim_major_minors;
 my %second_snplist = %$second;
 my %rbci_vals = %$rbci;
+
 
 #
 # Run mode design_primers
@@ -258,7 +270,8 @@ if($run_mode eq "design_primers") {
 
 	my $snp_nr=1;
 	
-	foreach my $snp_pos (sort {$a<=>$b} keys %prim_snplist) {
+	foreach my $snp_pos (sort {$a<=>$b} keys %prim_snplist) { 
+		# for each snp try to find primers. Test all that primer3 returns with MFEprimer3, and return the first that has a unique hit in the genome
 		my $found_primers = 0;
 		
 		my $direction="fwd"; # lets first try to find primers for the forward direction. 
@@ -268,7 +281,7 @@ if($run_mode eq "design_primers") {
 	    my $primercount = 0; #from 0 to $primer_num_return #(added by NW)
 	
         while ($found_primers == 0 && $primercount < $primer_num_return) { #try as many primers as primer3 was asked to return
-			warn "[INFO]     ######################################### current value of FWD primercount: $primercount\n" if($VERBOSE>1);
+			warn "[INFO]     ## current value of FWD primercount: $primercount\n" if($VERBOSE>1);
 
 		
 			my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header", "$primercount" ); #( $primercount added by NW)
@@ -304,7 +317,7 @@ if($run_mode eq "design_primers") {
 			my $primercount = 0; #from 0 to $primer_num_return #(added by NW)
 
 			while ($found_primers == 0 && $primercount < $primer_num_return) { #try as many primers as primer3 was asked to return
-				warn "[INFO]     ######################################### current value of FWD primercount: $primercount\n" if($VERBOSE>1);
+				warn "[INFO]     ## current value of FWD primercount: $primercount\n" if($VERBOSE>1);
 
 			
 				my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header", "$primercount" );
@@ -315,7 +328,6 @@ if($run_mode eq "design_primers") {
 					# Run mfe_primer and check primer maps on genome
 					warn "# $out[0] # $out[1] $out[2] # $out[3] # $out[4] # $out[5]" if(DEBUG_MFEP);
 
-					#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
 					my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
 					push @out, $hits;
 					warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
@@ -493,9 +505,6 @@ sub init_rbci {
 #
 sub get_seq {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
-	#get_seq_cut($loc_seq_db, $chr, $start, $end);
-	#get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
-    #get_seq_blastdbcmd($loc_seq_db, $chr, $start, $end);
 	get_seq_samtools($loc_seq_db, $chr, $start, $end);
 }
 
@@ -656,10 +665,7 @@ sub get_product_seq {
 	warn "[INFO] Getting product sequence\n" if($VERBOSE>1);
 	
 	my ($ann_seq, $snp_pos, $p3_start, $p3_end, $direction, $restriction_seq) = @_;
-		
-	#my $ann_seq = get_template_seq($snp_pos, $direction, "NO_HEADER", "MAJOR", "SECONDARY_NO_N");
-	#my $ann_seq = get_template_seq($snp_pos, $direction, "MAPPING_SEQ", "NO_HEADER", "MAJOR");
-
+	
 	my ($primer_left_start, $primer_left_len) = split ",", $p3_start;
 	my ($primer_right_start, $primer_right_len) = split ",", $p3_end;
 	my $product_len = $primer_right_start-$primer_left_start+1;
@@ -667,7 +673,7 @@ sub get_product_seq {
 	
 	if($direction eq "fwd") {
 		$product_seq = $product_seq . $restriction_seq;
-	} elsif($direction eq "rev") {
+	} elsif($direction eq "rev") { #make reverse complement
 		$product_seq = $product_seq . $restriction_seq;
 		$product_seq =~ tr/ACTGactgMRVHmrvhKYBDkybd/TGACtgacKYBDkybdMRVHmrvh/;
 		$product_seq = reverse($product_seq);
@@ -897,7 +903,8 @@ Results are printed to STDOUT in rcbp format.
 
 Mandatory input files:
   -r, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
-  -b, --loc_seq_db=FASTA             (mandatory) (multi-)FASTA file of genome (deprecated: within preprocessed BLAST DB).
+  -b, --loc_seq_db=FASTA             (mandatory) (multi-)FASTA file of genome (indexed for mfeprimer3, 
+                                      check: https://www.mfeprimer.com/mfeprimer-3.1/#index-databases).
   
 SNP control:
   -c, --chr=ID                       (mandatory) use ID as chromosome identifier
@@ -907,6 +914,7 @@ SNP control:
       --major                        (optional)  use major allele for SNP annotation instead of IUPAC base
 
 Primer design control:
+  --SPQRNO                           (illumina or ONT) chooses reasonable defaults if amplicons are intended for short or long read sequencing 
   -Q, --PRODUCT_SIZE_RANGE_MIN=NUM   (=$PRODUCT_SIZE_RANGE_MIN)	 set minimum primer product range to NUM
   -P, --PRODUCT_SIZE_RANGE_MAX=NUM   (=$PRODUCT_SIZE_RANGE_MAX)	 set maximum primer product range to NUM
   -O, --PRODUCT_OPT_SIZE=NUM         (=$PRODUCT_OPT_SIZE)	 set optimal primer product size to NUM
@@ -917,23 +925,19 @@ Primer design control:
 Helper tools:
 
 #Primer3 and config
-  -d, --p3_conf=FILE                 (mandatory) use FILE as primer3 configuration
   -p, --p3_bin=BIN                   (optional)  set absolute path of primer3 binary to BIN.
                                                  Defaults to \$PATH/primer3_core
+  -d, --p3_conf=FILE                 (mandatory) use FILE as primer3 configuration
 
-#MFE primer (use MFEprimer 3, MFEprimer v1 is there for legacy reasons) 
-  -m, --mfeprimer_bin=BIN            (optional)  set absolute path mfeprimer v1 python script.
-                                                 Defaults to \$PATH/MFEprimer.py
-                                                 Use of mfe primer requires to first run makeblastdb (self)
-      --mfeprimer_args=ARGS          (optional)  use custom arguments for mfeprimer.
-                                                 Defaults to "$mfeprimer_args_intern -e <10*PRODUCT_SIZE_RANGE_MAX>"
 
-  -z, --mfeprimer_3_bin=BIN            (optional)  set absolute path to mfeprimer3 binary. (no default)
-                                                   use of mfeprimer3 requires to first run mfeprimer3 index (self)
+#MFE primer (uses MFEprimer 3) 
+
+  -z, --mfeprimer_3_bin=BIN            (optional)  set absolute path to the mfeprimer3 binary. (no default)
+                                                   (note: mfeprimer3 requires to first run mfeprimer3 index)
       --mfeprimer_3_args=ARGS          (optional)  use custom arguments for mfeprimer 3. Defaults to $mfeprimer_3_args_intern
                                                  
 Miscellaneous:         
-  -v, --verbose                      (optional)  print verbose status messages
+  -v, --verbose                      (optional)  print verbose status messages (use cummulative: -v -v -v is most verbose)
   -h, --help                                     display this help and exit
   -V, --version                                  print version information and exit
   
@@ -959,9 +963,11 @@ sub print_params {
 	warn "[INFO]     usr_filter = $usr_filter\n";
 	warn "[INFO]     restriction_seq = $restriction_seq\n";
 
+	warn "[INFO]     SPQRNO (type of sequencing intended) = $seq_type_intended\n";
 	warn "[INFO]     PRODUCT_SIZE_RANGE_MIN = $PRODUCT_SIZE_RANGE_MIN\n";
 	warn "[INFO]     PRODUCT_SIZE_RANGE_MAX = $PRODUCT_SIZE_RANGE_MAX\n";
 	warn "[INFO]     PRODUCT_OPT_SIZE = $PRODUCT_OPT_SIZE\n";
+	warn "[INFO]     PRIMER_NUM_RETURN = $primer_num_return\n";
 
 	# Regions for primers, this will result in
 	warn "[INFO]     P_DIST = $P_DIST_MAX\n";
@@ -971,7 +977,7 @@ sub print_params {
 	warn "[INFO]     SNP_FLANKING = $SNP_FLANKING\n";
 
 	# SNP annotation
-	warn "[INFO]     Annotate primary SNP as major: $ann_major\n";
+	warn "[INFO]     Annotate primary SNP as major (default is IUPAC): $ann_major\n";
 	# Variants stuff
 	warn "[INFO]     MAX_SECONDARY_INDEL_LEN = $MAX_SECONDARY_INDEL_LEN\n";
 
@@ -982,10 +988,6 @@ sub print_params {
 	# Primer3 binary and config
 	warn "[INFO]     p3_bin = $p3_bin\n";
 	warn "[INFO]     p3_conf = $p3_conf\n";
-
-	# MFEPrimer
-	warn "[INFO]     mfeprimer_bin = $mfeprimer_bin\n";
-	warn "[INFO]     mfeprimer_args = $mfeprimer_args\n";
 	warn "\n";
 	# MFEPrimer 3
 	warn "[INFO]     mfeprimer_3_bin = $mfeprimer_3_bin\n";

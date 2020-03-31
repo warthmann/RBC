@@ -20,7 +20,7 @@ rbc_mapper/__pycache__/*
 Information.log
 
 error.log
-primerdesign_outfile_test
+primerdesign_*
 
 utils/mfeprimer-3.1.5-darwin-10.6-amd64
 utils/mfeprimer-3.1.5-linux-amd64
