@@ -29,40 +29,25 @@ my $VERSION = "0.1";
 #
 # Global values
 ###############################################################################
-my $VERBOSE    => 2;
-use constant DEBUG      => 1;
-use constant DEBUG_P3   => 1;
-use constant DEBUG_MFEP => 1;
+my $VERBOSE    => 0;
+use constant DEBUG      => 0;
+use constant DEBUG_P3   => 0;
+use constant DEBUG_MFEP => 0;
 
-# Defaults for Illumina
-##############################################################################
-	# Primer product sizes
-	my $PRODUCT_SIZE_RANGE_MIN = 280;
-	my $PRODUCT_SIZE_RANGE_MAX = 400; 
-	my $PRODUCT_OPT_SIZE = 300;
 
-	# Regions for primers
-	my $P_DIST_MAX     = 50;   # max distance from SNP
-	my $P_DIST_MIN     = 3;    # min distance from SNP
+# Primer product sizes
+my $PRODUCT_SIZE_RANGE_MIN = 280;
+my $PRODUCT_SIZE_RANGE_MAX = 400; 
+my $PRODUCT_OPT_SIZE = 300;
 
-	# Variants stuff
-	# skip secondary variants if indel length larger than this
-	my $MAX_SECONDARY_INDEL_LEN = 5; 
+# Regions for primers
+my $P_DIST_MAX     = 50;   # max distance from SNP
+my $P_DIST_MIN     = 3;    # min distance from SNP
 
-# Defaults for Oxford Nanopore
-##############################################################################
-	# Primer product sizes
-	my $PRODUCT_SIZE_RANGE_MIN = 600;
-	my $PRODUCT_SIZE_RANGE_MAX = 2000; 
-	my $PRODUCT_OPT_SIZE = 1200;
 
-	# Regions for primers
-	my $P_DIST_MAX     = 1200;   # max distance from SNP
-	my $P_DIST_MIN     = 20;    # min distance from SNP
-
-	# Variants stuff
-	# skip secondary variants if indel length larger than this
-	my $MAX_SECONDARY_INDEL_LEN = 20; 
+# Variants stuff
+# skip secondary variants if indel length larger than this
+my $MAX_SECONDARY_INDEL_LEN = 5; 
 
 #
 # 3rd party tools
@@ -72,20 +57,12 @@ use constant DEBUG_MFEP => 1;
 # Executables
 #
 my $fastacmd_bin = `which fastacmd`; chomp $fastacmd_bin;
-my $blastdbcmd_bin = `which blastdbcmd`; chomp $blastdbcmd_bin;
-my $samtools_bin = `which samtools`; chomp $samtools_bin;
 my $p3_bin = `which primer3_core`; chomp $p3_bin;
 my $mfeprimer_bin = `which MFEprimer.py`; chomp $mfeprimer_bin;
-my $mfeprimer_3_bin = `which MFEprimer3`; chomp $mfeprimer_3_bin;
 my $p3_conf = "";
 
 my $mfeprimer_args_intern = "-T F -W 4 -a 2 --ppc_cutoff=0.255";
 my $mfeprimer_args = "";
-
-my $mfeprimer_3_args_intern = " -s 200 -S 4000 --tm 50 ";
-my $mfeprimer_3_args = "";
-
-my $PYTHON2 = `which python2`; chomp $PYTHON2; #added by Norman Jan 2020
  
 ###############################################################################
 # END OF CONFIGURATION
@@ -125,7 +102,7 @@ use Getopt::Long qw(:config no_ignore_case);
 # PRIMER_PAIR_EXPLAIN
 # PRIMER_ERROR
 
-# Primer 3 result tags to be reported (=read and put into a table)
+# Primer 3 result tags to be reported
 my @p3_res_tags = qw/
 PRIMER_LEFT_0
 PRIMER_RIGHT_0
@@ -169,8 +146,7 @@ my $result = GetOptions(
 	"p3_conf|d=s"                  => \$p3_conf,
 	"mfeprimer_bin|m=s"            => \$mfeprimer_bin,
 	"mfeprimer_args=s"             => \$mfeprimer_args,
-    "mfeprimer_3_bin|z=s"          => \$mfeprimer_3_bin,
-	"mfeprimer_3_args=s"           => \$mfeprimer_3_args,
+	
 	"major"                        => \$ann_major,
 	
 	"VERBOSE|v+"                   => \$VERBOSE,
@@ -196,35 +172,21 @@ if($p3_conf eq "" || $loc_seq_db eq "") {
 
 # Check executables
 die "[ERROR] Executable for primer3 not found: '$p3_bin'\n" if (! -e $p3_bin);
-#die "[ERROR] Executable MFEprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
-#die "[ERROR] Executable MFEprimer_3 not found: '$mfeprimer_3_bin'\n" if (! -e $mfeprimer_3_bin);
-#die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
-#die "[ERROR] Executable for blastdbcmd not found: '$blastdbcmd_bin'\n" if (! -e $blastdbcmd_bin);
-die "[ERROR] Executable for samtools not found: '$samtools_bin'\n" if (! -e $samtools_bin);
+die "[ERROR] Executable MFGprimer not found: '$mfeprimer_bin'\n" if (! -e $mfeprimer_bin);
+die "[ERROR] Executable for fastacmd not found: '$fastacmd_bin'\n" if (! -e $fastacmd_bin);
 die "[ERROR] '$p3_bin' not executable\n" if (! -x $p3_bin);
-#die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
-die "[ERROR] '$mfeprimer_3_bin' not executable\n" if (! -x $mfeprimer_3_bin);
-#die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
-#die "[ERROR] '$blastdbcmd_bin' not executable\n" if (! -x $blastdbcmd_bin);
+die "[ERROR] '$mfeprimer_bin' not executable\n" if (! -x $mfeprimer_bin);
+die "[ERROR] '$fastacmd_bin' not executable\n" if (! -x $fastacmd_bin);
 
 # Check data files
 die "[ERROR] rbci input file does not exist: '$loc_rbci'\n" if(! -e $loc_rbci);
 die "[ERROR] BLAST DB does not exist: '$loc_seq_db'\n" if(! -e $loc_seq_db);
-die "[ERROR] DB for MFEprimer does not exist: run mfeprimer index on '$loc_seq_db'\n" if(! -e $loc_seq_db.".primerqc.fai");
 die "[ERROR] Primer3 configuration does not exist: '$p3_conf'\n" if(! -e $p3_conf);
-
-
 
 # Set mfeprimer_args
 if($mfeprimer_args eq "") {
 	$mfeprimer_args = $mfeprimer_args_intern . " -e " . 10*$PRODUCT_SIZE_RANGE_MAX;
 }
-
-# Set mfeprimer_3_args
-if($mfeprimer_3_args eq "") {
-	$mfeprimer_3_args = $mfeprimer_3_args_intern;
-}
-
 
 if($VERBOSE) {
 	print_params();
@@ -249,9 +211,7 @@ if(!$ann_major) {
 	$MAJOR_ANN_FLAG = "";
 }
 if($run_mode eq "design_primers") {
-
-#looking for primers in the forward and reverse direction makes sense for illumina reads where read length is shorter than amplicon length (and snp must be within sequencing length of the illumina fwd sequencing read)!
-
+	
 	my $snp_nr=1;
 	foreach my $snp_pos (sort {$a<=>$b} keys %prim_snplist) {
 		my $direction="fwd";
@@ -260,8 +220,6 @@ if($run_mode eq "design_primers") {
 
 		warn "[INFO] Trying $direction primers for SNP no $snp_nr, $chr:$snp_pos\n" if($VERBOSE);
 	
-	my $primercount = 0;
-		
 		my $res = p3_res_2tab( run_primer3("$header", "$ann_seq"), "$header" );
 		my @out = split("\t", $res );
 
@@ -270,13 +228,12 @@ if($run_mode eq "design_primers") {
 		my $found_primers = 0;
 		if( not (($out[1] eq "N/A") or ($out[2] eq "N/A")) ) {
 			# Run mfe_primer and check primer maps on genome
-			warn "# $out[0] # $out[1] $out[2] # $out[3] # $out[4] # $out[5]" if(DEBUG_MFEP);
+			warn "$out[1] $out[2]" if(DEBUG_MFEP);
 
-			#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
-			my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
+			my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
 			push @out, $hits;
 			warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
-			if($hits == 1) { # then record for outputfile
+			if($hits == 1) {
 				warn "[INFO]     Found Primers ($direction, $hits off-target) for SNP no $snp_nr, $chr:$snp_pos.\n" if($VERBOSE);
 				
 				print rcbp_output($chr, $snp_pos, $direction, $out[4], $out[5],
@@ -285,7 +242,7 @@ if($run_mode eq "design_primers") {
 				$found_primers = 1;
 			}
 		}
-		if($found_primers != 1) { # no primers found so far
+		if($found_primers != 1) { # no primers found
 			my $direction="rev";
 			my ($header, $ann_seq) = get_template_seq($snp_pos, $direction, "PRIMER_SEQ", "HEADER", "$MAJOR_ANN_FLAG");
 
@@ -296,13 +253,12 @@ if($run_mode eq "design_primers") {
 		
 			if( not (($out[1] eq "N/A") or ($out[2] eq "N/A")) ) {
 				# Run mfe_primer and check primer maps on genome
-				warn "# $out[0] # $out[1] $out[2] # $out[3] # $out[4] # $out[5]" if(DEBUG_MFEP);
+				warn "$out[1] $out[2]" if(DEBUG_MFEP);
 
-				#my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
-				my $hits = run_mfeprimer_3($out[4], $out[5], $loc_seq_db);
+				my $hits = run_mfeprimer($out[4], $out[5], $loc_seq_db);
 				push @out, $hits;
 				warn "[INFO]     MFP found $hits hits\n" if($VERBOSE);
-				if($hits == 1) { # then record for outputfile 
+				if($hits == 1) {
 					print rcbp_output($chr, $snp_pos, $direction, $out[4], $out[5],
 						get_product_seq($ann_seq, $snp_pos, $out[1], $out[2], $direction, $restriction_seq)) ."\n";
 							
@@ -473,63 +429,19 @@ sub init_rbci {
 sub get_seq {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
 	#get_seq_cut($loc_seq_db, $chr, $start, $end);
-	#get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
-    #get_seq_blastdbcmd($loc_seq_db, $chr, $start, $end);
-	get_seq_samtools($loc_seq_db, $chr, $start, $end);
+	get_seq_fastacmd($loc_seq_db, $chr, $start, $end);
 }
 
 
 
 #
-# Extract subsequences using fastacmd (original)
+# Extract subsequences using fastacmd
 #
-# sub get_seq_fastacmd {
-# 	my ($loc_seq_db, $chr, $start, $end) = @_;
-# 	
-# 	warn "in get_seq_fastacmd()" if(DEBUG);
-# 	my $cmd = "$fastacmd_bin -d $loc_seq_db -s $chr -L $start,$end";
-# 	warn "cmd: $cmd" if(DEBUG);
-# 	open P,"$cmd |" or die "error running command $cmd: $!";
-# 	my $seq;
-# 	while(<P>) {
-# 		next if(/^>/);
-# 		chomp;
-# 		$seq .= $_;
-# 	}
-# 	close P;
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
-# 	return $seq;
-# }
-
-# Extract subsequences using blastdbcmd (added by Norman 23.3.2020)
-#
-# sub get_seq_blastdbcmd {
-# 	my ($loc_seq_db, $chr, $start, $end) = @_;
-# 	
-# 	warn "in get_seq_fastacmd()" if(DEBUG);
-# 	my $cmd = "$blastdbcmd_bin -db $loc_seq_db -dbtype nucl -entry $chr -range $start-$end -strand plus";
-# 	warn "cmd: $cmd" if(DEBUG);
-# 	open P,"$cmd |" or die "error running command $cmd: $!";
-# 	my $seq;
-# 	while(<P>) {
-# 		next if(/^>/);
-# 		chomp;
-# 		$seq .= $_;
-# 	}
-# 	close P;
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
-# 	return $seq;
-# }
-
-# Extract subsequences using samtools faidx (added by Norman 24.3.2020), the other 2 above are not case sensitive, hence no soft-masking is retained.
-#
-sub get_seq_samtools {
+sub get_seq_fastacmd {
 	my ($loc_seq_db, $chr, $start, $end) = @_;
 	
-	warn "in get_seq_samtools()" if(DEBUG);
-	my $cmd = "$samtools_bin faidx $loc_seq_db $chr:$start-$end";
+	warn "in get_seq_fastacmd()" if(DEBUG);
+	my $cmd = "$fastacmd_bin -d $loc_seq_db -s $chr -L $start,$end";
 	warn "cmd: $cmd" if(DEBUG);
 	open P,"$cmd |" or die "error running command $cmd: $!";
 	my $seq;
@@ -543,6 +455,7 @@ sub get_seq_samtools {
 	die "something went wrong: \n$exit_value\n$seq" if($exit_value != 0);
 	return $seq;
 }
+
 
 
 #
@@ -740,14 +653,11 @@ SEQUENCE_TARGET=$SNP_FLANKING,1
 SEQUENCE_PRIMER_PAIR_OK_REGION_LIST=$start1,$len1,$start2,$len2
 PRIMER_PRODUCT_SIZE_RANGE=$PRODUCT_SIZE_RANGE_MIN-$PRODUCT_SIZE_RANGE_MAX
 PRIMER_PRODUCT_OPT_SIZE=$PRODUCT_OPT_SIZE
-PRIMER_NUM_RETURN=3
 =
 OUT
-    
-	chomp $out; #removing the newline, otherwise primer3 complains of missing "="; echo -n wasn't doing it. (Norman 3/2020)
-	my $cmd = qq(echo "$out" | $p3_bin -p3_settings_file=$p3_conf);
-    #my $cmd = qq(echo -n "$out" | $p3_bin -p3_settings_file=$p3_conf);
-	warn "**cmd: $cmd" if(DEBUG);
+
+	my $cmd = qq(echo -n "$out" | $p3_bin -p3_settings_file=$p3_conf);
+	warn "cmd: $cmd" if(DEBUG);
 	
 	open P,"$cmd |" or die "error running command $cmd: $!";
 
@@ -762,7 +672,7 @@ OUT
 			
 	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
 	
-	warn "***primer3 output start:\n$output***primer3 output end\n" if(DEBUG);
+	warn "output:\n$output\n" if(DEBUG);
 	
 	if(DEBUG_P3) {
 		$cmd .= " -format_output";
@@ -798,17 +708,16 @@ sub p3_res_2tab {
 		}
 	}
 	my $res = join("\t", @line);
-	warn "... this goes into the primer3 result table $res\n" if(DEBUG);
-    return  $res;
+	return  $res;
 }
 
-#sub p3_res_header_2tab {
-#	my @header_fileds=@p3_res_tags;
-#	unshift @header_fileds, "SNP";
-#	my $line = join("\t", @header_fileds);
-#	
-#	return "#" . $line; 
-#}
+sub p3_res_header_2tab {
+	my @header_fileds=@p3_res_tags;
+	unshift @header_fileds, "SNP";
+	my $line = join("\t", @header_fileds);
+	
+	return "#" . $line; 
+}
 
 
 
@@ -822,11 +731,11 @@ sub rcbp_output {
 	my $product_len = length($product_seq);
 	my ($major_allel, $minor_allel) = split('',$major_minors_list{$snp_pos});
 	my ($ref, $alt) = split('',$prim_snplist{$snp_pos});
-	my ($qual, $filter, $type, $segr) = split(':', $rbci_vals{$snp_pos});
+	my ($qual, $type, $filter, $segr) = split(':', $rbci_vals{$snp_pos});
 	
 	return( join("\t", (
 		$chr, $snp_pos, ".", $ref, $alt, $major_allel, $minor_allel, 
-		$qual, $filter, $type, $segr,
+		$qual, $type, $filter, $segr,
 		$direction, $p1_seq, $p2_seq, 
 		$product_len, $N_cnt, $product_seq,
 	)) );
@@ -842,51 +751,7 @@ sub rcbp_output {
 #
 # @return: number_of_hits
 #
-
-# sub run_mfeprimer {
-# 	my ($seq_a, $seq_b, $loc_seq_db) = @_;
-# 	my $fasta=">seq_a\n$seq_a\n>seq_b\n$seq_b\n";
-# 	
-# 	my $tmp = File::Temp->new( TEMPLATE => 'dcof-m_tempXXXXX',
-# 		DIR => '/tmp',
-# 		SUFFIX => '.fa',
-# 		UNLINK => 1);
-# 	my $fname = $tmp->filename;
-# 	print $tmp $fasta;
-# 	warn "Created tmp fasta file for MFEPrimer: $fname" if(DEBUG_MFEP);
-# 	
-# 	my $cmd = qq($PYTHON2 $mfeprimer_bin -i $fname -d $loc_seq_db $mfeprimer_args);
-# 	warn "cmd=$cmd" if(DEBUG_MFEP);
-# 	
-# 	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
-# 	
-# 	my $output;
-# 	while(<P>) {
-# 		if(/FATAL ERROR: (.*)/) {
-# 			#die "[!!] Primer3 Error: $1\nUsed input:\n$out\nDied";
-# 		}
-# 		#chomp;
-# 		
-# 		# grep in MFEprimer output for
-# 		# Distribution of 33 MFEprimer hits on the query primers
-# 		
-# 		chomp;
-# 		if(m/Distribution of/) {
-# 			$output = (split(" ", $_))[2];
-# 		}
-# 		#$output .= $_;
-# 	}
-# 	my $exit_value=$? >> 8;
-# 	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
-# 	
-# 	
-# 	
-# 	warn "output: '$output'\n" if($VERBOSE>2);
-# 	
-# 	return $output;
-# }
-
-sub run_mfeprimer_3 {
+sub run_mfeprimer {
 	my ($seq_a, $seq_b, $loc_seq_db) = @_;
 	my $fasta=">seq_a\n$seq_a\n>seq_b\n$seq_b\n";
 	
@@ -898,7 +763,7 @@ sub run_mfeprimer_3 {
 	print $tmp $fasta;
 	warn "Created tmp fasta file for MFEPrimer: $fname" if(DEBUG_MFEP);
 	
-	my $cmd = qq($mfeprimer_3_bin spec -i $fname -d $loc_seq_db $mfeprimer_3_args);
+	my $cmd = qq($mfeprimer_bin -i $fname -d $loc_seq_db $mfeprimer_args);
 	warn "cmd=$cmd" if(DEBUG_MFEP);
 	
 	open P,"$cmd 2>/dev/null |" or die "error running command $cmd: $!";
@@ -908,18 +773,21 @@ sub run_mfeprimer_3 {
 		if(/FATAL ERROR: (.*)/) {
 			#die "[!!] Primer3 Error: $1\nUsed input:\n$out\nDied";
 		}
-		# grep in MFEprimer 3 output for the number in
-		# "Descriptions of [ x ] potential amplicons"
+		#chomp;
+		
+		# grep in MFEprimer output for
+		# Distribution of 33 MFEprimer hits on the query primers
 		
 		chomp;
-		if(m/Descriptions of/) {
-			my @matches = /[0-9]+/g;
-			$output = $matches[0];
+		if(m/Distribution of/) {
+			$output = (split(" ", $_))[2];
 		}
 		#$output .= $_;
 	}
 	my $exit_value=$? >> 8;
 	die "something went wrong: \n$exit_value\n$output" if($exit_value != 0);
+	
+	
 	
 	warn "output: '$output'\n" if($VERBOSE>2);
 	
@@ -945,15 +813,15 @@ sub print_help {
 
 $prog_name $VERSION
 
-Usage: $0 [OPTIONS] -r rbci-file -b fasta-file -c chr -s start -e end -p primer3_bin -d primer3_conf -m mfprimer_bin
+Usage: $0 [OPTIONS] -r rbcifile -b blastdb -c chr -s start -e end -p primer3_bin -d primer3_conf -m mfprimer_bin
 
 Designs primers for SNPs defined in variants.rbci for specified region (chromosome, start, end). 
 Only SNPs with user given flags (defaults to PASS) are considered.
 Results are printed to STDOUT in rcbp format.
 
 Mandatory input files:
-  -r, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
-  -b, --loc_seq_db=FASTA             (mandatory) (multi-)FASTA file of genome (deprecated: within preprocessed BLAST DB).
+  -i, --loc_rbci=FILE                (mandatory) use FILE as rbci variant input file
+  -b, --loc_seq_db=FASTA             (mandatory) FASTA file within preprocessed BLAST DB.
   
 SNP control:
   -c, --chr=ID                       (mandatory) use ID as chromosome identifier
@@ -971,23 +839,14 @@ Primer design control:
   -N, --MAX_SECONDARY_INDEL_LEN=NUM  (=$MAX_SECONDARY_INDEL_LEN)	 discard assay, if secondary indel exists longer than NUM
 
 Helper tools:
-
-#Primer3 and config
   -d, --p3_conf=FILE                 (mandatory) use FILE as primer3 configuration
   -p, --p3_bin=BIN                   (optional)  set absolute path of primer3 binary to BIN.
                                                  Defaults to \$PATH/primer3_core
-
-#MFE primer (use MFEprimer 3, MFEprimer v1 is there for legacy reasons) 
-  -m, --mfeprimer_bin=BIN            (optional)  set absolute path mfeprimer v1 python script.
+  -m, --mfeprimer_bin=BIN            (optional)  set absolute path of mfeprimer to BIN.
                                                  Defaults to \$PATH/MFEprimer.py
-                                                 Use of mfe primer requires to first run makeblastdb (self)
-      --mfeprimer_args=ARGS          (optional)  use custom arguments for mfeprimer.
+      --mfeprimer_args=ARGS          (optional)  use custom ARGS arguments for mfeprimer.
                                                  Defaults to "$mfeprimer_args_intern -e <10*PRODUCT_SIZE_RANGE_MAX>"
 
-  -z, --mfeprimer_3_bin=BIN            (optional)  set absolute path to mfeprimer3 binary. (no default)
-                                                   use of mfeprimer3 requires to first run mfeprimer3 index (self)
-      --mfeprimer_3_args=ARGS          (optional)  use custom arguments for mfeprimer 3. Defaults to $mfeprimer_3_args_intern
-                                                 
 Miscellaneous:         
   -v, --verbose                      (optional)  print verbose status messages
   -h, --help                                     display this help and exit
@@ -1043,9 +902,4 @@ sub print_params {
 	warn "[INFO]     mfeprimer_bin = $mfeprimer_bin\n";
 	warn "[INFO]     mfeprimer_args = $mfeprimer_args\n";
 	warn "\n";
-	# MFEPrimer 3
-	warn "[INFO]     mfeprimer_3_bin = $mfeprimer_3_bin\n";
-	warn "[INFO]     mfeprimer_3_args = $mfeprimer_3_args\n";
-	warn "\n";
-
 }
